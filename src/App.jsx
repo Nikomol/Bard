@@ -15,8 +15,12 @@ export default function App() {
     else if(content >= 20 && content < 100){
       setTextContent(`А вот хер тебе! Остальные ${content}см пойдут к моей пипиське :)`);
     }
-    else if(content >= 100){
-      setTextContent(`Ебать, куда разогнался ?`);
+    else if(content >= 100 && content < 150){
+      setTextContent(`Всё, хватит!`);
+    }
+    else if(content == 200){
+      setTextContent(`Пока!`);
+      window.close();
     }
   }
 
