@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 
-function count(countet){
+function count(content){
   if(content >= 10 && content < 20){
     return(`Ух ты!! + ${content}см твоей пипиське!!!`);
   }
