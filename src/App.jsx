@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './App.css';
 
-
 export default function App() {
   const [content, setContent] = useState(1);
 
@@ -16,10 +15,14 @@ export default function App() {
       setTextContent(`А вот хер тебе! Остальные ${content}см пойдут к моей пипиське :)`);
     }
     else if(content >= 100 && content < 150){
+      setTextContent(`Ебать разогнался!`);
+    }
+    else if(content >= 150 && content < 200){
       setTextContent(`Всё, хватит!`);
     }
     else if(content == 200){
-      setTextContent(`Пока!`);
+      setTextContent(`ХВАТИТ!`);
+      window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
       window.close();
     }
   }
