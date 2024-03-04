@@ -13,7 +13,7 @@ export default function App() {
       setTextContent(`Ух ты!! + ${content}см твоей пипиське!!!`);
     }
     else if(content >= 20){
-      setTextContent(`А вот хер тебе!, остальные ${content}см пойдут к моей пипиське :)`);
+      setTextContent(`А вот хер тебе! Остальные ${content}см пойдут к моей пипиське :)`);
     }
   }
 
