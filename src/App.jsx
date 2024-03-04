@@ -23,6 +23,9 @@ export default function App() {
     else if(content == 200){
       setTextContent(`ХВАТИТ!`);
       window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+    }
+    else if(content == 201){
+      setTextContent(`ХВАТИТ!`);
       window.close();
     }
   }
