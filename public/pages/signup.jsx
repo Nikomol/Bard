@@ -1,21 +1,21 @@
 import { Link, Navigate } from "react-router-dom";
 
-export default function Login() {
+export default function SignUp(){
     return (
         <>
             <div className="container">
                 <div className="logo">
-                    <img src=""></img>
-                    <h1>MuseScore</h1>
+                    <img src="" alt="MuseScore"></img>
+                    <h1>SignUp</h1>
                 </div>
                 <div className="form">
                     <form>
                         <input type="text" placeholder="Логин или email"></input>
                         <input type="password" placeholder="Пароль"></input>
-                        <button className="Button login">Войти</button>
-                        <Link to="/signup"><button className="Button signup">Регистрация</button></Link>
+                        <button>Войти</button>
+                        <Link to="/login"><button>Регистрация</button></Link>
                         <Link to="/forgot-password">Забыли пароль</Link>
-                    </form> 
+                    </form>
                 </div>
             </div>
         </>

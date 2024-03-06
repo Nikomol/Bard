@@ -1,37 +1,49 @@
-.magicDiv{
-  width: 100%;
-  height: 60px;
-  border-color: rgba(0,0,0,0);
+body{
+  background: linear-gradient(#5F51B5, #000000) fixed;
 }
 
-.magicButton{
-  height: 100%;
-  width: 100%;
-  background-color: rgba(117, 117, 117, 0.243);
-  border-radius: 14px;
-  box-shadow: 3px 3px 5px rgba(0,0,0,0.14);
-  border: none;
-}
-
-html {
-  height: 100%;
-}
-body {
-  height: 100%;
-  margin: 0;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background: linear-gradient(#5F51B5, #000000);
-}
-
-.startPage{
+.startPage {
   position: absolute;
-  top:50%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 15%;
 }
 
-h1{
+h1 {
   text-align: center;
+}
+
+.container {
+  background-color: #1B1818;
+  border-radius: 7px;
+  width: 80%;
+  margin: 5% auto;
+}
+
+.form input{
+  display: block;
+  padding: 14px;
+  outline: none;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+.form button{
+  display: inline-flex;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.form{
+  width: min-content;
+  margin: auto;
+}
+
+.Button.signup{
+  float: right;
+}
+
+.Button.login{
+  float:left;
 }
