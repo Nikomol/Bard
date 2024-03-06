@@ -13,15 +13,15 @@
   border: none;
 }
 
-body {
-  background: rgb(212, 255, 0);
-  animation: background 10s infinite alternate;
+html {
+  height: 100%;
 }
-
-@keyframes background {
-  50% {
-    background: rgb(255, 0, 255);
-  }
+body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background: linear-gradient(#5F51B5, #000000);
 }
 
 .startPage{
