@@ -1,20 +1,17 @@
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Login from './../public/pages/login';
 import './App.css';
 
 export default function App() {
-  const [content, setContent] = useState(1);
-  function handleClick() {
-    setContent(content + 1);
-  }
-
   return (
-    <>
-      <div className='startPage'>
-        <h1>{count(content)}</h1>
-        <div className='magicDiv'>
-          <button onClick={handleClick} className='magicButton'>Нажми на меня: {content}</button>
-        </div>
-      </div>
-    </>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' exact element={<><h1>Hello World</h1><Link to="/one">Переместиться</Link></>}>
+              <Route index element={<div>No page is selected.</div>} />
+          </Route>
+          <Route path="/one" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
   )
 }
