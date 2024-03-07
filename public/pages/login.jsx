@@ -6,24 +6,24 @@ export default function Login() {
             <div className="container">
                 <div className="logo">
                     <img src=""></img>
-                    <h1>MuseScore</h1>
+                    <h1>OtoWave</h1>
                 </div>
                 <div className="spacer mid">
                 </div>
                 <div className="mainform">
-                    <input type="text" placeholder="Логин или email"></input>
-                    <input type="password" placeholder="Пароль"></input>
+                    <input type="text" placeholder="Логин или email" className="inputField Login"></input>
+                    <input type="password" placeholder="Пароль" className="inputField Password"></input>
                     <div className="link forgot">
-                        <Link to="/forgot-password">Забыли пароль</Link>
+                        <Link to="/forgot-password" className="link forgot">Забыли пароль</Link>
                     </div>
                     <div>
-                        <input type="button" value="Войти" className="Button middle"></input>
+                        <input type="button" value="Войти" className="inputField Button middle"></input>
                     </div>
                 </div>
                 <div className="spacer mid">
                 </div>
                 <div className="link registration">
-                    <Link to="/signup">У вас нет аккаунта ? Зарегестрируйтесь!</Link>
+                    <Link to="/signup" className="link registration">У вас нет аккаунта ? Зарегестрируйтесь!</Link>
                 </div>
             </div>
         </>
