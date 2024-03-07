@@ -12,8 +12,8 @@ export default function SignUp(){
                     <form>
                         <input type="text" placeholder="Логин или email"></input>
                         <input type="password" placeholder="Пароль"></input>
-                        <button>Войти</button>
-                        <Link to="/login"><button>Регистрация</button></Link>
+                        <button>Продолжить</button>
+                        <Link to="/login"><button>Вернуться</button></Link>
                         <Link to="/forgot-password">Забыли пароль</Link>
                     </form>
                 </div>
