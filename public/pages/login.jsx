@@ -1,11 +1,12 @@
 import { Link, Navigate } from "react-router-dom";
+import myImage from "./../img/ico.svg";
 
 export default function Login() {
     return (
         <>
             <div className="container">
                 <div className="logo">
-                    <img src=""></img>
+                    <img src={myImage}></img>
                     <h1>OtoWave</h1>
                 </div>
                 <div className="spacer mid">
