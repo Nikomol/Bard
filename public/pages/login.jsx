@@ -15,7 +15,7 @@ export default function Login() {
                     <input type="text" placeholder="Логин или email" className="inputField Login"></input>
                     <input type="password" placeholder="Пароль" className="inputField Password"></input>
                     <div className="link forgot">
-                        <Link to="/forgot-password" className="link forgot">Забыли пароль</Link>
+                        <Link to="/forgot-password" className="link forgot">Забыли пароль?</Link>
                     </div>
                     <div>
                         <input type="button" value="Войти" className="inputField Button middle"></input>
