@@ -1,37 +1,108 @@
-.magicDiv{
-  width: 100%;
-  height: 60px;
-  border-color: rgba(0,0,0,0);
+html, body{
+  overflow: hidden;
 }
 
-.magicButton{
-  height: 100%;
-  width: 100%;
-  background-color: rgba(117, 117, 117, 0.243);
-  border-radius: 14px;
-  box-shadow: 3px 3px 5px rgba(0,0,0,0.14);
-  border: none;
+body{
+  background: linear-gradient(#5F51B5, #000000) fixed;
 }
 
-body {
-  background: rgb(212, 255, 0);
-  animation: background 10s infinite alternate;
+a{
+  text-decoration: none;
 }
 
-@keyframes background {
-  50% {
-    background: rgb(255, 0, 255);
-  }
-}
-
-.startPage{
+.startPage {
   position: absolute;
-  top:50%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 15%;
 }
 
-h1{
+h1 {
   text-align: center;
+  color: #FFF;
+}
+
+.container {
+  background-color: #1B1818;
+  border-radius: 7px;
+  width: 80%;
+  margin: 5% auto;
+  min-height: 100vh;
+}
+
+.inputField{
+  display: block;
+  outline: none;
+  width: 100%;
+  height: 45px;
+  border-radius: 15px;
+  border-color: rgba(0,0,0,0);
+}
+
+.inputField.Login{
+  margin-bottom: 39px;
+  font-size: 100%;
+  text-indent: 5%;
+}
+
+.inputField.Password{
+  margin-bottom: 15px;
+  font-size: 100%;
+  text-indent: 5%;
+}
+
+.mainform{
+  width: 34%;
+  margin: auto;
+}
+
+.inputField.Button.right{
+  float: right;
+}
+
+.inputField.Button.left{
+  float:left;
+}
+
+.inputField.Button.middle{
+  margin: 0 auto;
+  width: 25%;
+  font-size: 118%;
+  min-width: min-content;
+  max-width: 100%;
+  background-color: #1B1818;
+  color: #FFF;
+  border: 2px solid #1B9EFD;
+}
+
+.link.forgot{
+  text-align: end;
+  color: #F4ECEC75;
+}
+
+.link.registration{
+  text-align: center;
+  color: #FFF;
+}
+.spacer.min{
+  padding-bottom: 6%;
+}
+
+.spacer.mid{
+  padding-bottom: 10%;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  padding-top: 6%;
+}
+
+.logo img {
+  width: 5%;
+  margin-right: 10px;
 }
