@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('./../public/fonts/Inter-VariableFont_slnt.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body{
   overflow: hidden;
 }
@@ -21,6 +28,14 @@ a{
 h1 {
   text-align: center;
   color: #FFF;
+  font-family: 'Inter';
+}
+
+h2{
+  text-align: center;
+  color: #FFF;
+  font-size: 120%;
+  font-family: 'Inter';
 }
 
 .container {
@@ -38,6 +53,7 @@ h1 {
   height: 45px;
   border-radius: 15px;
   border-color: rgba(0,0,0,0);
+  border-style: solid;
 }
 
 .inputField.Login{
@@ -70,7 +86,7 @@ h1 {
   width: 25%;
   font-size: 118%;
   min-width: min-content;
-  max-width: 100%;
+  /* max-width: 100%; */
   background-color: #1B1818;
   color: #FFF;
   border: 2px solid #1B9EFD;
@@ -85,6 +101,13 @@ h1 {
   text-align: center;
   color: #FFF;
 }
+
+.links{
+  text-align: center;
+  color: #FFF;
+  margin: 3%;
+}
+
 .spacer.min{
   padding-bottom: 6%;
 }
