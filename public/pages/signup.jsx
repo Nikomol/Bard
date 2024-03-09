@@ -58,7 +58,7 @@ export default function SignUp(){
                     <div style={{paddingTop:'5%'}}>
                         <Link to="/"><input type="button" value="Создать аккаунт" className="inputField Button middle" disabled={!isTheSame} style={{width:'56%'}}></input></Link>
                     </div>
-                    {message && <p>{message}</p>}
+                    {message && <p style={{color: isTheSame ? 'green' : 'red'}}>{message}</p>}
                 </div>
                 <div className="spacer mid">
                 </div>
