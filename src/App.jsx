@@ -9,7 +9,7 @@ export default function App() {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path='/' exact element={<><Navigate to="/login"/></>}>
+          <Route path='/' exact element={<><h1>Hello World</h1><Link to="/login">Переместиться</Link></>}>
               <Route index element={<div>No page is selected.</div>} />
           </Route>
           <Route path="/login" element={<Login />} />
