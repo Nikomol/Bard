@@ -15,7 +15,7 @@ export default function Login() {
                     <input type="text" placeholder="Логин или email" className="inputField Login"></input>
                     <input type="password" placeholder="Пароль" className="inputField Password"></input>
                     <div className="link forgot">
-                        <Link to="/recovery" className="link forgot">Забыли пароль?</Link>
+                        <Link to="/recovery" className="link forgot">Забыли пароль ?</Link>
                     </div>
                     <div>
                         <input type="button" value="Войти" className="inputField Button middle"></input>
@@ -24,7 +24,7 @@ export default function Login() {
                 <div className="spacer min">
                 </div>
                 <div className="link registration">
-                    <Link to="/register" className="link registration">У вас нет аккаунта ? Зарегестрируйтесь!</Link>
+                    <Link to="/register" className="link registration">У вас нет аккаунта ? Зарегистрируйтесь!</Link>
                 </div>
             </div>
         </>

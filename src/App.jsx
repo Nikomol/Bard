@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Login from '../public/pages/login';
 import SignUp from '../public/pages/signup';
 import ForgotPassword from '../public/pages/forgotPassword';
-import CheckYourPassword from '../public/pages/checkyourmail';
 import './App.css';
 
 export default function App() {

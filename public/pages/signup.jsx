@@ -2,23 +2,23 @@ import { Link, Navigate } from "react-router-dom";
 import myImage from "./../img/ico.svg";
 import { useState, useEffect } from 'react';
 
-export default function SignUp(){
+export default function SignUp() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState('');;
-    const [login, setLogin] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
 
     const [passwAccess, setPasswAccess] = useState(false);
-    const [logAccess, setLogAcces] = useState(false);
+    const [logAccess, setLogAccess] = useState(false);
     const [mailAccess, setMailAccess] = useState(false);
     const [allClear, setAllClear] = useState(false);
-    
+
     useEffect(() => {
-        if(passwAccess && logAccess && mailAccess){
+        if (passwAccess && logAccess && mailAccess && username) {
             setAllClear(true);
         }
-        else{
+        else {
             setAllClear(false);
         }
     })
@@ -33,33 +33,42 @@ export default function SignUp(){
         checkPassword(password, e.target.value);
     }
 
-    const handleConfirmEmailChange = (e) =>{
+    const handleConfirmEmailChange = (e) => {
         setEmail(e.target.value);
 
-        if(email.indexOf("@") < 0){
-            setMessage("Проверьте почту");
+        if (e.target.value.indexOf("@") < 0) {
             setMailAccess(false);
         }
-        else{
+        else {
             setMailAccess(true);
         }
     }
-    
+
+    const handleConfirmUsername = (e) => {
+        setUsername(e.target.value);
+        if(e.target.value !== ""){
+            setLogAccess(true);
+        }
+        else{
+            setLogAccess(false);
+        }
+    }
+
     const checkPassword = (passwordValue, confirmPasswordValue) => {
-        if(passwordValue !== confirmPasswordValue){
-            if(confirmPasswordValue !== ''){
+        if (passwordValue !== confirmPasswordValue) {
+            if (confirmPasswordValue !== '') {
                 setMessage("Пароли не совпадают.")
             }
-            else{
+            else {
                 setMessage("Подтвердите пароль!")
             }
             setPasswAccess(false);
         }
-        else if(passwordValue === ''){
+        else if (passwordValue === '') {
             setMessage("Придумайте пароль");
             setPasswAccess(false);
         }
-        else{
+        else {
             setMessage("Всё хорошо!!");
             setPasswAccess(true);
         }
@@ -75,17 +84,17 @@ export default function SignUp(){
                 <div className="spacer min">
                 </div>
                 <div className="mainform">
-                    <input type="text" placeholder="Логин" className="inputField Login"></input>
+                    <input type="text" placeholder="Логин" className="inputField Login" onChange={handleConfirmUsername}></input>
                     <input type="email" placeholder="Эл. почта" className="inputField Login" onChange={handleConfirmEmailChange}></input>
-                    <input type="password" placeholder="Пароль" className="inputField Login" value={password} onChange={handlePasswordChange} style={{ borderColor: password !== confirmPassword ? '#ba0000' : undefined, borderWidth: password !== confirmPassword ? '3px' : undefined }}></input>
-                    <input type="password" placeholder="Повторить пароль" style={{ borderColor: password !== confirmPassword ? '#ba0000' : undefined, borderWidth: password !== confirmPassword ? '3px' : undefined }} className="inputField Password" value={confirmPassword} onChange={handleConfirmPasswordChange}></input>
+                    <input type="password" placeholder="Пароль" className={`inputField Login ${password !== confirmPassword ? "Red" : ""}`} value={password} onChange={handlePasswordChange}></input>
+                    <input type="password" placeholder="Повторить пароль" className={`inputField Password ${password !== confirmPassword ? "Red" : ""}`} value={confirmPassword} onChange={handleConfirmPasswordChange}></input>
                     <div className="link forgot">
                         <Link to="/login" className="link forgot">Войти в аккаунт</Link>
                     </div>
-                    <div style={{paddingTop:'5%'}}>
-                        <Link to="/"><input type="button" value="Создать аккаунт" className="inputField Button middle" disabled={!allClear} style={{width:'56%'}}></input></Link>
+                    <div style={{ paddingTop: '5%' }}>
+                        <Link to="/"><input type="button" value="Создать аккаунт" className="inputField Button middle" disabled={!allClear} style={{ width: '56%' }}></input></Link>
                     </div>
-                    {message && <p style={{color: isTheSame ? 'green' : 'red'}}>{message}</p>}
+                    {message && <p style={{ color: password === confirmPassword ? 'green' : 'red' }}>{message}</p>}
                 </div>
                 <div className="spacer mid">
                 </div>
