@@ -56,7 +56,7 @@ export default function SignUp(){
                         <Link to="/login" className="link forgot">Войти в аккаунт</Link>
                     </div>
                     <div style={{paddingTop:'5%'}}>
-                        <Link to="/"><input type="button" value="Создать аккаунт" className="inputField Button middle" disabled={!isTheSame}></input></Link>
+                        <Link to="/"><input type="button" value="Создать аккаунт" className="inputField Button middle" disabled={!isTheSame} style={{width:'56%'}}></input></Link>
                     </div>
                     {message && <p>{message}</p>}
                 </div>

@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Login from './../public/pages/login';
 import SignUp from '../public/pages/signup';
 import ForgotPassword from '../public/pages/forgotPassword';
+import CheckYourPassword from '../public/pages/checkyourmail';
 import './App.css';
 
 export default function App() {
@@ -15,6 +15,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/check-your-password" element={<CheckYourPassword />} />
         </Routes>
       </BrowserRouter>
   )

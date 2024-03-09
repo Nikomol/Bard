@@ -21,7 +21,7 @@ export default function Login() {
                         <input type="button" value="Войти" className="inputField Button middle"></input>
                     </div>
                 </div>
-                <div className="spacer mid">
+                <div className="spacer min">
                 </div>
                 <div className="link registration">
                     <Link to="/signup" className="link registration">У вас нет аккаунта ? Зарегестрируйтесь!</Link>
