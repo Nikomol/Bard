@@ -18,7 +18,7 @@ export default function CheckYourPassword() {
                 </div>
                 <div className="links">
                     <Link to="/signup" className="links">Зарегистрироваться</Link>
-                    <Link to="/login" className="links">Войти</Link>
+                    <Link to="/signin" className="links">Войти</Link>
                 </div>
             </div>
         </>
