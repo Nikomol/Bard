@@ -106,3 +106,36 @@ h1 {
   width: 5%;
   margin-right: 10px;
 }
+
+@media (min-width: 1600px) and (max-width: 2000px){
+  .mainform {
+    width: 30%;
+  }
+  .logo.img{
+    width: 3%;
+  }
+}
+
+@media (min-width: 2000px){
+  .mainform {
+    width: 22%;
+  }
+  .logo img{
+    width: 4%;
+  }
+}
+
+@media (min-width: 3000px){
+  .logo img{
+    width: 2%;
+  }
+}
+
+@media (min-width: px) and (max-width: 1600px){
+  .mainform {
+    width: 30%;
+  }
+  .logo.img{
+    width: 3%;
+  }
+}
