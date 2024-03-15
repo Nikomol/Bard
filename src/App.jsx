@@ -7,15 +7,15 @@ import './App.css';
 
 export default function App() {
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' exact element={<><h1>Hello World</h1><Link to="/login">Переместиться</Link></>}>
-              <Route index element={<div>No page is selected.</div>} />
-          </Route>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<SignUp />} />
-          <Route path="recovery" element={<ForgotPassword />} />
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' exact element={<><h1>Hello World</h1><Link to="/login">Переместиться</Link></>}>
+          <Route index element={<div>No page is selected.</div>} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<SignUp />} />
+        <Route path="/recovery" element={<ForgotPassword />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
