@@ -1,7 +1,9 @@
 import { Link, Navigate } from "react-router-dom";
-import myImage from "./../img/ico.svg";
+import myImage from "./../../img/ico.svg";
+import './login.css';
 
 export default function Login() {
+
     return (
         <>
             <div className="container">
