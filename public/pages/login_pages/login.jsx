@@ -31,7 +31,7 @@ export default function Login() {
         e.preventDefault();
         setDis(true);
         //encodeURIComponent() -> функция, которая кодирует email и пароль для безопасности.
-        fetch(`__api__?eml=${encodeURIComponent(formData.email)} &psw=${encodeURIComponent(formData.passwrd)}`)
+        fetch(`/login?eml=${encodeURIComponent(formData.email)}&c_psw=${encodeURIComponent(formData.passwrd)}`)
             //Полученные данные от сервера
             .then(data => {
                 console.log(data);
