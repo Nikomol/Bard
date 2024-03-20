@@ -1,6 +1,6 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import myImage from "./../../img/ico.svg";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './login.css';
 
 const MainForget = ({ onPasswordReset }) => {
