@@ -5,19 +5,37 @@ import './login.css';
 
 const MainForget = ({ onPasswordReset }) => {
 
-    const [email, setEmail] = useState('');
     const [message, setMessage] = useState('Эл. почта');
+    const [formData, setFormData] = useState({ email: ''});
 
     const handleEmailCheck = (e) => {
-        setEmail(e.target.value);
+        setFormData({email: e.target.value});
     }
 
-    const checkMail = () => {
-        if (email === '') {
-            setMessage("Введите почту!");
-        }
-        else {
-            onPasswordReset();
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+
+        try{
+            const response = await fetch('', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            //Если запрос отправлен успешно
+            if (response.ok){
+                alert("Отправлено");
+                onPasswordReset();
+            }
+            //Если запрос был отправлен неуспешно(пока что это всё равно хорошо)
+            else{
+                alert('Вроде бы что то есть!');
+                onPasswordReset();
+            }
+        } catch(error) {
+            console.error(`Ошибка: ${error}`);
+            alert("Ошибка get запроса!!");
         }
     }
 
@@ -29,10 +47,12 @@ const MainForget = ({ onPasswordReset }) => {
             <div className="spacer min">
             </div>
             <div className="mainform">
-                <input type="email" placeholder={message} className="inputField Login" value={email} onChange={handleEmailCheck}></input>
-                <div>
-                    <input type="button" value="Восстановить пароль" className="inputField Button middle" style={{ width: '66%' }} onClick={checkMail}></input>
-                </div>
+                <form onSubmit={handleSubmit}>
+                    <input type="email" name = "email" placeholder={message} className="inputField Login" onChange={handleEmailCheck}></input>
+                    <div>
+                        <input type="submit" value="Восстановить пароль" className="inputField Button middle" style={{ width: '66%' }}></input>
+                    </div>
+                </form>
             </div>
             <div className="spacer mid">
             </div>
