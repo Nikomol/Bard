@@ -20,11 +20,14 @@ export default function SignUp() {
     //Создание формы для будущей отправки на сервер путём POST запроса.
     const [formData, setFormData] = useState({nickname: '', email: '', passwrd: ''});
 
+    const [dis, setDis] = useState(false);
+
     //Функция по отправке POST запроса на севрер
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
         try{
+            setDis(true);
             const response = await fetch('', {
                 method: 'POST',
                 headers: {
@@ -42,6 +45,7 @@ export default function SignUp() {
             }
         } catch(error) {
             console.error(`Ошибка: ${error}`);
+            setDis(false);
         }
     }
 
@@ -135,7 +139,7 @@ export default function SignUp() {
                             <Link to="/login" className="link forgot">Войти в аккаунт</Link>
                         </div>
                         <div style={{ paddingTop: '5%' }}>
-                            <input type="submit" value="Создать аккаунт" className="inputField Button middle" disabled={!allClear} style={{ width: '56%' }}></input>
+                            <input type="submit" value="Создать аккаунт" className="inputField Button middle" disabled={!allClear && dis} style={{ width: '56%' }}></input>
                         </div>
                         {message && <p style={{ color: password === confirmPassword ? 'green' : 'red' }}>{message}</p>}
                     </div>

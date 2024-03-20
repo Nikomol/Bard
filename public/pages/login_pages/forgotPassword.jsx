@@ -6,36 +6,43 @@ import './login.css';
 const MainForget = ({ onPasswordReset }) => {
 
     const [message, setMessage] = useState('Эл. почта');
-    const [formData, setFormData] = useState({ email: ''});
+    const [formData, setFormData] = useState({ email: '' });
+    const [dis, setDis] = useState(true);
 
     const handleEmailCheck = (e) => {
-        setFormData({email: e.target.value});
+        setFormData({ email: e.target.value });
+        if (e.target.value !== "") {
+            setDis(false);
+        } else {
+            setDis(true);
+        }
     }
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try{
+        try {
+            setDis(true);
             const response = await fetch('', {
                 method: 'POST',
                 headers: {
-                    'Content-Type' : 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             });
             //Если запрос отправлен успешно
-            if (response.ok){
+            if (response.ok) {
                 alert("Отправлено");
                 onPasswordReset();
             }
             //Если запрос был отправлен неуспешно(пока что это всё равно хорошо)
-            else{
+            else {
                 alert('Вроде бы что то есть!');
                 onPasswordReset();
             }
-        } catch(error) {
+        } catch (error) {
             console.error(`Ошибка: ${error}`);
             alert("Ошибка get запроса!!");
+            setDis(false);
         }
     }
 
@@ -48,9 +55,9 @@ const MainForget = ({ onPasswordReset }) => {
             </div>
             <div className="mainform">
                 <form onSubmit={handleSubmit}>
-                    <input type="email" name = "email" placeholder={message} className="inputField Login" onChange={handleEmailCheck}></input>
+                    <input type="email" name="email" placeholder={message} className="inputField Login" onChange={handleEmailCheck}></input>
                     <div>
-                        <input type="submit" value="Восстановить пароль" className="inputField Button middle" style={{ width: '66%' }}></input>
+                        <input type="submit" value="Восстановить пароль" className="inputField Button middle" style={{ width: '66%' }} disabled={dis}></input>
                     </div>
                 </form>
             </div>
