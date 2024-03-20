@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import myImage from "./../../img/ico.svg";
 import { useState } from 'react';
+import jwt_decode from 'jwt-decode';
+
 import './login.css';
 
 export default function Login() {
