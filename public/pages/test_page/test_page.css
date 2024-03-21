@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    overflow: none;
 }
 
 body {
@@ -7,4 +8,5 @@ body {
     flex-direction: column;
     min-height: 100vh;
     padding-bottom: 60px;
+    background: linear-gradient(#45A7DE, #000) fixed;
 }

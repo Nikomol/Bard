@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
-import myImage from "./../../img/ico.svg";
+import { Link, useNavigate } from "react-router-dom";
+import myImage from "./../../img/ico/ico.svg";
 import { useState } from 'react';
-import jwt_decode from 'jwt-decode';
+//const jwt_decode = require('jwt-decode');
 
 import './login.css';
 
 export default function Login() {
-    
+
+    const navigate = useNavigate();
+
     //Форма для отправки get запроса на сервер
     const [formData, setFormData] = useState({ email: '', passwrd: '' });
 
@@ -19,9 +21,9 @@ export default function Login() {
             [e.target.name]: e.target.value
         });
 
-        if(formData.email != "" && formData.passwrd != ""){
+        if (formData.email != "" && formData.passwrd != "") {
             setDis(false);
-        }else{
+        } else {
             setDis(true);
         }
     };
@@ -36,6 +38,7 @@ export default function Login() {
             .then(data => {
                 console.log(data);
                 alert("Get запрос отправлен/получен");
+                navigate('/songs');
             })
             //Ошибка получения данных от сервера
             .catch(error => {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import myImage from "./../../img/ico.svg";
+import myImage from "./../../img/ico/ico.svg";
 import { useState, useEffect } from 'react';
 import './login.css';
 
