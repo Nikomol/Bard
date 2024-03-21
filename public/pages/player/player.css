@@ -1,11 +1,25 @@
 .playerContainer {
+    display: flex;
+    /* Добавляем flexbox */
+    justify-content: center;
+    /* Центрируем содержимое по горизонтали */
+    align-items: center;
+    /* Центрируем содержимое по вертикали */
     position: fixed;
     bottom: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
     background-color: #333;
     color: white;
     text-align: center;
     padding: 10px 0;
-    margin: 0;
-    padding: 0;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.playerComponents {
+    background: none;
+    border: none;
+    align-items: center;
+    justify-content: center;
 }
