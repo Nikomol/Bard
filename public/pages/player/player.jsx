@@ -1,104 +1,124 @@
 import { useEffect, useState, useRef } from "react";
-import useSound from "use-sound";
+import ReactPlayer from "react-player";
 
-import './player.css';
+import './player.scss';
 
-export default function Player({ music = undefined }) {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [currentTime, setCurrentTime] = useState(0);
+const loopStates = {
+    NO_LOOP: 'No Loop',
+    PLAYLIST_LOOP: 'Playlist Loop',
+    TRACK_LOOP: 'Track Loop'
+};
+
+export default function Player({ url = "" }) {
+
+    const [isPlaying, setIsPlaying] = useState(true);
+    const [played, setPlayed] = useState(0);
+    const [volume, setVolume] = useState(1.0); //Означает, что начальный уровень громкости будет равен 50%
+    const [loopState, setLoopState] = useState(loopStates.NO_LOOP);
     const [duration, setDuration] = useState(0);
-    const [repeat, setRepeat] = useState(false);
-    const audioPlayer = useRef(null);
+    const [seeking, setSeeking] = useState(false);
+    const playerRef = useRef(null);
 
-    const toggleRepeat = () => {
-        setRepeat(!repeat);
+    const togglePlayPause = () => {
+        setIsPlaying(!isPlaying);
+    }
+
+    const onProgress = (progress) => {
+        setPlayed(progress.played);
+    }
+
+    const seekTo = (value) => {
+        playerRef.current.seekTo(parseFloat(value));
+    }
+
+    const onVolumeChange = (e) => {
+        setVolume(parseFloat(e.target.value));
     };
 
-    useEffect(() => {
-        const handleEnd = () => {
-            if (repeat) {
-                audioPlayer.current.currentTime = 0;
-                audioPlayer.current.play();
-            }
-        };
-    
-        // Обновление длительности трека при загрузке метаданных
-        const setAudioData = () => {
-            setDuration(audioPlayer.current.duration);
-        };
-    
-        // Добавление обработчиков событий
-        audioPlayer.current.addEventListener('loadedmetadata', setAudioData);
-        audioPlayer.current.addEventListener('ended', handleEnd);
-    
-        return () => {
-            // Удаление обработчиков событий при размонтировании компонента
-            audioPlayer.current.removeEventListener('loadedmetadata', setAudioData);
-            audioPlayer.current.removeEventListener('ended', handleEnd);
-        };
-    }, [repeat]); // Зависимость от repeat гарантирует, что обработчик будет обновлен, если состояние repeat изменится
-    
-
-
-    const playPause = () => {
-        const prevValue = isPlaying;
-        setIsPlaying(!prevValue);
-        if (!prevValue) {
-            audioPlayer.current.play();
-        } else {
-            audioPlayer.current.pause();
+    const toggleLoop = () => {
+        switch (loopState) {
+            case loopStates.NO_LOOP:
+                setLoopState(loopStates.PLAYLIST_LOOP);
+                break;
+            case loopStates.PLAYLIST_LOOP:
+                setLoopState(loopStates.TRACK_LOOP);
+                break;
+            case loopStates.TRACK_LOOP:
+                setLoopState(loopStates.NO_LOOP);
+                break;
+            default:
+                setLoopState(loopStates.NO_LOOP);
+                break;
         }
     };
 
-    const onScrub = (value) => {
-        setCurrentTime(value);
-        audioPlayer.current.currentTime = value;
-        if (!isPlaying) {
-            audioPlayer.current.play();
-            setIsPlaying(true);
-        }
+    const onDuration = (duration) => {
+        setDuration(duration);
     };
 
-    const onScrubEnd = () => {
-        // If not playing, pause the audio and reset play state
-        if (!isPlaying) {
-            audioPlayer.current.pause();
-            setIsPlaying(false);
-        }
+    const onSeekMouseDown = () => {
+        setSeeking(true); // Пользователь начал перемотку
     };
 
-    // Функция для форматирования времени в формате минуты:секунды
-    const formatTime = (time) => {
-        const minutes = Math.floor(time / 60);
-        const seconds = Math.floor(time % 60);
-        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    const onSeekChange = (e) => {
+        setPlayed(parseFloat(e.target.value));
+    };
+
+    const onSeekMouseUp = (e) => {
+        onSeekMouseDown();
+        seekTo(e.target.value);
+    };
+
+    const formatTime = (seconds) => {
+        const rounded = Math.round(seconds);
+        const minutes = Math.floor(rounded / 60);
+        const remainingSeconds = rounded % 60;
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     };
 
     return (
         <>
             <div className="playerContainer">
                 <div className='playerComponents'>
-                    <audio
-                        ref={audioPlayer}
-                        src="../../assets/music/V.mp3"
-                        preload="metadata"
-                        onTimeUpdate={() => setCurrentTime(audioPlayer.current.currentTime)}
-                    ></audio>
-                    <button onClick={playPause}>{isPlaying ? 'Pause' : 'Play'}</button>
-                    <button onClick={toggleRepeat}>
-                        {repeat ? 'Выключить повтор' : 'Включить повтор'}
-                    </button>
+                    <ReactPlayer
+                        url={url}
+                        playing={isPlaying}
+                        controls={true}
+                        width='100%'
+                        height='100%'
+                        onProgress={onProgress}
+                        volume={volume}
+                        onDuration={onDuration}
+                        ref={playerRef}
+                    />
+                    <div className="playerTimeLine">
+                        <input
+                            type="range"
+                            min={0}
+                            max={duration}
+                            step='any'
+                            value={played}
+                            onChange={onSeekChange}
+                            onMouseDown={onSeekMouseDown}
+                            onMouseUp={onSeekMouseUp}
+                        />
+                        <div className="playerTimeInfo">
+                            {formatTime(played)} / {formatTime(duration)}
+                        </div>
+                    </div>
                     <input
                         type="range"
-                        value={currentTime}
-                        step="1"
-                        min="0"
-                        max={audioPlayer.current?.duration || `${audioPlayer.current?.duration}`}
-                        onChange={(e) => onScrub(e.target.value)}
-                        onMouseUp={onScrubEnd}
-                        onKeyUp={onScrubEnd}
+                        min={0}
+                        max={1}
+                        step='any'
+                        value={volume}
+                        onChange={onVolumeChange}
                     />
-                    <div>Время трека: {formatTime(currentTime)} / {formatTime(duration)}</div>
+                    <button onClick={togglePlayPause} className={`playerPlayStopButton ${isPlaying ? 'pause' : 'play'}`}></button>
+                    <button
+                        onClick={toggleLoop}
+                        className={`playerSpecialButton loop ${loopState === loopStates.NO_LOOP ? 'unpressed' : loopState === loopStates.PLAYLIST_LOOP ? 'pressed' : 'pressed-loop'}`}>
+                    </button>
                 </div>
             </div>
         </>
