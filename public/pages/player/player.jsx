@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import ReactPlayer from "react-player";
+import PlayerIcons from "../player_icons/player_icons";
 
 import './player.scss';
 
@@ -76,22 +77,35 @@ export default function Player({ url = "" }) {
         return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     };
 
+    useEffect(() => {
+        console.log(`Music status: ${isPlaying ? "Playing" : "Pause"}.\nLoop button status: ${loopState}`);
+    }, [isPlaying, loopState])
+
     return (
         <>
             <div className="playerContainer">
-                <div className='playerComponents'>
+                <div className="componentPosition left">
+                </div>
+                <div className='componentPosition middle'>
                     <ReactPlayer
                         url={url}
                         playing={isPlaying}
                         controls={true}
-                        width='100%'
-                        height='100%'
+                        width='auto'
+                        height='auto'
                         onProgress={onProgress}
                         volume={volume}
                         onDuration={onDuration}
                         ref={playerRef}
                     />
-                    <div className="playerTimeLine">
+                    <div className="playerTime info">
+                        <button onClick={togglePlayPause} className={'playerButton play-pause'}>
+                            {isPlaying ? <PlayerIcons icon_name={"Pause"} /> : <PlayerIcons icon_name={"Play"} />}
+                        </button>
+                        <a className="time left">{formatTime(played)}</a>
+                        <a className="time right">{formatTime(duration)}</a>
+                    </div>
+                    <div className="playerTime line">
                         <input
                             type="range"
                             min={0}
@@ -101,11 +115,14 @@ export default function Player({ url = "" }) {
                             onChange={onSeekChange}
                             onMouseDown={onSeekMouseDown}
                             onMouseUp={onSeekMouseUp}
+                            className="playerRange"
                         />
-                        <div className="playerTimeInfo">
-                            {formatTime(played)} / {formatTime(duration)}
-                        </div>
                     </div>
+                </div>
+                <div className="componentPosition right">
+                    <button onClick={toggleLoop} className={"playerButton loop"}>
+                        {loopState === loopStates.NO_LOOP ? <PlayerIcons icon_name={"Reply_Unpressed"} /> : loopState === loopStates.PLAYLIST_LOOP ? <PlayerIcons icon_name={"Reply_Pressed"} /> : <PlayerIcons icon_name={"Reply_Pressed_Loop"} />}
+                    </button>
                     <input
                         type="range"
                         min={0}
@@ -113,12 +130,8 @@ export default function Player({ url = "" }) {
                         step='any'
                         value={volume}
                         onChange={onVolumeChange}
+                        className="volumeRange"
                     />
-                    <button onClick={togglePlayPause} className={`playerPlayStopButton ${isPlaying ? 'pause' : 'play'}`}></button>
-                    <button
-                        onClick={toggleLoop}
-                        className={`playerSpecialButton loop ${loopState === loopStates.NO_LOOP ? 'unpressed' : loopState === loopStates.PLAYLIST_LOOP ? 'pressed' : 'pressed-loop'}`}>
-                    </button>
                 </div>
             </div>
         </>

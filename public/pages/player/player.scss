@@ -14,49 +14,134 @@
     border-radius: 15px;
 }
 
-.playerComponents {
-    background: none;
-    border: none;
-    align-items: center;
-    justify-content: center;
-}
+.componentPosition {
+    $left-right-position: 1;
+    $center-position: 2;
+    display: flex;
 
-.playerPlayStopButton {
-    width: 50px;
-    height: 50px;
-    background-size: contain;
-    background-color: rgba($color: #000000, $alpha: 0.0);
-    cursor: pointer;
-    border: none;
-
-    &.play {
-        background-image: url('./../../img/buttons/play/button_play.svg');
+    &.left {
+        flex: $left-right-position;
+        justify-content: flex-start;
     }
 
-    &.pause {
-        background-image: url('./../../img/buttons/play/button_stop.svg');
+    &.right {
+        flex: $left-right-position;
+        justify-content: flex-end;
+    }
+
+    &.middle {
+        flex: $center-position;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
-.playerSpecialButton {
-    width: 35px;
-    height: 35px;
-    background-size: contain;
+.playerButton {
+
+    $wh-play : 50px;
+    $wh-loop: 30px;
+
     background-color: rgba($color: #000000, $alpha: 0.0);
-    cursor: pointer;
     border: none;
+    cursor: pointer;
+
+    &.play-pause {
+        width: $wh-play;
+        height: $wh-play;
+    }
 
     &.loop {
-        &.unpressed {
-            background-image: url('./../../img/buttons/reply/button_reply_unpressed.svg');
-        }
+        width: $wh-loop;
+        height: $wh-loop;
+    }
+}
 
-        &.pressed {
-            background-image: url('./../../img/buttons/reply/button_reply_pressed.svg');
-        }
+.playerTime{
+    $player-width: 80%;
+    &.line{
+        width: $player-width;
+    }
+    &.info{
+        width: $player-width;
+        position: relative;
+    }
+}
 
-        &.pressed-loop {
-            background-image: url('./../../img/buttons/reply/button_reply_pressed_loop.svg');
-        }
+.time{
+    $text-pos: 0px;
+
+    position: absolute;
+    bottom: 0px;
+    font-size: 13px;
+    
+    &.left{
+        left: $text-pos;
+    }
+
+    &.right{
+        right: $text-pos;
+    }
+
+}
+
+.playerRange[type='range'] {
+    //Размеры ползунка и трека
+    $thumb-size: 7px;
+    $track-height: 4px;
+
+    //Цвета ползунка и трека
+    $thumb-color: #a6a6a6;
+    $track-color: #fff;
+
+    background: transparent;
+    width: 100%;
+
+    // Стилизация ползунка
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: $thumb-size;
+        height: $thumb-size;
+        border-radius: 50%;
+        background: $thumb-color;
+        cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+        width: $thumb-size;
+        height: $thumb-size;
+        border-radius: 50%;
+        background: $thumb-color;
+        cursor: pointer;
+    }
+
+    &::-ms-thumb {
+        width: $thumb-size;
+        height: $thumb-size;
+        border-radius: 50%;
+        background: $thumb-color;
+        cursor: pointer;
+    }
+
+    // Стилизация трека
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: $track-height;
+        background: $track-color;
+        border-radius: calc($track-height / 2);
+    }
+
+    &::-moz-range-track {
+        width: 100%;
+        height: $track-height;
+        background: $track-color;
+        border-radius: calc($track-height / 2);
+    }
+
+    &::-ms-track {
+        width: 100%;
+        height: $track-height;
+        background: $track-color;
+        border-radius: calc($track-height / 2);
     }
 }
