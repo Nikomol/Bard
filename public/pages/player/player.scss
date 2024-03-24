@@ -33,6 +33,7 @@
         flex: $center-position;
         flex-direction: column;
         align-items: center;
+        height: 67px;
     }
 }
 
@@ -40,6 +41,7 @@
 
     $wh-play : 50px;
     $wh-loop: 30px;
+    $wh-like: 40px;
 
     background-color: rgba($color: #000000, $alpha: 0.0);
     border: none;
@@ -53,6 +55,16 @@
     &.loop {
         width: $wh-loop;
         height: $wh-loop;
+    }
+
+    &.like{
+        width: $wh-like;
+        height: $wh-like;
+    }
+
+    &.add-to-playlist{
+        width: $wh-play;
+        height: auto;
     }
 }
 

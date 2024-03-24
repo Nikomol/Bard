@@ -5,8 +5,8 @@ export default function PlayerIcons({ icon_name }) {
     const icon = icons.icons[icon_name];
 
     useEffect(() =>{
-        console.log(`Icon name: ${icon_name}\nJson icon: ${icon}`);
-    }, [icon_name, icon])
+        console.log(`Icon name: ${icon_name}`);
+    }, [icon_name])
 
     return (
         <div dangerouslySetInnerHTML={{__html: icon}}></div>
