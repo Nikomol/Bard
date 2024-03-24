@@ -100,7 +100,7 @@ export default function Player({ url = "" }) {
                     />
                     <div className="playerTime info">
                         <button onClick={togglePlayPause} className={'playerButton play-pause'}>
-                            {isPlaying ? <PlayerIcons icon_name={"Pause"} /> : <PlayerIcons icon_name={"Play"} />}
+                            {isPlaying ? <PlayerIcons icon_name={"pause"} /> : <PlayerIcons icon_name={"play"} />}
                         </button>
                         <a className="time left">{formatTime(played)}</a>
                         <a className="time right">{formatTime(duration)}</a>
@@ -121,7 +121,7 @@ export default function Player({ url = "" }) {
                 </div>
                 <div className="componentPosition right">
                     <button onClick={toggleLoop} className={"playerButton loop"}>
-                        {loopState === loopStates.NO_LOOP ? <PlayerIcons icon_name={"Reply_Unpressed"} /> : loopState === loopStates.PLAYLIST_LOOP ? <PlayerIcons icon_name={"Reply_Pressed"} /> : <PlayerIcons icon_name={"Reply_Pressed_Loop"} />}
+                        {loopState === loopStates.NO_LOOP ? <PlayerIcons icon_name={"reply_unpressed"} /> : loopState === loopStates.PLAYLIST_LOOP ? <PlayerIcons icon_name={"reply_pressed"} /> : <PlayerIcons icon_name={"reply_pressed_loop"} />}
                     </button>
                     <input
                         type="range"
