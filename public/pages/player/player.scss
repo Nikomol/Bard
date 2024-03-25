@@ -1,0 +1,270 @@
+.playerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin: 10px;
+    border-radius: 15px;
+    padding-inline: 10px;
+}
+
+.componentPosition {
+    $left-right-position: 1;
+    $center-position: 2;
+    display: flex;
+
+    &.left {
+        flex: $left-right-position;
+        justify-content: flex-start;
+    }
+
+    &.right {
+        flex: $left-right-position;
+        justify-content: flex-end;
+    }
+
+    &.middle {
+        flex: $center-position;
+        flex-direction: column;
+        align-items: center;
+        height: 67px;
+    }
+}
+
+.playerButton {
+
+    $wh-play : 50px;
+    $wh-loop: 30px;
+    $wh-like: 40px;
+    $wh-mix: 20px;
+
+    background-color: rgba($color: #000000, $alpha: 0.0);
+    border: none;
+    cursor: pointer;
+
+    &.play-pause {
+        width: $wh-play;
+        height: $wh-play;
+    }
+
+    &.loop {
+        width: $wh-loop;
+        height: $wh-loop;
+    }
+
+    &.like {
+        width: $wh-like;
+        height: $wh-like;
+        transition: all 0.3s;
+    }
+
+    &.add-to-playlist {
+        width: $wh-play;
+        height: auto;
+    }
+
+    &.volume {
+        width: $wh-loop;
+        height: $wh-loop;
+    }
+
+    &.text{
+        width: $wh-mix;
+        height: $wh-loop;
+    }
+}
+
+.playerTime {
+    $player-width: 80%;
+
+    &.line {
+        width: $player-width;
+    }
+
+    &.info {
+        width: $player-width;
+        position: relative;
+    }
+}
+
+.time {
+    $text-pos: 0px;
+
+    position: absolute;
+    bottom: 0px;
+    font-size: 13px;
+
+    &.left {
+        left: $text-pos;
+    }
+
+    &.right {
+        right: $text-pos;
+    }
+
+}
+
+.volumeRange[type='range'] {
+    //Размеры ползунка и трека
+    $thumb-size: 10px;
+    $track-height: 2px;
+
+    $thumb-color: #700FEB;
+    $track-color: #fff;
+    $track-thumb-disabled: rgba(#000000, 0.0);
+
+    background: transparent;
+    width: 85px;
+
+    transition: opacity 0.3s;
+
+    // Стилизация ползунка
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: $thumb-size;
+        height: $thumb-size;
+        border-radius: 50%;
+        background: $thumb-color;
+        border-radius: 10px;
+        border: 3px white solid; //background: #700FEB; border-radius: 9999px; border: 3px white solid
+        cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+        width: $thumb-size;
+        height: $thumb-size;
+        border-radius: 50%;
+        background: $thumb-color;
+        border: 3px white solid;
+        cursor: pointer;
+    }
+
+    &::-ms-thumb {
+        width: $thumb-size;
+        height: $thumb-size;
+        border-radius: 50%;
+        background: $thumb-color;
+        border: 3px white solid;
+        cursor: pointer;
+    }
+
+    // Стилизация трека
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: $track-height;
+        background: $track-color;
+        border-radius: calc($track-height / 2);
+    }
+
+    &::-moz-range-track {
+        width: 100%;
+        height: $track-height;
+        background: $track-color;
+        border-radius: calc($track-height / 2);
+    }
+
+    &::-ms-track {
+        width: 100%;
+        height: $track-height;
+        background: $track-color;
+        border-radius: calc($track-height / 2);
+    }
+
+    &.enable {
+        // Стили для видимого состояния
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &.disable {
+        // Стили для невидимого состояния
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+
+
+.playerRange[type='range'] {
+    //Размеры ползунка и трека
+    $thumb-size: 7px;
+    $track-height: 4px;
+
+    $thumb-color: #a6a6a6;
+    $track-color: #fff;
+    $track-thumb-disabled: rgba(#000000, 0.0);
+
+    background: transparent;
+    width: 100%;
+
+    // Стилизация ползунка
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: $thumb-size;
+        height: $thumb-size;
+        border-radius: 50%;
+        background: $thumb-color;
+        cursor: pointer;
+
+
+    }
+
+    &::-moz-range-thumb {
+        width: $thumb-size;
+        height: $thumb-size;
+        border-radius: 50%;
+        background: $thumb-color;
+        cursor: pointer;
+    }
+
+    &::-ms-thumb {
+        width: $thumb-size;
+        height: $thumb-size;
+        border-radius: 50%;
+        background: $thumb-color;
+        cursor: pointer;
+    }
+
+    // Стилизация трека
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: $track-height;
+        background: $track-color;
+        border-radius: calc($track-height / 2);
+    }
+
+    &::-moz-range-track {
+        width: 100%;
+        height: $track-height;
+        background: $track-color;
+        border-radius: calc($track-height / 2);
+    }
+
+    &::-ms-track {
+        width: 100%;
+        height: $track-height;
+        background: $track-color;
+        border-radius: calc($track-height / 2);
+    }
+
+    &.enable {
+        // Стили для видимого состояния
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &.disable {
+        // Стили для невидимого состояния
+        opacity: 0;
+        pointer-events: none;
+    }
+}
