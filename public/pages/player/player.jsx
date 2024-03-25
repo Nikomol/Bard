@@ -19,12 +19,28 @@ export default function Player({ url = "", liked = false }) {
     const [loopState, setLoopState] = useState(loopStates.NO_LOOP);
     const [duration, setDuration] = useState(0);
     const [seeking, setSeeking] = useState(false);
+    const [volumeDis, setVolumeDis] = useState(true);
+    const [showedText, setShowedText] = useState(false);
+    const [isMixed, setIsMixed] = useState(false);
+    const [pressedEqualizer, setPressedEqualizer] = useState(false);
 
     const [currentSong, setCurrentSong] = useState(url);
     const [previousSongs, setPreviousSong] = useState([]);
     const [nextSongs, setNextSongs] = useState([]);
     
     const playerRef = useRef(null);
+
+    const toggleShowText = () =>{
+        setShowedText(!showedText);
+    }
+
+    const toggleEqualizer = () =>{
+        setPressedEqualizer(!pressedEqualizer);
+    }
+
+    const toggleMix = () =>{
+        setIsMixed(!isMixed);
+    }
 
     const togglePlayPause = () => {
         setIsPlaying(!isPlaying);
@@ -102,8 +118,12 @@ export default function Player({ url = "", liked = false }) {
         }
     }
 
-    const addToPlaylist = () =>{
+    const toggleAddToPlaylist = () =>{
+        
+    }
 
+    const toggleShowVolume = () =>{
+        setVolumeDis(!volumeDis);
     }
 
     const Player = () => {
@@ -123,7 +143,7 @@ export default function Player({ url = "", liked = false }) {
     }
 
     useEffect(() => {
-        console.log(`Music status: ${isPlaying ? "Playing" : "Pause"}.\nLoop button status: ${loopState}`);
+        console.log(`Music status: ${isPlaying ? "Playing" : "Pause"}.\nLoop button status: ${loopState}.`);
     }, [isPlaying, loopState])
 
     return (
@@ -134,7 +154,7 @@ export default function Player({ url = "", liked = false }) {
                 <div className='componentPosition middle'>
                     <Player url={url} />
                     <div className="playerTime info">
-                        <button onClick={addToPlaylist} className={'playerButton add-to-playlist'}>
+                        <button onClick={toggleAddToPlaylist} className={'playerButton add-to-playlist'}>
                             <PlayerIcons icon_name={"add-to-playlist"} />
                         </button>
                         <button onClick={togglePrevTrack} className={'playerButton play-pause'} style={{marginLeft: '5px'}}>
@@ -167,9 +187,6 @@ export default function Player({ url = "", liked = false }) {
                     </div>
                 </div>
                 <div className="componentPosition right">
-                    <button onClick={toggleLoop} className={"playerButton loop"}>
-                        {loopState === loopStates.NO_LOOP ? <PlayerIcons icon_name={"reply_unpressed"} /> : loopState === loopStates.PLAYLIST_LOOP ? <PlayerIcons icon_name={"reply_pressed"} /> : <PlayerIcons icon_name={"reply_pressed_loop"} />}
-                    </button>
                     <input
                         type="range"
                         min={0}
@@ -177,8 +194,24 @@ export default function Player({ url = "", liked = false }) {
                         step='any'
                         value={volume}
                         onChange={onVolumeChange}
-                        className="volumeRange"
+                        className={`volumeRange ${volumeDis ? 'disable' : 'enable'}`}
+                        disabled={volumeDis}
                     />
+                    <button onClick={toggleShowVolume} className={"playerButton volume"}>
+                        <PlayerIcons icon_name={"volume"} />
+                    </button>
+                    <button onClick={toggleShowText} className={"playerButton text"}>
+                        {showedText ? <PlayerIcons icon_name={"text_pressed"}/> : <PlayerIcons icon_name={"text_unpressed"}/>}
+                    </button>
+                    <button onClick={toggleMix} className={"playerButton volume"}>
+                        <PlayerIcons icon_name={"mix"}/>
+                    </button>
+                    <button onClick={toggleLoop} className={"playerButton loop"}>
+                        {loopState === loopStates.NO_LOOP ? <PlayerIcons icon_name={"reply_unpressed"} /> : loopState === loopStates.PLAYLIST_LOOP ? <PlayerIcons icon_name={"reply_pressed"} /> : <PlayerIcons icon_name={"reply_pressed_loop"} />}
+                    </button>
+                    <button onClick={toggleEqualizer} className={"playerButton text"}>
+                        <PlayerIcons icon_name={"equalizer"}/>
+                    </button>
                 </div>
             </div>
         </>
