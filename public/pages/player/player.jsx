@@ -12,7 +12,7 @@ const loopStates = {
 
 export default function Player({ url = "", liked = false }) {
 
-    const [isPlaying, setIsPlaying] = useState(true);
+    const [isPlaying, setIsPlaying] = useState(false);
     const [isLiked, setIsLiked] = useState(liked);
     const [played, setPlayed] = useState(0);
     const [volume, setVolume] = useState(1.0); //Означает, что начальный уровень громкости будет равен 50%
@@ -43,7 +43,9 @@ export default function Player({ url = "", liked = false }) {
     }
 
     const togglePlayPause = () => {
-        setIsPlaying(!isPlaying);
+        if(url !== ""){
+            setIsPlaying(!isPlaying);
+        }
     }
 
     const onProgress = (progress) => {
@@ -143,6 +145,7 @@ export default function Player({ url = "", liked = false }) {
     }
 
     useEffect(() => {
+        url !== "" ? setIsPlaying(true) : setIsPlaying(false);
         console.log(`Music status: ${isPlaying ? "Playing" : "Pause"}.\nLoop button status: ${loopState}.`);
     }, [isPlaying, loopState])
 

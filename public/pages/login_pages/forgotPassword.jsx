@@ -22,26 +22,31 @@ const MainForget = ({ onPasswordReset }) => {
         e.preventDefault();
         try {
             setDis(true);
-            const response = await fetch('', {
+            const response = await fetch('http://localhost:3000/recovery', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             });
-            //Если запрос отправлен успешно
+            console.log(response);
             if (response.ok) {
-                alert("Отправлено");
-                onPasswordReset();
+                if(response.status !== 404){
+                    onPasswordReset();
+                }
+                else{
+                    console.log("Ошибка. Email не найден");
+                    setDis(false);
+                }
             }
             //Если запрос был отправлен неуспешно(пока что это всё равно хорошо)
             else {
-                alert('Вроде бы что то есть!');
-                onPasswordReset();
+                alert('Ошибка отправки');
+                setDis(false);
             }
         } catch (error) {
             console.error(`Ошибка: ${error}`);
-            alert("Ошибка get запроса!!");
+            alert("Ошибка post запроса!!");
             setDis(false);
         }
     }

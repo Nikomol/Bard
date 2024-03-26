@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import myImage from "./../../img/ico/ico.svg";
 import { useState, useEffect } from 'react';
 import './login.css';
@@ -22,13 +22,16 @@ export default function SignUp() {
 
     const [dis, setDis] = useState(false);
 
+    const navigate = useNavigate();
+
     //Функция по отправке POST запроса на севрер
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
         try{
             setDis(true);
-            const response = await fetch('', {
+            console.log(formData);
+            const response = await fetch('http://localhost:3000/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -36,12 +39,12 @@ export default function SignUp() {
                 body: JSON.stringify(formData)
             });
             //Если запрос отправлен успешно
-            if (response.ok){
-                alert("WORK!!!");
+            if (response.ok && response.status === 200){
+                navigate('/songs');
             }
             //Если запрос был отправлен неуспешно(пока что это всё равно хорошо)
             else{
-                alert('Вроде всё работает, хотя стоит всё проверить!');
+                alert('Чёт неработает');
             }
         } catch(error) {
             console.error(`Ошибка: ${error}`);

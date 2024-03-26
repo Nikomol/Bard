@@ -12,6 +12,8 @@ export default function Login() {
     //Форма для отправки get запроса на сервер
     const [formData, setFormData] = useState({ email: '', passwrd: '' });
 
+    const [serverResponse, setServerResponse] = useState(null); // Создаем состояние для хранения ответа сервера
+
     const [dis, setDis] = useState(true);
 
     //При изменеии email и пароля в formData меняются данные
@@ -32,20 +34,31 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDis(true);
-        //encodeURIComponent() -> функция, которая кодирует email и пароль для безопасности.
-        fetch(`/login?eml=${encodeURIComponent(formData.email)}&c_psw=${encodeURIComponent(formData.passwrd)}`)
-            //Полученные данные от сервера
-            .then(data => {
-                console.log(data);
-                alert("Get запрос отправлен/получен");
-                navigate('/songs');
-            })
-            //Ошибка получения данных от сервера
-            .catch(error => {
-                console.error(`Ошибка при выполнении запроса: ${error}`);
-                alert("Get запрос не отправлен");
+        console.log(formData);
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if(data === undefined || data === null){
+                alert("Ответ получен. Пользователь не найден.");
                 setDis(false);
-            })
+            }  
+            else{
+                alert(`Ответ получен. Пользователь ${data.username} найден.`);
+                console.clear();
+                navigate('/songs');
+            }
+        })
+        .catch(error => {
+            console.error(`Ошибка ${error}`);
+            setDis(false);
+        });
     }
 
     return (
