@@ -55,7 +55,7 @@ const MainForget = ({ onPasswordReset }) => {
         <>
             <div className="spacer min">
             </div>
-            <h2>Напишите email вашего аккаунта чтобы сменить пароль</h2>
+            <h2 className="title-small">Напишите email вашего аккаунта чтобы сменить пароль</h2>
             <div className="spacer min">
             </div>
             <div className="mainform">
@@ -82,7 +82,7 @@ const LastForget = () => {
             <div className="spacer min">
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <h1 style={{ width: '60%' }}>Проверьте ваш почтовый ящик, туда придёт письмо с инструкциями</h1>
+                <h1 className= "title-big" style={{ width: '60%' }}>Проверьте ваш почтовый ящик, туда придёт письмо с инструкциями</h1>
             </div>
             <div className="spacer mid">
             </div>
@@ -106,7 +106,7 @@ export default function ForgotPassoword() {
             <div className="container">
                 <div className="logo">
                     <img src={myImage}></img>
-                    <h1>OtoWave</h1>
+                    <h1 className="title-big">OtoWave</h1>
                 </div>
                 {isResettingPassword ? <LastForget /> : <MainForget onPasswordReset={handlePasswordReset} />}
             </div>

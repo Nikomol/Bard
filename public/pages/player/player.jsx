@@ -134,8 +134,8 @@ export default function Player({ url = "", liked = false }) {
                 url={url}
                 playing={isPlaying}
                 controls={true}
-                width='auto'
-                height='auto'
+                width='0'
+                height='0'
                 onProgress={onProgress}
                 volume={volume}
                 onDuration={onDuration}

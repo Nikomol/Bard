@@ -128,7 +128,7 @@ export default function SignUp() {
             <div className="container">
                 <div className="logo">
                     <img src={myImage}></img>
-                    <h1>OtoWave</h1>
+                    <h1 className="title-big">OtoWave</h1>
                 </div>
                 <div className="spacer min">
                 </div>

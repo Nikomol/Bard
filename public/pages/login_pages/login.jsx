@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import myImage from "./../../img/ico/ico.svg";
 import { useState } from 'react';
+import WebIco from "./icon";
 //const jwt_decode = require('jwt-decode');
 
 import './login.css';
@@ -66,7 +67,7 @@ export default function Login() {
             <div className="container">
                 <div className="logo">
                     <img src={myImage}></img>
-                    <h1>OtoWave</h1>
+                    <h1 className="title-big">OtoWave</h1>
                 </div>
                 <div className="spacer mid">
                 </div>
