@@ -4,7 +4,7 @@ import HomePanel from "../home_panel/home_panel";
 
 import './song_page.css';
 
-export default function TestPage() {
+export default function MainPage() {
     return (
         <>
             <HomePanel />
