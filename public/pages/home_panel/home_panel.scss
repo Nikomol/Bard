@@ -1,8 +1,76 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('./../../fonts/Inter-VariableFont_slnt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .web-title{
     color: #FFF;
-    text-align: left;
+    text-align: center;
+    margin: 0;
+    width: max-content;
+    margin-right: 30px;
+    font-family: 'Inter';
 }
 
 .backdrop{
     width: max-content;
+    background-color: #333;
+    border-radius: 15px;
+    &.img{
+        width: 50px;
+        height: 50px;
+        padding-left: 31px;
+        padding-right: 8px;
+    }
+}
+
+.backdrop-inside{
+    padding: 20px;
+    padding-bottom: 42px;
+}
+
+.title{
+    display: flex;
+    text-align: center;
+    position: relative;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.div-buttons{
+    width: max-content;
+    display: contents;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    border-style: solid;
+    border-color: rgba(#0000, $alpha: 0.0);
+    color: #FFF;
+    position: relative;
+    margin-inline: 10%;
+    &.home{
+        margin-bottom: 28px;
+    }
+
+    &.nav{
+        
+    }
+
+    &.pressed{
+        background-color: rgba(#0000, $alpha: 0.0);
+        cursor: pointer;
+    }
+
+    &.unpressed{
+        background-color: rgba(#908B8B, $alpha: 7.9);
+        cursor: default
+    }
 }
