@@ -12,7 +12,7 @@ export default function MainPage() {
             <HomePanel />
             <LibraryPanel />
             <SearchPanel />
-            <Player />
+            <Player url={"http://localhost:3000/music/1.m3u8"}/>
         </>
     );
 }
