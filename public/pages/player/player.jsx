@@ -179,6 +179,7 @@ export default function Player({ url = "", liked = false }) {
                         onDuration={onDuration}
                         ref={playerRef}
                         onSeek={onSeek}
+                        loop={loopState === loopStates.TRACK_LOOP ? true : false}
                     />
                     <div className="playerTime info">
                         <button onClick={toggleAddToPlaylist} className={'playerButton add-to-playlist'}>
