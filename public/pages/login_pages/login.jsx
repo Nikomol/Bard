@@ -1,14 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import myImage from "./../../img/ico/ico.svg";
 import { useState } from 'react';
-import WebIco from "./icon";
-//const jwt_decode = require('jwt-decode');
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../src/actions/userActions";
 
 import './login.css';
 
 export default function Login() {
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     //Форма для отправки get запроса на сервер
     const [formData, setFormData] = useState({ email: '', passwrd: '' });
@@ -51,8 +53,8 @@ export default function Login() {
                 setDis(false);
             }  
             else{
-                alert(`Ответ получен. Пользователь ${data.username} найден.`);
-                console.clear();
+                alert(`Ответ получен. Пользователь ${data.login} найден.`);
+                dispatch(setUser(data))
                 navigate('/songs');
             }
         })
