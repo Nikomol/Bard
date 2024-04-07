@@ -165,81 +165,83 @@ export default function Player({ url = "", liked = false }) {
     return (
         <>
             <div className="playerContainer">
-                <div className="componentPosition left">
-                </div>
-                <div className='componentPosition middle'>
-                    <ReactPlayer
-                        url={url}
-                        playing={isPlaying}
-                        controls={true}
-                        width='0'
-                        height='0'
-                        onProgress={onProgress}
-                        volume={volume}
-                        onDuration={onDuration}
-                        ref={playerRef}
-                        onSeek={onSeek}
-                        loop={loopState === loopStates.TRACK_LOOP ? true : false}
-                    />
-                    <div className="playerTime info">
-                        <button onClick={toggleAddToPlaylist} className={'playerButton add-to-playlist'}>
-                            <PlayerIcons icon_name={"add-to-playlist"} />
-                        </button>
-                        <button onClick={togglePrevTrack} className={'playerButton play-pause'} style={{ marginLeft: '5px' }}>
-                            <PlayerIcons icon_name={"prev"} />
-                        </button>
-                        <button onClick={togglePlayPause} className={'playerButton play-pause'} style={{ marginInline: '5px' }}>
-                            {isPlaying ? <PlayerIcons icon_name={"pause"} /> : <PlayerIcons icon_name={"play"} />}
-                        </button>
-                        <button onClick={toggleNextTrack} className={'playerButton play-pause'} style={{ marginRight: '5px' }}>
-                            <PlayerIcons icon_name={"next"} />
-                        </button>
-                        <button onClick={toggleLike} className={'playerButton like'}>
-                            {isLiked ? <PlayerIcons icon_name={"like_pressed"} /> : <PlayerIcons icon_name={"like_unpressed"} />}
-                        </button>
-                        <a className="time left">{formatTime(played)}</a>
-                        <a className="time right">{formatTime(duration)}</a>
+                <div className="playerPillar">
+                    <div className="componentPosition left">
                     </div>
-                    <div className="playerTime line">
+                    <div className='componentPosition middle'>
+                        <ReactPlayer
+                            url={url}
+                            playing={isPlaying}
+                            controls={true}
+                            width='0'
+                            height='0'
+                            onProgress={onProgress}
+                            volume={volume}
+                            onDuration={onDuration}
+                            ref={playerRef}
+                            onSeek={onSeek}
+                            loop={loopState === loopStates.TRACK_LOOP ? true : false}
+                        />
+                        <div className="playerTime info">
+                            <button onClick={toggleAddToPlaylist} className={'playerButton add-to-playlist'}>
+                                <PlayerIcons icon_name={"add-to-playlist"} />
+                            </button>
+                            <button onClick={togglePrevTrack} className={'playerButton play-pause'} style={{ marginLeft: '5px' }}>
+                                <PlayerIcons icon_name={"prev"} />
+                            </button>
+                            <button onClick={togglePlayPause} className={'playerButton play-pause'} style={{ marginInline: '5px' }}>
+                                {isPlaying ? <PlayerIcons icon_name={"pause"} /> : <PlayerIcons icon_name={"play"} />}
+                            </button>
+                            <button onClick={toggleNextTrack} className={'playerButton play-pause'} style={{ marginRight: '5px' }}>
+                                <PlayerIcons icon_name={"next"} />
+                            </button>
+                            <button onClick={toggleLike} className={'playerButton like'}>
+                                {isLiked ? <PlayerIcons icon_name={"like_pressed"} /> : <PlayerIcons icon_name={"like_unpressed"} />}
+                            </button>
+                            <a className="time left">{formatTime(played)}</a>
+                            <a className="time right">{formatTime(duration)}</a>
+                        </div>
+                        <div className="playerTime line">
+                            <input
+                                type="range"
+                                min={0}
+                                max={duration}
+                                step='any'
+                                value={played}
+                                onChange={onSeekChange}
+                                onMouseDown={onSeekMouseDown}
+                                onMouseUp={onSeekMouseUp}
+                                className="playerRange"
+                            />
+                        </div>
+                    </div>
+                    <div className="componentPosition right">
                         <input
                             type="range"
                             min={0}
-                            max={duration}
+                            max={1}
                             step='any'
-                            value={played}
-                            onChange={onSeekChange}
-                            onMouseDown={onSeekMouseDown}
-                            onMouseUp={onSeekMouseUp}
-                            className="playerRange"
+                            value={volume}
+                            onChange={onVolumeChange}
+                            className={`volumeRange ${volumeDis ? 'disable' : 'enable'}`}
+                            disabled={volumeDis}
                         />
+                        <button onClick={toggleShowVolume} className={"playerButton volume"}>
+                            <PlayerIcons icon_name={"volume"} />
+                        </button>
+                        <button onClick={toggleShowText} className={"playerButton text"}>
+                            {showedText ? <PlayerIcons icon_name={"text_pressed"} /> : <PlayerIcons icon_name={"text_unpressed"} />}
+                        </button>
+                        <button onClick={toggleMix} className={"playerButton volume"}>
+                            <PlayerIcons icon_name={"mix"} />
+                        </button>
+                        <button onClick={toggleLoop} className={"playerButton loop"}>
+                            {loopState === loopStates.NO_LOOP ? <PlayerIcons icon_name={"reply_unpressed"} /> : loopState === loopStates.PLAYLIST_LOOP ? <PlayerIcons icon_name={"reply_pressed"} /> : <PlayerIcons icon_name={"reply_pressed_loop"} />}
+                        </button>
+                        <button onClick={toggleEqualizer} className={"playerButton text"}>
+                            <PlayerIcons icon_name={"equalizer"} />
+                        </button>
                     </div>
-                </div>
-                <div className="componentPosition right">
-                    <input
-                        type="range"
-                        min={0}
-                        max={1}
-                        step='any'
-                        value={volume}
-                        onChange={onVolumeChange}
-                        className={`volumeRange ${volumeDis ? 'disable' : 'enable'}`}
-                        disabled={volumeDis}
-                    />
-                    <button onClick={toggleShowVolume} className={"playerButton volume"}>
-                        <PlayerIcons icon_name={"volume"} />
-                    </button>
-                    <button onClick={toggleShowText} className={"playerButton text"}>
-                        {showedText ? <PlayerIcons icon_name={"text_pressed"} /> : <PlayerIcons icon_name={"text_unpressed"} />}
-                    </button>
-                    <button onClick={toggleMix} className={"playerButton volume"}>
-                        <PlayerIcons icon_name={"mix"} />
-                    </button>
-                    <button onClick={toggleLoop} className={"playerButton loop"}>
-                        {loopState === loopStates.NO_LOOP ? <PlayerIcons icon_name={"reply_unpressed"} /> : loopState === loopStates.PLAYLIST_LOOP ? <PlayerIcons icon_name={"reply_pressed"} /> : <PlayerIcons icon_name={"reply_pressed_loop"} />}
-                    </button>
-                    <button onClick={toggleEqualizer} className={"playerButton text"}>
-                        <PlayerIcons icon_name={"equalizer"} />
-                    </button>
                 </div>
             </div>
         </>

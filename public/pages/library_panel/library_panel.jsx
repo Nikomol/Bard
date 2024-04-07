@@ -20,13 +20,15 @@ export default function LibraryPanel() {
         window.addEventListener('resize', handleResize);
     
         handleResize();
+
+        console.log(`player height: ${playerHeight}\ntitle height: ${titleHeight}`);
     
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [playerHeight, titleHeight]);
     
 
     const panelHeight = {
-        height: `calc(100vh - (${titleHeight}px + ${playerHeight}px))`
+        height: `calc(100vh - (${titleHeight + 20}px + ${playerHeight + 10}px))`
     };
 
     return (

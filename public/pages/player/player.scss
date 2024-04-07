@@ -1,7 +1,7 @@
 .playerContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -9,11 +9,21 @@
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px 0;
-    margin: 10px;
+    //padding: 10px 0;
+    margin: 7px;
     border-radius: 15px;
     padding-inline: 10px;
     z-index: 1000;
+}
+
+.playerPillar{
+    // height: 100%;
+    // width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    position: relative;
 }
 
 .componentPosition {
