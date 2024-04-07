@@ -8,8 +8,8 @@ import PrivateRoute from './utils/router/privateRoute';
 import LoadPage from '../public/pages/load_page/load_page';
 
 const SongPage = lazy(() => import('../public/pages/song_page/song_page.jsx'));
-const MainPage = lazy(() => import('../public/pages/main_panel/main_panel.jsx'));
-const LibraryPanel = lazy(() => import('../public/pages/library_panel/library_panel.jsx'));
+const MainPanel = lazy(() => import('../public/pages/main_panel/main_panel.jsx'));
+const PlaylistLibrary = lazy(() => import('../public/pages/library_panel/library_panel.jsx'));
 
 export default function App() {
   return (
@@ -29,7 +29,7 @@ export default function App() {
           path='main'
           element={
             <Suspense fallback={<></>}>
-              <MainPage />
+              <MainPanel />
             </Suspense>
           }
         />
@@ -37,7 +37,7 @@ export default function App() {
           path='navigator'
           element={
             <Suspense fallback={<></>}>
-              <LibraryPanel />
+              <PlaylistLibrary />
             </Suspense>
           }
         />
