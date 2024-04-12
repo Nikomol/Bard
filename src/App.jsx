@@ -14,8 +14,8 @@ const PlaylistLibrary = lazy(() => import('../public/pages/library_panel/library
 export default function App() {
   return (
     <Routes>
-      <Route path='/' exact element={<><h1>Hello World</h1><Link to="/login">Переместиться</Link></>}>
-        <Route index element={<div>No page is selected.</div>} />
+      <Route path='/' exact element={<Navigate to="/login" replace={true} />}>
+        <Route index element={<><h2>No page is selected.</h2></>} />
       </Route>
       <Route
         path='songs'
@@ -24,7 +24,7 @@ export default function App() {
             <SongPage />
           </Suspense>
         }>
-        <Route index element={<Navigate to={"/songs/main"} replace={true}/>} />
+        <Route index element={<Navigate to={"/songs/main" } replace={true}/>} />
         <Route
           path='main'
           element={
@@ -45,6 +45,7 @@ export default function App() {
       <Route path="login" element={<Login />} />
       <Route path="register" element={<SignUp />} />
       <Route path="recovery" element={<ForgotPassword />} />
+      <Route path="*" element={<><h1>404</h1></>} />
     </Routes>
   )
 }

@@ -247,6 +247,7 @@
 
     // Стилизация трека
     &::-webkit-slider-runnable-track {
+        -webkit-appearance: none;
         width: 100%;
         height: $track-height;
         background: $track-color;

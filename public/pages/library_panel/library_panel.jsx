@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 import CreatePLaylist from '../create_playlist/create_playlist';
 
 import './library_panel.scss';
+import { Navigate } from 'react-router-dom';
 
-export default function LibraryPanel({user = null}) {
+export default function LibraryPanel({ user = null }) {
 
     const [playerHeight, setPlayerHeight] = useState(0);
     const [titleHeight, setTitleHeight] = useState(0);
@@ -50,19 +51,22 @@ export default function LibraryPanel({user = null}) {
 
     return (
         <>
-            <div className={"lib backdrop"} style={panelHeight}>
-                <div className={"lib content"}>
-                    <div className={"content title"}>
-                        <h2 className={'library-text title'}>Моя библиотека</h2>
-                    </div>
-                    <div className={"content main"}>
-                        <h1>{user.login}</h1>
-                        <h1>{user.id}</h1>
-                        <CreatePLaylist />
+            {user && ('login' in user && 'id' in user) ? (
+                <div className={"lib backdrop"} style={panelHeight}>
+                    <div className={"lib content"}>
+                        <div className={"lib content title"}>
+                            <h2 className={'library-text title'}>Моя библиотека</h2>
+                        </div>
+                        <div className={"playlist backdrop"}>
+                            <CreatePLaylist />
+                        </div>
                     </div>
                 </div>
-            </div>
+            ) : (
+                <Navigate to="/login" replace={true} />
+            )}
         </>
     );
+
 
 }

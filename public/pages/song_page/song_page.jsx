@@ -13,8 +13,10 @@ export default function MainPage() {
 
     return (
         <>
-            <HomePanel />
-            <LibraryPanel user={user}/>
+            <div className="MainPanels">
+                <HomePanel />
+                <LibraryPanel user={user} />
+            </div>  
             <SearchPanel />
             <Player url={"http://localhost:3000/music/1.m3u8"} />
         </>

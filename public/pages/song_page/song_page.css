@@ -10,3 +10,7 @@ body {
     padding-bottom: 60px;
     /*background: linear-gradient(#45A7DE, #000) fixed;*/
 }
+
+.MainPanels{
+    width: max-content;
+}
