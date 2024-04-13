@@ -21,10 +21,10 @@ export default function CreatePlaylist() {
     ]);
 
     const loadPlaylist = (url_playlist = "") => {
-        if(!!url_playlist){
+        if (!!url_playlist) {
             NaN;
         }
-        else{
+        else {
             console.log("URL: none");
         }
     }
@@ -40,15 +40,13 @@ export default function CreatePlaylist() {
 
     return (
         <>
-            <div>
-                {playlist.map((song, index) => (
-                    <button key={index} onClick={loadPlaylist(playlist.url)} className={"playlist buttons"}>
-                        <h1>{song.title}</h1>
-                        <h2>{song.description}</h2>
-                    </button>
-                ))}
-            </div>
+            {playlist.map((song, index) => (
+                <button key={index} onClick={loadPlaylist(playlist.url)} className={"playlist button"}>
+                    <h1>{song.title}</h1>
+                    <h2>{song.description}</h2>
+                </button>
+            ))}
         </>
     );
-    
+
 }

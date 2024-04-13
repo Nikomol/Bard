@@ -7,6 +7,8 @@ import ForgotPassword from '../public/pages/login_pages/forgotPassword';
 import PrivateRoute from './utils/router/privateRoute';
 import LoadPage from '../public/pages/load_page/load_page';
 
+//import 'normalize.css';
+
 const SongPage = lazy(() => import('../public/pages/song_page/song_page.jsx'));
 const MainPanel = lazy(() => import('../public/pages/main_panel/main_panel.jsx'));
 const PlaylistLibrary = lazy(() => import('../public/pages/library_panel/library_panel.jsx'));

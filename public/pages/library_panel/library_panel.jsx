@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import CreatePLaylist from '../create_playlist/create_playlist';
+import CreatePlaylist from '../create_playlist/create_playlist';
 
 import './library_panel.scss';
 import { Navigate } from 'react-router-dom';
@@ -54,11 +54,11 @@ export default function LibraryPanel({ user = null }) {
             {user && ('login' in user && 'id' in user) ? (
                 <div className={"lib backdrop"} style={panelHeight}>
                     <div className={"lib content"}>
-                        <div className={"lib content title"}>
-                            <h2 className={'library-text title'}>Моя библиотека</h2>
+                        <div className={"lib content"}>
+                            <h2 className={'library-text'}>Моя библиотека</h2>
                         </div>
                         <div className={"playlist backdrop"}>
-                            <CreatePLaylist />
+                            <CreatePlaylist />
                         </div>
                     </div>
                 </div>

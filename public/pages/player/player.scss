@@ -205,7 +205,7 @@
 
 
 .playerRange[type='range'] {
-    //Размеры ползунка и трека
+    // Размеры ползунка и трека
     $thumb-size: 7px;
     $track-height: 4px;
 
@@ -215,18 +215,19 @@
 
     background: transparent;
     width: 100%;
+    border: none; // Убираем стандартные бордюры
 
     // Стилизация ползунка
     &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
         width: $thumb-size;
         height: $thumb-size;
         border-radius: 50%;
         background: $thumb-color;
         cursor: pointer;
-
-
+        border: none;
+        //margin-top: -($track-height / 2); // Центрируем ползунок по вертикали
+        //-webkit-appearance: none;
+        appearance: none;
     }
 
     &::-moz-range-thumb {
@@ -235,6 +236,7 @@
         border-radius: 50%;
         background: $thumb-color;
         cursor: pointer;
+        border: none; // Убираем стандартные бордюры
     }
 
     &::-ms-thumb {
@@ -243,15 +245,26 @@
         border-radius: 50%;
         background: $thumb-color;
         cursor: pointer;
+        border: none; // Убираем стандартные бордюры
     }
 
     // Стилизация трека
-    &::-webkit-slider-runnable-track {
+    // &::-webkit-slider-runnable-track {
+    //     -webkit-appearance: none;
+    //     width: 100%;
+    //     height: $track-height;
+    //     background: $track-color;
+    //     border-radius: calc($track-height / 2);
+    //     cursor: pointer;
+    // }
+
+    &::-webkit-slider-runnable-track{
         -webkit-appearance: none;
         width: 100%;
         height: $track-height;
         background: $track-color;
         border-radius: calc($track-height / 2);
+        cursor: pointer;
     }
 
     &::-moz-range-track {
@@ -259,6 +272,7 @@
         height: $track-height;
         background: $track-color;
         border-radius: calc($track-height / 2);
+        cursor: pointer;
     }
 
     &::-ms-track {
@@ -266,6 +280,12 @@
         height: $track-height;
         background: $track-color;
         border-radius: calc($track-height / 2);
+        cursor: pointer;
+        border: none; // Убираем стандартные бордюры
+    }
+
+    &:focus {
+        outline: none; // Убираем стандартный фокус
     }
 
     &.enable {
