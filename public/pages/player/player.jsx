@@ -24,6 +24,7 @@ export default function Player({ url = "", liked = false }) {
     const [isMixed, setIsMixed] = useState(false);
     const [pressedEqualizer, setPressedEqualizer] = useState(false);
     const [hasSeeked, setHasSeeked] = useState(false);
+    const [disablePlayer, setDisablePlayer] = useState(true);
 
     const [currentSong, setCurrentSong] = useState(url);
     const [previousSongs, setPreviousSong] = useState([]);
@@ -181,12 +182,13 @@ export default function Player({ url = "", liked = false }) {
                             ref={playerRef}
                             onSeek={onSeek}
                             loop={loopState === loopStates.TRACK_LOOP ? true : false}
+                            
                         />
                         <div className="playerTime info">
                             <button onClick={toggleAddToPlaylist} className={'playerButton add-to-playlist'}>
                                 <PlayerIcons icon_name={"add-to-playlist"} />
                             </button>
-                            <button onClick={togglePrevTrack} className={'playerButton play-pause'} style={{ marginLeft: '5px' }}>
+                            <button onClick={togglePrevTrack} className={'playerButton play-pause'} style={{ marginLeft: '5px' }} disabled={disablePlayer}>
                                 <PlayerIcons icon_name={"prev"} />
                             </button>
                             <button onClick={togglePlayPause} className={'playerButton play-pause'} style={{ marginInline: '5px' }}>
@@ -212,6 +214,7 @@ export default function Player({ url = "", liked = false }) {
                                 onMouseDown={onSeekMouseDown}
                                 onMouseUp={onSeekMouseUp}
                                 className="playerRange"
+                                disabled={disablePlayer}
                             />
                         </div>
                     </div>

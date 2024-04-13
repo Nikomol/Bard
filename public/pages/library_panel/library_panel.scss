@@ -20,7 +20,7 @@
     color: white;
 }
 
-@keyframes hide {
+@keyframes show {
     0% {
         background: rgba($color: #ffffff, $alpha: 0.0);
     }
@@ -61,7 +61,11 @@
 
         &:hover {
             background: rgba($color: #ffffff, $alpha: 0.3);
-            animation: hide .5s;
+            animation: show .3s;
         }
+
+        // &:not(:hover){
+        //     animation: show .5s reverse;
+        // }
     }
 }
