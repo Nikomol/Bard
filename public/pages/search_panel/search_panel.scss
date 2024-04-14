@@ -4,7 +4,6 @@
     align-items: flex-end;
     display: flex;
     width: 100%;
-    //justify-content: flex-end;
     margin-left: 8px;
     border-radius: 15px;
 }
@@ -36,7 +35,12 @@
             height: 30px;
             margin: 0;
             border-style: none;
-            text-indent: 11px;
+            padding-left: 40px;
+
+            background-image: url("/public/img/search_input/search_logo.svg");
+            background-size: auto 70%;
+            background-repeat: no-repeat;
+            background-position: 5px center;
         }
 
         & input::placeholder {
