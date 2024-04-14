@@ -19,15 +19,18 @@ export default function SearchPanel() {
     return (
         <>
             <div className="upper_panel">
-                <div className="search_panel">
-                    <form onSubmit={handleSearch}>
-                        <input className="search_panel searchInput" type="text" name="search" placeholder="Поиск треков, плейлистов, альбомов" value={search.searchText} onChange={handleSearchChange}></input>
-                    </form>
-                </div>
-                <div className="user_panel">
-                    <div className="user_icon">
-                        <img></img>
+                <div className="panel_inside">
+                    <div className="panel_inside search_panel">
+                        <form onSubmit={handleSearch}>
+                            <input className="panel_inside search_panel searchInput" type="text" name="search" placeholder="Поиск треков, плейлистов, альбомов" value={search.searchText} onChange={handleSearchChange}></input>
+                        </form>
                     </div>
+                    <button className="panel_inside user_icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"></img>
+                    </button>
+                    {/* <div className="panel_inside user_icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"></img>
+                    </div> */}
                 </div>
             </div>
         </>
