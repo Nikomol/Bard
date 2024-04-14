@@ -1,0 +1,11 @@
+.button{
+    background-color: aqua;
+
+    &.enable{
+        color: white;
+    }
+
+    &.disable{
+        color: gray;
+    }
+}
