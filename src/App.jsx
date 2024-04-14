@@ -12,6 +12,7 @@ import LoadPage from '../public/pages/load_page/load_page';
 const SongPage = lazy(() => import('../public/pages/song_page/song_page.jsx'));
 const MainPanel = lazy(() => import('../public/pages/main_panel/main_panel.jsx'));
 const PlaylistLibrary = lazy(() => import('../public/pages/library_panel/library_panel.jsx'));
+const NotFound = lazy(() => import('../public/pages/404/404.jsx'));
 
 export default function App() {
   return (
@@ -47,7 +48,7 @@ export default function App() {
       <Route path="login" element={<Login />} />
       <Route path="register" element={<SignUp />} />
       <Route path="recovery" element={<ForgotPassword />} />
-      <Route path="*" element={<><h1>404</h1></>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
