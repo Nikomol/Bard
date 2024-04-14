@@ -16,26 +16,26 @@ export default function SearchPanel() {
         //Отправка запроса
     };
 
-    useEffect(() => {
-        const handleResize = () => {
-            const title = document.querySelector('.backdrop');
-            setTitleWidth(title.clientWidth);
-        };
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         const title = document.querySelector('.backdrop');
+    //         setTitleWidth(title.clientWidth);
+    //     };
 
-        window.addEventListener('resize', handleResize);
+    //     window.addEventListener('resize', handleResize);
 
-        handleResize();
+    //     handleResize();
 
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    //     return () => window.removeEventListener('resize', handleResize);
+    // }, []);
 
-    const panelWidth = {
-        width: `calc(100% - (${titleWidth}px))`
-    };
+    // const panelWidth = {
+    //     width: `calc(100% - (${titleWidth}px))`
+    // };
 
     return (
         <>
-            <div className="upper_panel" style={panelWidth}>
+            <div className="upper_panel">
                 <div className="search_panel">
                     <form onSubmit={handleSearch}>
                         <input className="search_panel searchInput" type="text" name="search" placeholder="Поиск треков, плейлистов, альбомов" value={search.searchText} onChange={handleSearchChange}></input>

@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
     overflow: none;
 }
@@ -11,6 +12,14 @@ body {
     /*background: linear-gradient(#45A7DE, #000) fixed;*/
 }
 
-.MainPanels{
+.allPanels {
+    display: flex;
+    flex-direction: row;
+}
+
+.MainPanels {
     width: max-content;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
 }

@@ -1,9 +1,13 @@
-.upper_panel{
+.upper_panel {
     background-color: #1B1818;
+    height: max-content;
+    align-items: flex-end;
+    display: flex;
+    width: 100%;
+    //justify-content: flex-end;
+    margin-left: 8px;
 }
 
-.search_panel{
-    &.searchInput{
-        
-    }
+.search_panel {
+    &.searchInput {}
 }
