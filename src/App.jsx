@@ -6,6 +6,7 @@ import ForgotPassword from '../public/pages/login_pages/forgotPassword';
 //import TestPage from '../public/pages/test_page/test_page';
 import PrivateRoute from './utils/router/privateRoute';
 import LoadPage from '../public/pages/load_page/load_page';
+import { useSelector } from "react-redux";
 
 //import 'normalize.css';
 
@@ -14,12 +15,21 @@ const MainPanel = lazy(() => import('../public/pages/main_panel/main_panel.jsx')
 const PlaylistLibrary = lazy(() => import('../public/pages/library_panel/library_panel.jsx'));
 const NotFound = lazy(() => import('../public/pages/404/404.jsx'));
 
+
 export default function App() {
+
+  const user = useSelector((state) => state.user.user);
+  const [isLogged, useIsLogged] = useState(user && ('login' in user && 'id' in user));
+
   return (
     <Routes>
-      <Route path='/' exact element={<Navigate to="/login" replace={true} />}>
-        <Route index element={<><h2>No page is selected.</h2></>} />
-      </Route>
+      <Route
+        path='/'
+        exact
+        element={isLogged ?
+          <Navigate to="/songs" replace={true} /> :
+          <Navigate to="/login" replace={true} />
+        } />
       <Route
         path='songs'
         element={
@@ -27,7 +37,12 @@ export default function App() {
             <SongPage />
           </Suspense>
         }>
-        <Route index element={<Navigate to={"/songs/main" } replace={true}/>} />
+        <Route
+          index
+          element={
+            <Navigate to={"/songs/main"} replace={true} />
+          }
+        />
         <Route
           path='main'
           element={
