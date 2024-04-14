@@ -7,7 +7,7 @@ export default function NotFound() {
     return (
         <>
             <div className="ErrorMenu">
-                <svg width="346" height="560" viewBox="0 0 346 560" fill="none" xmlns="http://www.w3.org/2000/svg">  {/*Цифры 404, нужно переместить на центр*/}
+                <svg width="346" height="560" viewBox="0 0 346 560" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="137.347" y="8.61084" width="42" height="271" rx="21" fill="#D9D9D9" />
                     <rect x="7.3468" y="192.611" width="36" height="216" rx="18" transform="rotate(-90 7.3468 192.611)" fill="#D9D9D9" />
                     <rect x="28.0427" y="198.721" width="37.8161" height="233.765" rx="18.9081" transform="rotate(-137.864 28.0427 198.721)" fill="#D9D9D9" />
