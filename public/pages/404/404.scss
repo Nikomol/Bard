@@ -1,0 +1,15 @@
+.ErrorMenu {
+    flex-direction: column;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+.LinkDis {
+    margin-top: 40px;
+    text-decoration: none;
+    color: #8a8883;
+    text-align: center;
+}
