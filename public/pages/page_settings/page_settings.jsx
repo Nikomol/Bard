@@ -12,12 +12,12 @@ export default function PageSettings(){
 
     return(
         <>
-            <div className=''>
+            <div className='Profile'>
                 {/*Нужно сделать текст выключеной конпки более тёмнын(все кнопки, кроме кнопки "Профиль" - выключены. Чекай disabled)*/}
-                <button className='' onClick={NavigateToProfile}>Профиль</button> {/*Кнопка включена*/}
-                <button className='' disabled={true}>Настройки</button> {/*Кнопка выключена*/}
-                <button className='' disabled={true}>Сменить аккаунт</button> {/*Кнопка выключена*/}
-                <button className='' disabled={true}>Выйти</button> {/*Кнопка выключена*/}
+                <button className='Profile-Button Enable Upper' onClick={NavigateToProfile}>Профиль</button> {/*Кнопка включена*/}
+                <button className='Profile-Button Disable Middle' disabled={true}>Настройки</button> {/*Кнопка выключена*/}
+                <button className='Profile-Button Disable Middle' disabled={true}>Сменить аккаунт</button> {/*Кнопка выключена*/}
+                <button className='Profile-Button Disable Down' disabled={true}>Выйти</button> {/*Кнопка выключена*/}
             </div>
         </>
     );
