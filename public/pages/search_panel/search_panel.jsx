@@ -16,23 +16,6 @@ export default function SearchPanel() {
         //Отправка запроса
     };
 
-    // useEffect(() => {
-    //     const handleResize = () => {
-    //         const title = document.querySelector('.backdrop');
-    //         setTitleWidth(title.clientWidth);
-    //     };
-
-    //     window.addEventListener('resize', handleResize);
-
-    //     handleResize();
-
-    //     return () => window.removeEventListener('resize', handleResize);
-    // }, []);
-
-    // const panelWidth = {
-    //     width: `calc(100% - (${titleWidth}px))`
-    // };
-
     return (
         <>
             <div className="upper_panel">
