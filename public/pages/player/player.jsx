@@ -188,7 +188,7 @@ export default function Player({ url = "", liked = false }) {
                             <button onClick={toggleAddToPlaylist} className={'playerButton add-to-playlist'}>
                                 <PlayerIcons icon_name={"add-to-playlist"} />
                             </button>
-                            <button onClick={togglePrevTrack} className={'playerButton play-pause'} style={{ marginLeft: '5px' }} disabled={disablePlayer}>
+                            <button onClick={togglePrevTrack} className={'playerButton play-pause'} style={{ marginLeft: '5px' }}>
                                 <PlayerIcons icon_name={"prev"} />
                             </button>
                             <button onClick={togglePlayPause} className={'playerButton play-pause'} style={{ marginInline: '5px' }}>
@@ -214,7 +214,6 @@ export default function Player({ url = "", liked = false }) {
                                 onMouseDown={onSeekMouseDown}
                                 onMouseUp={onSeekMouseUp}
                                 className="playerRange"
-                                disabled={disablePlayer}
                             />
                         </div>
                     </div>
