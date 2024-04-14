@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import myImage from "./../../img/ico/ico.svg";
 import { useState } from 'react';
-//const jwt_decode = require('jwt-decode');
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../src/actions/userActions";
 
 import './login.css';
 
@@ -9,8 +10,12 @@ export default function Login() {
 
     const navigate = useNavigate();
 
+    const dispatch = useDispatch();
+
     //Форма для отправки get запроса на сервер
     const [formData, setFormData] = useState({ email: '', passwrd: '' });
+
+    const [serverResponse, setServerResponse] = useState(null); // Создаем состояние для хранения ответа сервера
 
     const [dis, setDis] = useState(true);
 
@@ -32,20 +37,31 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDis(true);
-        //encodeURIComponent() -> функция, которая кодирует email и пароль для безопасности.
-        fetch(`/login?eml=${encodeURIComponent(formData.email)}&c_psw=${encodeURIComponent(formData.passwrd)}`)
-            //Полученные данные от сервера
-            .then(data => {
-                console.log(data);
-                alert("Get запрос отправлен/получен");
-                navigate('/songs');
-            })
-            //Ошибка получения данных от сервера
-            .catch(error => {
-                console.error(`Ошибка при выполнении запроса: ${error}`);
-                alert("Get запрос не отправлен");
+        console.log(formData);
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if(data === undefined || data === null){
+                alert("Ответ получен. Пользователь не найден.");
                 setDis(false);
-            })
+            }  
+            else{
+                alert(`Ответ получен. Пользователь ${data.login} найден.`);
+                dispatch(setUser(data))
+                navigate('/songs');
+            }
+        })
+        .catch(error => {
+            console.error(`Ошибка ${error}`);
+            setDis(false);
+        });
     }
 
     return (
@@ -53,7 +69,7 @@ export default function Login() {
             <div className="container">
                 <div className="logo">
                     <img src={myImage}></img>
-                    <h1>OtoWave</h1>
+                    <h1 className="title-big">OtoWave</h1>
                 </div>
                 <div className="spacer mid">
                 </div>

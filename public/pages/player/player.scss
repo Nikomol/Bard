@@ -1,7 +1,7 @@
 .playerContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -9,10 +9,21 @@
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px 0;
-    margin: 10px;
+    //padding: 10px 0;
+    margin: 7px;
     border-radius: 15px;
     padding-inline: 10px;
+    z-index: 1000;
+}
+
+.playerPillar{
+    // height: 100%;
+    // width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    position: relative;
 }
 
 .componentPosition {
@@ -118,7 +129,7 @@
 
     $thumb-color: #700FEB;
     $track-color: #fff;
-    $track-thumb-disabled: rgba(#000000, 0.0);
+    $track-thumb-disabled: rgba(#000000, $alpha: 0.0);
 
     background: transparent;
     width: 85px;
@@ -194,28 +205,29 @@
 
 
 .playerRange[type='range'] {
-    //Размеры ползунка и трека
+    // Размеры ползунка и трека
     $thumb-size: 7px;
     $track-height: 4px;
 
     $thumb-color: #a6a6a6;
     $track-color: #fff;
-    $track-thumb-disabled: rgba(#000000, 0.0);
+    $track-thumb-disabled: rgba(#000000, $alpha: 0.0);
 
     background: transparent;
     width: 100%;
+    border: none; // Убираем стандартные бордюры
 
     // Стилизация ползунка
     &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
         width: $thumb-size;
         height: $thumb-size;
         border-radius: 50%;
         background: $thumb-color;
         cursor: pointer;
-
-
+        border: none;
+        //margin-top: -($track-height / 2); // Центрируем ползунок по вертикали
+        //-webkit-appearance: none;
+        appearance: none;
     }
 
     &::-moz-range-thumb {
@@ -224,6 +236,7 @@
         border-radius: 50%;
         background: $thumb-color;
         cursor: pointer;
+        border: none; // Убираем стандартные бордюры
     }
 
     &::-ms-thumb {
@@ -232,14 +245,26 @@
         border-radius: 50%;
         background: $thumb-color;
         cursor: pointer;
+        border: none; // Убираем стандартные бордюры
     }
 
     // Стилизация трека
-    &::-webkit-slider-runnable-track {
+    // &::-webkit-slider-runnable-track {
+    //     -webkit-appearance: none;
+    //     width: 100%;
+    //     height: $track-height;
+    //     background: $track-color;
+    //     border-radius: calc($track-height / 2);
+    //     cursor: pointer;
+    // }
+
+    &::-webkit-slider-runnable-track{
+        -webkit-appearance: none;
         width: 100%;
         height: $track-height;
         background: $track-color;
         border-radius: calc($track-height / 2);
+        cursor: pointer;
     }
 
     &::-moz-range-track {
@@ -247,6 +272,7 @@
         height: $track-height;
         background: $track-color;
         border-radius: calc($track-height / 2);
+        cursor: pointer;
     }
 
     &::-ms-track {
@@ -254,6 +280,12 @@
         height: $track-height;
         background: $track-color;
         border-radius: calc($track-height / 2);
+        cursor: pointer;
+        border: none; // Убираем стандартные бордюры
+    }
+
+    &:focus {
+        outline: none; // Убираем стандартный фокус
     }
 
     &.enable {

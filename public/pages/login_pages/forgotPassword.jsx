@@ -22,26 +22,31 @@ const MainForget = ({ onPasswordReset }) => {
         e.preventDefault();
         try {
             setDis(true);
-            const response = await fetch('', {
+            const response = await fetch('http://localhost:3000/recovery', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             });
-            //Если запрос отправлен успешно
+            console.log(response);
             if (response.ok) {
-                alert("Отправлено");
-                onPasswordReset();
+                if(response.status !== 404){
+                    onPasswordReset();
+                }
+                else{
+                    console.log("Ошибка. Email не найден");
+                    setDis(false);
+                }
             }
             //Если запрос был отправлен неуспешно(пока что это всё равно хорошо)
             else {
-                alert('Вроде бы что то есть!');
-                onPasswordReset();
+                alert('Ошибка отправки');
+                setDis(false);
             }
         } catch (error) {
             console.error(`Ошибка: ${error}`);
-            alert("Ошибка get запроса!!");
+            alert("Ошибка post запроса!!");
             setDis(false);
         }
     }
@@ -50,7 +55,7 @@ const MainForget = ({ onPasswordReset }) => {
         <>
             <div className="spacer min">
             </div>
-            <h2>Напишите email вашего аккаунта чтобы сменить пароль</h2>
+            <h2 className="title-small">Напишите email вашего аккаунта чтобы сменить пароль</h2>
             <div className="spacer min">
             </div>
             <div className="mainform">
@@ -77,7 +82,7 @@ const LastForget = () => {
             <div className="spacer min">
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <h1 style={{ width: '60%' }}>Проверьте ваш почтовый ящик, туда придёт письмо с инструкциями</h1>
+                <h1 className= "title-big" style={{ width: '60%' }}>Проверьте ваш почтовый ящик, туда придёт письмо с инструкциями</h1>
             </div>
             <div className="spacer mid">
             </div>
@@ -101,7 +106,7 @@ export default function ForgotPassoword() {
             <div className="container">
                 <div className="logo">
                     <img src={myImage}></img>
-                    <h1>OtoWave</h1>
+                    <h1 className="title-big">OtoWave</h1>
                 </div>
                 {isResettingPassword ? <LastForget /> : <MainForget onPasswordReset={handlePasswordReset} />}
             </div>

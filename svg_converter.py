@@ -2,9 +2,12 @@ def escape_svg(svg_content):
     return svg_content.replace('\"', '\\\"')
 
 svg_content = '''
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="8" cy="8" r="6.5" fill="#700FEB" stroke="white" stroke-width="3"/>
+<svg width="43" height="40" viewBox="0 0 43 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.9082 21.266C8.9082 19.0031 8.9082 17.8716 9.39719 16.8771C9.88617 15.8825 10.8045 15.1461 12.6411 13.6735L14.4227 12.2449C17.7424 9.583 19.4023 8.25206 21.3795 8.25206C23.3566 8.25206 25.0165 9.583 28.3362 12.2449L30.1178 13.6735C31.9545 15.1461 32.8728 15.8825 33.3617 16.8771C33.8507 17.8716 33.8507 19.0031 33.8507 21.266V28.3333C33.8507 31.476 33.8507 33.0474 32.8071 34.0237C31.7634 35 30.0837 35 26.7243 35H16.0346C12.6752 35 10.9955 35 9.95185 34.0237C8.9082 33.0474 8.9082 31.476 8.9082 28.3333V21.266Z" stroke="white" stroke-width="2"/>
+<path d="M25.8333 35V26C25.8333 25.4477 25.3856 25 24.8333 25H17.9253C17.373 25 16.9253 25.4477 16.9253 26V35" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
+
+
 '''
 
 print(escape_svg(svg_content))

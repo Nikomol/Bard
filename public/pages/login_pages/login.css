@@ -26,13 +26,13 @@ a {
   width: 15%;
 }
 
-h1 {
+.title-big {
   text-align: center;
   color: #FFF;
   font-family: 'Inter';
 }
 
-h2 {
+.title-small {
   text-align: center;
   color: #FFF;
   font-size: 120%;
