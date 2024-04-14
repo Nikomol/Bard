@@ -25,7 +25,7 @@ export default function CreatePlaylist() {
             NaN;
         }
         else {
-            console.log("URL: none");
+            console.log(`URL: ${url_playlist}`);
         }
     }
 

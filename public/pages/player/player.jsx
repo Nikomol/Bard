@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import PlayerIcons from "../player_icons/player_icons";
 
+import AddToPlaylist from "../addToPlaylist/addToPlaylist";
+
 import './player.scss';
 
 const loopStates = {
@@ -25,6 +27,7 @@ export default function Player({ url = "", liked = false }) {
     const [pressedEqualizer, setPressedEqualizer] = useState(false);
     const [hasSeeked, setHasSeeked] = useState(false);
     const [disablePlayer, setDisablePlayer] = useState(true);
+    const [showAddToPlaylist, setShowAddToPlaylist] = useState(false);
 
     const [currentSong, setCurrentSong] = useState(url);
     const [previousSongs, setPreviousSong] = useState([]);
@@ -135,7 +138,7 @@ export default function Player({ url = "", liked = false }) {
     }
 
     const toggleAddToPlaylist = () => {
-
+        setShowAddToPlaylist(!showAddToPlaylist);
     }
 
     const toggleShowVolume = () => {
@@ -246,6 +249,7 @@ export default function Player({ url = "", liked = false }) {
                     </div>
                 </div>
             </div>
+            {showAddToPlaylist ? <AddToPlaylist /> : <></>}
         </>
     );
 }
