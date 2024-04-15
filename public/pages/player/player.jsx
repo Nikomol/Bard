@@ -249,7 +249,7 @@ export default function Player({ url = "", liked = false }) {
                     </div>
                 </div>
             </div>
-            {showAddToPlaylist ? <AddToPlaylist /> : <></>}
+            <AddToPlaylist showAdd={showAddToPlaylist}/>
         </>
     );
 }

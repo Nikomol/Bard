@@ -1,33 +1,22 @@
 import { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 import CreatePlaylist from '../create_playlist/create_playlist';
 
 import './library_panel.scss';
-import { Navigate } from 'react-router-dom';
 
-export default function LibraryPanel({ user = null }) {
+export default function LibraryPanel() {
 
     const [playerHeight, setPlayerHeight] = useState(0);
     const [titleHeight, setTitleHeight] = useState(0);
 
+    const user = useSelector((state) => state.user.user);
+
+    //const user = useSelector((state) => state.user.user);
 
     //логика отправки get/post запроса
     //..............................//
-
-    // const createDiv = (playlistTitle, playlistAuthor, playlistUrl) => {
-    //     return (
-    //         <>
-    //             <button className="librarby playlist">
-    //                 <h1 className="library playlist title">
-    //                     {playlistTitle}
-    //                 </h1>
-    //                 <h2 className="library playlist author">
-    //                     {playlistAuthor}
-    //                 </h2>
-    //             </button>
-    //         </>
-    //     );
-    // }
 
     useEffect(() => {
         const handleResize = () => {
@@ -51,7 +40,7 @@ export default function LibraryPanel({ user = null }) {
 
     return (
         <>
-            {user && ('login' in user && 'id' in user) ? (
+            {user && ('login' in user && 'id' in user) ? 
                 <div className={"lib backdrop"} style={panelHeight}>
                     <div className={"lib content"}>
                         <div className={"lib content"}>
@@ -62,9 +51,9 @@ export default function LibraryPanel({ user = null }) {
                         </div>
                     </div>
                 </div>
-            ) : (
+            :
                 <Navigate to="/login" replace={true} />
-            )}
+            }
         </>
     );
 
