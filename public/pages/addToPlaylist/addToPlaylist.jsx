@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import './addToPlaylist.scss';
 
-export default function AddToPlaylist() {
+export default function AddToPlaylist({showAdd = false}) {
 
     const [playlist, setPlaylist] = useState([
         {
@@ -43,7 +43,7 @@ export default function AddToPlaylist() {
 
     return (
         <>
-            <div className="add-pl"> 
+            <div className={`add-pl ${showAdd ? "showed" : "hidden"}`}>
                 <div className="pl-title">
                     <h2>Добавить в плейлист</h2>
                 </div>

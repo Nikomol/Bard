@@ -17,9 +17,21 @@ body {
     flex-direction: row;
 }
 
-.MainPanels {
+.HelperPanels {
     width: max-content;
     justify-content: flex-start;
     display: flex;
     flex-direction: column;
+}
+
+.MainPanels{
+    width: 100%;
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-backdrop{
+    background-color: #333333;
+    border-radius: 15px;
 }

@@ -8,7 +8,6 @@ import './search_panel.scss';
 export default function SearchPanel() {
 
     const [search, setSearch] = useState({ searchText: '' });
-    const [titleWidth, setTitleWidth] = useState(0);
     const [showPageSettings, setShowPageSettings] = useState(false);
 
     const handleSearchChange = (e) => {
@@ -38,7 +37,7 @@ export default function SearchPanel() {
                     </button>
                 </div>
             </div>
-            {showPageSettings ? <PageSettings /> : <></>}
+            <PageSettings isEnable={showPageSettings}/>
         </>
     );
 }

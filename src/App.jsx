@@ -1,63 +1,45 @@
-import { useState, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense, useEffect, createContext, useContext } from 'react';
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+
 import Login from '../public/pages/login_pages/login';
 import SignUp from '../public/pages/login_pages/signup';
 import ForgotPassword from '../public/pages/login_pages/forgotPassword';
-//import TestPage from '../public/pages/test_page/test_page';
-import PrivateRoute from './utils/router/privateRoute';
-import LoadPage from '../public/pages/load_page/load_page';
-import { useSelector } from "react-redux";
 
-//import 'normalize.css';
+import './index.css';
 
 const SongPage = lazy(() => import('../public/pages/song_page/song_page.jsx'));
-const MainPanel = lazy(() => import('../public/pages/main_panel/main_panel.jsx'));
-const PlaylistLibrary = lazy(() => import('../public/pages/library_panel/library_panel.jsx'));
 const NotFound = lazy(() => import('../public/pages/404/404.jsx'));
-
 
 export default function App() {
 
   const user = useSelector((state) => state.user.user);
-  const [isLogged, useIsLogged] = useState(user && ('login' in user && 'id' in user));
+  const [isLogged, setIsLogged] = useState(user && 'login' in user && 'id' in user);
+
+  useEffect(() => {
+    setIsLogged(user && 'login' in user && 'id' in user);
+  }, [user]);
 
   return (
     <Routes>
-      <Route
-        path='/'
-        exact
-        element={isLogged ?
-          <Navigate to="/songs" replace={true} /> :
-          <Navigate to="/login" replace={true} />
-        } />
-      <Route
-        path='songs'
+      <Route path='/' exact
         element={
-          <Suspense fallback={<></>}>
-            <SongPage />
-          </Suspense>
-        }>
-        <Route
-          index
-          element={
-            <Navigate to={"/songs/main"} replace={true} />
-          }
-        />
-        <Route
-          path='main'
-          element={
+          isLogged ?
             <Suspense fallback={<></>}>
-              <MainPanel />
+              <SongPage />
             </Suspense>
-          }
-        />
-        <Route
-          path='navigator'
+            : <Navigate to={"/login"} replace={true} />
+        }
+      //если "/" -> если пользователь зарегестрирован -> <MainPanel />, иначе <Navigate to={"/login"} />
+      >
+        <Route index element={
+          <></>
+        } /*Если будет просто "/" */ />
+        <Route path='explore'
           element={
-            <Suspense fallback={<></>}>
-              <PlaylistLibrary />
-            </Suspense>
+            <></>
           }
+        //Если будет "/explore"
         />
       </Route>
       <Route path="login" element={<Login />} />
@@ -65,5 +47,5 @@ export default function App() {
       <Route path="recovery" element={<ForgotPassword />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-  )
+  );
 }

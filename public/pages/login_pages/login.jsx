@@ -55,7 +55,7 @@ export default function Login() {
             else{
                 alert(`Ответ получен. Пользователь ${data.login} найден.`);
                 dispatch(setUser(data))
-                navigate('/songs');
+                navigate('/');
             }
         })
         .catch(error => {

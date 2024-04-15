@@ -40,7 +40,7 @@ export default function SignUp() {
             });
             //Если запрос отправлен успешно
             if (response.ok && response.status === 200){
-                navigate('/songs');
+                navigate('/');
             }
             //Если запрос был отправлен неуспешно(пока что это всё равно хорошо)
             else{
