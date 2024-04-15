@@ -13,26 +13,26 @@ export default function PageSettings() {
         navigate('/profile');
     }
 
-    useEffect(() => {
-        const handleResize = () => {
-            const search = document.querySelector('.upper_panel');
-            setSearchContainer(search.clientHeight);
-        };
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         const search = document.querySelector('.upper_panel');
+    //         setSearchContainer(search.clientHeight);
+    //     };
 
-        window.addEventListener('resize', handleResize);
+    //     window.addEventListener('resize', handleResize);
 
-        handleResize();
+    //     handleResize();
 
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    //     return () => window.removeEventListener('resize', handleResize);
+    // }, []);
 
-    const panelHeight = {
-        top: `calc(${searchContainer}px + 16px)`
-    };
+    // const panelHeight = {
+    //     top: `calc(${searchContainer}px + 16px)`
+    // };
 
     return (
         <>
-            <div className='Profile' style={panelHeight}>
+            <div className='Profile'>
                 {/*Нужно сделать текст выключеной конпки более тёмнын(все кнопки, кроме кнопки "Профиль" - выключены. Чекай disabled)*/}
                 <button className='Profile-Button Enable Upper' onClick={NavigateToProfile}>Профиль</button> {/*Кнопка включена*/}
                 <button className='Profile-Button Disable Middle' disabled={true}>Настройки</button> {/*Кнопка выключена*/}
