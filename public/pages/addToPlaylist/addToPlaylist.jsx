@@ -24,6 +24,11 @@ export default function AddToPlaylist({showAdd = false}) {
             url: "url_4",
             title: "soooooooooooooooooooooo looooooooooooooooooooooooooooooooooooong", //64 символа
             description: "soooooooooooooooooooooo looooooooooooooooooooooooooooooooooooong" //64 символа
+        },
+        {
+            url: "url_5",
+            title: "Кнопка", //64 символа
+            description: "" //64 символа
         }
     ]);
 
@@ -39,19 +44,19 @@ export default function AddToPlaylist({showAdd = false}) {
     return (
         <>
             <div className={`add-pl ${showAdd ? "showed" : "hidden"}`}>
-                <div className="add-pl pl-title">
+                <div className="pl-title">
                     <h2>Добавить в плейлист</h2>
                 </div>
-                <div className="add-pl pl-info">
+                <div className="pl-info">
                     {playlist.length !== 0 ?
                         <>
                             {playlist.map((pl, index) => (
-                                <button key={index} onClick={loadPlaylist(playlist.url)} className={"add-pl pl-info but-pl"}>
-                                    <h2 className="add-pl pl-info pl-title">{pl.title} - {pl.description}</h2>
+                                <button key={index} onClick={loadPlaylist(playlist.url)} className={"but-pl"}>
+                                    <h2 className="pl-text">{pl.title} - {pl.description}</h2>
                                 </button>
                             ))}
                         </>
-                        : <h2 className="add-pl pl-info no-pl">У вас нет собственных плейлистов</h2>
+                        : <h2 className="no-pl">У вас нет собственных плейлистов</h2>
                     }
                 </div>
             </div>
