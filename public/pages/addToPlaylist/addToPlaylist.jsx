@@ -24,6 +24,11 @@ export default function AddToPlaylist() {
             url: "url_4",
             title: "soooooooooooooooooooooo looooooooooooooooooooooooooooooooooooong", //64 символа
             description: "soooooooooooooooooooooo looooooooooooooooooooooooooooooooooooong" //64 символа
+        },
+        {
+            url: "url_5",
+            title: "Кнопка", //64 символа
+            description: "" //64 символа
         }
     ]);
 
