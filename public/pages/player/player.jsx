@@ -145,22 +145,6 @@ export default function Player({ url = "", liked = false }) {
         setVolumeDis(!volumeDis);
     }
 
-    // const Player = () => {
-    //     return (
-    //         <ReactPlayer
-    //             url={url}
-    //             playing={isPlaying}
-    //             controls={true}
-    //             width='0'
-    //             height='0'
-    //             onProgress={onProgress}
-    //             volume={volume}
-    //             onDuration={onDuration}
-    //             ref={playerRef}
-    //         />
-    //     );
-    // }
-
     useEffect(() => {
         //url !== "" ? setIsPlaying(true) : setIsPlaying(false);
         console.log(`Music status: ${isPlaying ? "Playing" : "Pause"}.\nLoop button status: ${loopState}.`);

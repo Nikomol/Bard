@@ -16,18 +16,18 @@ export default function HomePanel() {
     const [disNavButton, setDisNuvButton] = useState(false);
 
     const toggleMainPanel = () => {
-        if (currentPage !== '/songs') {
-            navigate('/songs');
-            setCurrentPage('/songs');
+        if (currentPage !== '/') {
+            navigate('/');
+            setCurrentPage('/');
             setDisMainButton(true);
             setDisNuvButton(false);
         }
     }
 
     const toggleNavigatorPanel = () => {
-        if (currentPage !== '/songs/navigator') {
-            navigate('/songs/navigator');
-            setCurrentPage('/songs/navigator');
+        if (currentPage !== '/explore') {
+            navigate('/explore');
+            setCurrentPage('/explore');
             setDisNuvButton(true);
             setDisMainButton(false);
         }
