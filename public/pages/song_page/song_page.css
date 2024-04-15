@@ -27,4 +27,11 @@ body {
 .MainPanels{
     width: 100%;
     margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-backdrop{
+    background-color: #333333;
+    border-radius: 15px;
 }

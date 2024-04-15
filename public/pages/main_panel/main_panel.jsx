@@ -10,9 +10,7 @@ export default function MainPanel(){
     return(
         <>
             {user && ('login' in user && 'id' in user) ? 
-                <div className="main-backdrop">
-                    
-                </div> 
+                    <h1>Main</h1>
                 : <Navigate to={"/login"} /> 
             }
         </>
