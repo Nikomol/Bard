@@ -47,16 +47,17 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background:   gray;
+    background:   #FFFFFF;
     border-top-right-radius: 5px; /* Радиус скругления верхнего правого угла */
     border-bottom-right-radius: 5px;
     /* Цвет фона */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: gray;
+    background: #FFFFFF;
     /* Цвет фона */
 }
+
 
 .pl-title {
 
