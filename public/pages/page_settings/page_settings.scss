@@ -9,6 +9,18 @@
     background-color: #333;
     border-radius: 15px;
     border-style: none;
+    //Анимация появления
+    transition: opacity 0.1s;
+
+    &.showed {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
 
 .Profile-Button {
@@ -26,7 +38,7 @@
     }
 
     &.Upper {
-        border-radius: 15px 15px 0 0 ;
+        border-radius: 15px 15px 0 0;
     }
 
     &.Middle {
