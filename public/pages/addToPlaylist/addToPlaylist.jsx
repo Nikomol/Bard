@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import './addToPlaylist.scss';
 
-export default function AddToPlaylist({showAdd = false}) {
+export default function AddToPlaylist({ showAdd = false }) {
 
     const [playlist, setPlaylist] = useState([
         {
