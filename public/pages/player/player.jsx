@@ -152,6 +152,7 @@ export default function Player({ url = "", liked = false }) {
 
     return (
         <>
+            <AddToPlaylist showAdd={showAddToPlaylist} />
             <div className="playerContainer">
                 <div className="playerPillar">
                     <div className="componentPosition left">
@@ -169,7 +170,7 @@ export default function Player({ url = "", liked = false }) {
                             ref={playerRef}
                             onSeek={onSeek}
                             loop={loopState === loopStates.TRACK_LOOP ? true : false}
-                            
+
                         />
                         <div className="playerTime info">
                             <button onClick={toggleAddToPlaylist} className={'playerButton add-to-playlist'}>
@@ -233,7 +234,6 @@ export default function Player({ url = "", liked = false }) {
                     </div>
                 </div>
             </div>
-            <AddToPlaylist showAdd={showAddToPlaylist}/>
         </>
     );
 }
