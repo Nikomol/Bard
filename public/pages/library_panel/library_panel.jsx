@@ -43,7 +43,7 @@ export default function LibraryPanel() {
             {user && ('login' in user && 'id' in user) ? 
                 <div className={"lib backdrop"} style={panelHeight}>
                     <div className={"lib content"}>
-                        <div className={"lib content"}>
+                        <div className={"lib title"}>
                             <h2 className={'library-text'}>Моя библиотека</h2>
                         </div>
                         <div className={"playlist backdrop"}>
