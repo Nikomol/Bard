@@ -10,10 +10,11 @@
     flex-direction: column;
     display: flex;
     position: fixed;
-    bottom: 100px;
-    left: 680px;
+    // bottom: 100px;
+    // left: 680px;
     height: 269px;
-    width: 329px;
+    width: 30%;
+    max-width: 329px;
     border-radius: 15px;
     z-index: 1000;
     background-color: #333;

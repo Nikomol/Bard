@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import './addToPlaylist.scss';
 
@@ -45,9 +45,11 @@ export default function AddToPlaylist({showAdd = false}) {
             title: "THE BIGEST TEEEEEEEEEEEEEEEEEEEEEEEEEEEEXT", //64 символа
             description: "SO BIGEEEEEEEEEEEEEEEEEEEEEEESTrrrrrrrrrrrrrrrrrrr" //64 символа
         }
-        
-        
     ]);
+
+    const [libraryWidth, setLibraryHeight] = useState('');
+    const [playerHeight, setPlayerHeight] = useState('');
+
 
     const loadPlaylist = (url_playlist = "") => {
         if (!!url_playlist) {
@@ -58,9 +60,30 @@ export default function AddToPlaylist({showAdd = false}) {
         }
     }
 
+    useEffect(() => {
+        const handleResize = () => {
+            const player = document.querySelector('.playerContainer');
+            setPlayerHeight(player.clientHeight);
+            const library = document.querySelector('.lib.backdrop');
+            setLibraryHeight(library.clientWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+
+    const panelHeight = {
+        bottom: `calc(${playerHeight + 16}px)`,
+        left: `33%`
+    };
+
     return (
         <>
-            <div className={`add-pl ${showAdd ? "showed" : "hidden"}`}>
+            <div className={`add-pl ${showAdd ? "showed" : "hidden"}`} style={panelHeight}>
                 <div className="pl-title">
                     <h2>Добавить в плейлист</h2>
                 </div>

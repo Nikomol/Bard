@@ -1,12 +1,7 @@
 .lib {
-
-    overflow-y: scroll;
-
     height: 150px;
 
     border: 1px;
-
-    overflow-y: scroll;
 
     &.backdrop {
         background-color: #333;
@@ -19,17 +14,17 @@
             width: 10px;
             /* Ширина скроллбара */
         }
-        
+
         ::-webkit-scrollbar-track {
             background: #333;
             /* Цвет фона */
         }
-        
+
         ::-webkit-scrollbar-thumb {
             border-radius: 5px;
             background: #FFFFFF;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
             background: #FFFFFF;
             /* Цвет фона */
@@ -40,13 +35,18 @@
     &.content {
         padding: 20px;
         padding-top: 5px;
-        overflow-y: scroll;
+        //overflow-y: scroll;
 
         //Сам код от скрола
         height: 150px;
         border: 1px;
-        overflow-y: scroll;
-        
+        height: 80%;
+    }
+
+    &.title {
+        width: auto;
+        height: auto;
+        padding-block: 25px;
     }
 }
 
@@ -74,6 +74,8 @@
         display: flex;
         width: 100%;
         flex-direction: column;
+        overflow-y: scroll;
+        height: 100%;
     }
 
     &.button {
