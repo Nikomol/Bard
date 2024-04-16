@@ -1,51 +1,47 @@
 .lib {
 
-    overflow-y: scroll;
-
     height: 150px;
 
     border: 1px;
 
-    overflow-y: scroll;
 
     &.backdrop {
         background-color: #333;
         width: auto;
         border-radius: 15px;
         margin-top: 7px;
-
-        //Добавил сюда стили от скролла, тк если ставить их в другие части, то почему то, ставяться настройки с другого раздела, крч я не ебу, но так воркает ;)
+        
+        
         ::-webkit-scrollbar {
             width: 10px;
-            /* Ширина скроллбара */
+            
         }
-        
+    
         ::-webkit-scrollbar-track {
-            background: #333;
-            /* Цвет фона */
+            border-radius: 15px;
+            background: rgba($color: #000000, $alpha: 0);
+           
         }
-        
+    
         ::-webkit-scrollbar-thumb {
-            border-radius: 5px;
             background: #FFFFFF;
+            border-radius: 15px;
         }
-        
+    
         ::-webkit-scrollbar-thumb:hover {
             background: #FFFFFF;
-            /* Цвет фона */
+            
         }
 
+        //Добавил сюда стили от скролла, тк если ставить их в другие части, то почему то, ставяться настройки с другого раздела, крч я не ебу, но так воркает ;)
+        
     }
 
     &.content {
         padding: 20px;
         padding-top: 5px;
-        overflow-y: scroll;
-
-        //Сам код от скрола
-        height: 150px;
-        border: 1px;
-        overflow-y: scroll;
+    
+        
         
     }
 }

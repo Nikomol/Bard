@@ -2,52 +2,9 @@ import { useState } from "react";
 
 import './addToPlaylist.scss';
 
-export default function AddToPlaylist({showAdd = false}) {
+export default function AddToPlaylist({ showAdd = false }) {
 
-    const [playlist, setPlaylist] = useState([
-        {
-            url: "history_id",
-            title: "История прослушивания",
-            description: "Создано автоматически"
-        },
-        {
-            url: "url_2",
-            title: "song_title_2",
-            description: "song_description_2"
-        },
-        {
-            url: "url_3",
-            title: "song_title_4",
-            description: "song_description_3"
-        },
-        {
-            url: "url_4",
-            title: "soooooooooooooooooooooo looooooooooooooooooooooooooooooooooooong", //64 символа
-            description: "soooooooooooooooooooooo looooooooooooooooooooooooooooooooooooong" //64 символа
-        },
-        {
-            url: "url_5",
-            title: "THE BIGEST TEEEEEEEEEEEEEEEEEEEEEEEEEEEEXT", //64 символа
-            description: "SO BIGEEEEEEEEEEEEEEEEEEEEEEESTrrrrrrrrrrrrrrrrrrr" //64 символа
-        },
-        {
-            url: "url_6",
-            title: "THE BIGEST TEEEEEEEEEEEEEEEEEEEEEEEEEEEEXT", //64 символа
-            description: "SO BIGEEEEEEEEEEEEEEEEEEEEEEESTrrrrrrrrrrrrrrrrrrr" //64 символа
-        },
-        {
-            url: "url_7",
-            title: "THE BIGEST TEEEEEEEEEEEEEEEEEEEEEEEEEEEEXT", //64 символа
-            description: "SO BIGEEEEEEEEEEEEEEEEEEEEEEESTrrrrrrrrrrrrrrrrrrr" //64 символа
-        },
-        {
-            url: "url_5",
-            title: "THE BIGEST TEEEEEEEEEEEEEEEEEEEEEEEEEEEEXT", //64 символа
-            description: "SO BIGEEEEEEEEEEEEEEEEEEEEEEESTrrrrrrrrrrrrrrrrrrr" //64 символа
-        }
-        
-        
-    ]);
+    const [playlist, setPlaylist] = useState([]);
 
     const loadPlaylist = (url_playlist = "") => {
         if (!!url_playlist) {
