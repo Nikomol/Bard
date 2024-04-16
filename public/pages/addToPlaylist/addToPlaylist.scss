@@ -20,7 +20,44 @@
     border-style: none;
     color: #fff;
     box-shadow: 0px 0px 12px black;
+    transition: opacity 0.1s;
+    overflow-y: scroll;
+
+
+    &.showed {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
+
+
+::-webkit-scrollbar {
+    width: 10px;
+    /* Ширина скроллбара */
+}
+
+::-webkit-scrollbar-track {
+    background: #333;
+    /* Цвет фона */
+}
+
+::-webkit-scrollbar-thumb {
+    background:   #FFFFFF;
+    border-top-right-radius: 5px; /* Радиус скругления верхнего правого угла */
+    border-bottom-right-radius: 5px;
+    /* Цвет фона */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #FFFFFF;
+    /* Цвет фона */
+}
+
 
 .pl-title {
 
