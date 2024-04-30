@@ -4,14 +4,20 @@ import { useSelector } from "react-redux";
 
 import './main_panel.scss';
 
-export default function MainPanel(){
+export default function MainPanel() {
     const user = useSelector((state) => state.user.user);
 
-    return(
+    return (
         <>
-            {user && ('login' in user && 'id' in user) ? 
-                    <h1>Main</h1>
-                : <Navigate to={"/login"} /> 
+            {user && ('login' in user && 'id' in user) ?
+                <>
+                    <div className="allContainers">
+                        <div className="MusicDayContainer">
+                            <h1 className="ContainerTitle">Музыка дня</h1>
+                        </div>
+                    </div>
+                </>
+                : <Navigate to={"/login"} />
             }
         </>
     );
