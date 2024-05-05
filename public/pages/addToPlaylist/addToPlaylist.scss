@@ -5,6 +5,7 @@
 //add-pl pl-info no-pl -> подкласс add-pl и pl-info для отображения текста об отсутствии плейлистов у пользователя. Должен находиться посередине.
 
 .add-pl {
+    overflow: hidden;
     text-align: center;
     align-items: center;
     flex-direction: column;
@@ -21,6 +22,7 @@
     color: #fff;
     box-shadow: 0px 0px 12px black;
     transition: opacity 0.1s;
+    
 
     
 
@@ -54,6 +56,7 @@
 }
 
 .but-pl {
+    width: 320px;
     border-style: none;
     flex-direction: column;
     align-items: center;
