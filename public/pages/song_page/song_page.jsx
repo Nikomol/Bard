@@ -47,7 +47,9 @@ export default function MainPage() {
                 <div className="MainPanels">
                     <SearchPanel />
                     <div className="main-backdrop" style={panelHeight}>
-                        {location.pathname === '/explore' ? <Explore /> : location.pathname === '/' ? <MainPanel /> : <MainPanel />}
+                        <div className="cont">
+                            {location.pathname === '/explore' ? <Explore /> : location.pathname === '/' ? <MainPanel /> : <MainPanel />}
+                        </div>
                     </div>
                 </div>
             </div>
