@@ -38,5 +38,5 @@ body {
 
 .cont{
     height: max-content;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
