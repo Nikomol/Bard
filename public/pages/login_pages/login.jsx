@@ -25,7 +25,7 @@ export default function Login() {
             ...formData,
             [e.target.name]: e.target.value
         });
-
+    
         if (formData.email != "" && formData.passwrd != "") {
             setDis(false);
         } else {

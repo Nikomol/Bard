@@ -94,7 +94,9 @@ export default function MainPanel() {
                     <div className="allContainers">
                         <div className="MusicDayContainer">
                             <h1 className="ContainerTitle">Музыка дня</h1>
-                            <Playlist_div playlist={playlist} />
+                            <div className="Containers">
+                                <Playlist_div playlist={playlist} />
+                            </div>
                         </div>
                     </div>
                 </>
