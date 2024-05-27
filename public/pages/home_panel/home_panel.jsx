@@ -33,7 +33,6 @@ export default function HomePanel() {
         }
     }
 
-
     return (
         <>
             <div className={"backdrop"}>

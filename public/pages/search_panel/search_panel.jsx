@@ -9,6 +9,7 @@ export default function SearchPanel() {
 
     const [search, setSearch] = useState({ searchText: '' });
     const [showPageSettings, setShowPageSettings] = useState(false);
+    const [icon, setIcon] = useState('http://172.24.80.146/images/6.webp');
 
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
@@ -33,7 +34,7 @@ export default function SearchPanel() {
                         </form>
                     </div>
                     <button className="panel_inside user_icon" onClick={setShowSettings}>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"></img>
+                        <img src={icon}></img>
                     </button>
                 </div>
             </div>
