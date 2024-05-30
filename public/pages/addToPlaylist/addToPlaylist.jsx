@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import './addToPlaylist.scss';
 
-export default function AddToPlaylist({ showAdd = false }) {
+export default function AddToPlaylist({ showAdd = false, wref}) {
 
     const [playlist, setPlaylist] = useState([
         {
@@ -83,7 +83,7 @@ export default function AddToPlaylist({ showAdd = false }) {
 
     return (
         <>
-            <div className={`add-pl ${showAdd ? "showed" : "hidden"}`} style={panelHeight}>
+            <div className={`add-pl ${showAdd ? "showed" : "hidden"}`} style={panelHeight} ref={wref}>
                 <div className="pl-title">
                     <h2>Добавить в плейлист</h2>
                 </div>

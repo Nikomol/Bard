@@ -35,6 +35,8 @@ export default function Player({ url = "", liked = false }) {
 
     const playerRef = useRef(null);
 
+    const wrapperRef = useRef(null);
+
     const onSeek = () => {
         setHasSeeked(true);
     };
@@ -145,14 +147,26 @@ export default function Player({ url = "", liked = false }) {
         setVolumeDis(!volumeDis);
     }
 
+    const handleClickOutside = (event) => {
+        if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+            setShowAddToPlaylist(false);
+        }
+    };
+
     useEffect(() => {
         //url !== "" ? setIsPlaying(true) : setIsPlaying(false);
+
+        document.addEventListener('mousedown', handleClickOutside);
         console.log(`Music status: ${isPlaying ? "Playing" : "Pause"}.\nLoop button status: ${loopState}.`);
+
+        console.log(`AddToPlaylist: ${showAddToPlaylist}`);
+
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [isPlaying, loopState])
 
     return (
         <>
-            <AddToPlaylist showAdd={showAddToPlaylist} />
+            <AddToPlaylist showAdd={showAddToPlaylist} wref={wrapperRef}/>
             <div className="playerContainer">
                 <div className="playerPillar">
                     <div className="componentPosition left">

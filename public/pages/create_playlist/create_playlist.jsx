@@ -4,17 +4,22 @@ export default function CreatePlaylist() {
 
     const [playlist, setPlaylist] = useState([
         {
+            url: "liked_id",
+            title: "Понравившаяся музыка",
+            description: "Создано автоматически"
+        },
+        {
             url: "history_id",
             title: "История прослушивания",
             description: "Создано автоматически"
         },
         {
-            url: "url_2",
+            url: "url_1",
             title: "song_title_2",
             description: "song_description_2"
         },
         {
-            url: "url_3",
+            url: "url_2",
             title: "song_title_4",
             description: "song_description_3"
         }
@@ -26,13 +31,13 @@ export default function CreatePlaylist() {
         }
         ,
         {
-            url: "url_3",
+            url: "url_4",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_5",
             title: "song_title_4",
             description: "song_description_3"
         }

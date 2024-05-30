@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import './page_settings.scss'
 
-export default function PageSettings({isEnable = false}) {
+export default function PageSettings({isEnable = false, Pref}) {
 
     const [searchContainer, setSearchContainer] = useState();
 
@@ -19,7 +19,7 @@ export default function PageSettings({isEnable = false}) {
 
     return (
         <>
-            <div className={`Profile ${isEnable ? 'showed' : 'hidden'}`}>
+            <div className={`Profile ${isEnable ? 'showed' : 'hidden'}`} ref={Pref}>
                 {/*Нужно сделать текст выключеной конпки более тёмнын(все кнопки, кроме кнопки "Профиль" - выключены. Чекай disabled)*/}
                 <button className='Profile-Button Enable Upper' onClick={NavigateToProfile}>Профиль</button> {/*Кнопка включена*/}
                 <button className='Profile-Button Disable Middle' disabled={true}>Настройки</button> {/*Кнопка выключена*/}

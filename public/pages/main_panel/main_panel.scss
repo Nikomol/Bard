@@ -1,44 +1,44 @@
-.ContainerTitle {
-    color: white;
-    width: max-content;
-    //padding-inline: 20px;
-}
+// .ContainerTitle {
+//     color: white;
+//     width: max-content;
+//     //padding-inline: 20px;
+// }
 
-.MusicDayContainer {
-    width: 100%;
-}
+// .MusicDayContainer {
+//     width: 100%;
+// }
 
-.ContainerImage {
-    width: 100%;
-    height: 100%;
-}
+// .ContainerImage {
+//     width: 100%;
+//     height: 100%;
+// }
 
-.ContainerButton {
+// .ContainerButton {
 
-    $transparent: rgba(#000000, $alpha: 0.0);
+//     $transparent: rgba(#000000, $alpha: 0.0);
 
-    $width_height: 160px;
+//     $width_height: 160px;
 
-    width: $width_height;
-    height: $width_height;
-    background-color: $transparent;
-    border-style: solid;
-    border-color: $transparent;
-    cursor: pointer;
-}
+//     width: $width_height;
+//     height: $width_height;
+//     background-color: $transparent;
+//     border-style: solid;
+//     border-color: $transparent;
+//     cursor: pointer;
+// }
 
-.Containers {
-    display: flex;
-    padding-inline: 10px;
-    overflow-x: scroll;
-    flex-direction: row;
-    width: 100%;
-}
+// .Containers {
+//     display: flex;
+//     padding-inline: 10px;
+//     overflow-x: scroll;
+//     flex-direction: row;
+//     width: 100%;
+// }
 
-.ContainerInfo{
-    $padding_all: 7px;
-    $padding_top: 0;
+// .ContainerInfo{
+//     $padding_all: 7px;
+//     $padding_top: 0;
 
-    padding: $padding_all;
-    padding-top: $padding_top;
-}
+//     padding: $padding_all;
+//     padding-top: $padding_top;
+// }

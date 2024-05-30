@@ -98,6 +98,18 @@ export default function MainPanel() {
                                 <Playlist_div playlist={playlist} />
                             </div>
                         </div>
+                        <div className="NewMusicFromAuthors">
+                            <h1 className="ContainerTitle">Новое от ваших авторов</h1>
+                            <div className="Containers">
+                                <Playlist_div playlist={playlist} />
+                            </div>
+                        </div>
+                        <div className="UsersPlaylists">
+                            <h1 className="ContainerTitle">Плейлисты пользователей</h1>
+                            <div className="Containers">
+                                <Playlist_div playlist={playlist} />
+                            </div>
+                        </div>
                     </div>
                 </>
                 : <Navigate to={"/login"} />
