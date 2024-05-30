@@ -167,7 +167,7 @@ export default function Player({ url = "", liked = false }) {
     return (
         <>
             <AddToPlaylist showAdd={showAddToPlaylist} wref={wrapperRef}/>
-            <div className="playerContainer">
+            <div className="playerContainer" onMouseLeave={() => setVolumeDis(true)}>
                 <div className="playerPillar">
                     <div className="componentPosition left">
                     </div>
@@ -230,7 +230,7 @@ export default function Player({ url = "", liked = false }) {
                             className={`volumeRange ${volumeDis ? 'disable' : 'enable'}`}
                             disabled={volumeDis}
                         />
-                        <button onClick={toggleShowVolume} className={"playerButton volume"}>
+                        <button onClick={toggleShowVolume} className={"playerButton volume"} onMouseEnter={() => toggleShowVolume()}>
                             <PlayerIcons icon_name={"volume"} />
                         </button>
                         <button onClick={toggleShowText} className={"playerButton text"}>
