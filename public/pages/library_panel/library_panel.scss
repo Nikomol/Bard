@@ -105,6 +105,10 @@
             animation: show .3s;
         }
 
+        &.button-active{
+            background: rgba($color: #ffffff, $alpha: 0.3);
+        }
+
         // &:not(:hover){
         //     animation: show .5s reverse;
         // }

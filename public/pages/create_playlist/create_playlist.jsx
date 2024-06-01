@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function CreatePlaylist() {
 
     const navigate = useNavigate();
 
-    //const [dis, setDis] = useState(false);
+    const location = useLocation();
+
+    const [dis, setDis] = useState(false);
+    const [activeUrl, setActiveUrl] = useState(null);
 
     const [playlist, setPlaylist] = useState([
         {
@@ -73,8 +76,7 @@ export default function CreatePlaylist() {
 
     const loadPlaylist = (url_playlist = 0) => {
         if(url_playlist !== 0){
-
-
+            setActiveUrl(url_playlist);
             navigate(`/playlist?pl=${url_playlist}`);
 
             console.log(`URL: ${url_playlist}`);
@@ -83,6 +85,12 @@ export default function CreatePlaylist() {
             console.log(`URL: not found!!`);
         }
     }
+
+    useEffect(() => {
+        if(location.pathname !== '/playlist'){
+            setActiveUrl(null);
+        }
+    }, [location.pathname])
 
     // useEffect(() => {
     //     fetch('') //
@@ -96,7 +104,7 @@ export default function CreatePlaylist() {
     return (
         <>
             {playlist.map((song, index) => (
-                <button key={index} onClick={() => loadPlaylist(song.url)} className={"playlist button"} >
+                <button key={index} onClick={() => loadPlaylist(song.url)} className={`playlist button ${activeUrl === song.url ? 'button-active' : ''}`} >
                     <h1>{song.title}</h1>
                     <h2>{song.description}</h2>
                 </button>

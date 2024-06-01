@@ -6,11 +6,6 @@ export default function AddToPlaylist({ showAdd = false, wref}) {
 
     const [playlist, setPlaylist] = useState([
         {
-            url: "history_id",
-            title: "История прослушивания",
-            description: "Создано автоматически"
-        },
-        {
             url: "url_2",
             title: "song_title_2",
             description: "song_description_2"
@@ -91,7 +86,7 @@ export default function AddToPlaylist({ showAdd = false, wref}) {
                     {playlist.length !== 0 ?
                         <>
                             {playlist.map((pl, index) => (
-                                <button key={index} onClick={loadPlaylist(playlist.url)} className={"but-pl"}>
+                                <button key={index} onClick={() => loadPlaylist(pl.url)} className={"but-pl"}>
                                     <h2 className="pl-text">{pl.title} - {pl.description}</h2>
                                 </button>
                             ))}

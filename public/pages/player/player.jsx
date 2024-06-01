@@ -139,8 +139,9 @@ export default function Player({ url = "", liked = false }) {
         }
     }
 
-    const toggleAddToPlaylist = () => {
-        setShowAddToPlaylist(!showAddToPlaylist);
+    const toggleAddToPlaylist = (event) => {
+        event.preventDefault();
+        setShowAddToPlaylist(prevState => !prevState);
     }
 
     const toggleShowVolume = () => {
@@ -148,6 +149,7 @@ export default function Player({ url = "", liked = false }) {
     }
 
     const handleClickOutside = (event) => {
+        event.preventDefault();
         if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
             setShowAddToPlaylist(false);
         }
