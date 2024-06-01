@@ -1,5 +1,5 @@
 import Player from "../player/player";
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import HomePanel from "../home_panel/home_panel";
 import LibraryPanel from "../library_panel/library_panel";
@@ -7,6 +7,7 @@ import SearchPanel from "../search_panel/search_panel";
 import { useSelector } from "react-redux";
 import MainPanel from '../main_panel/main_panel.jsx';
 import Explore from '../playlist_library/playlist_library.jsx';
+import PlaylistContent from "../playlistContent/playlistContent.jsx";
 
 import './song_page.css';
 
@@ -29,7 +30,10 @@ export default function MainPage() {
 
         handleResize();
 
-        return () => window.removeEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize)
+            console.log(`Location pathname: ${location.pathname}`);
+        };
     }, []);
 
 
@@ -48,7 +52,7 @@ export default function MainPage() {
                     <SearchPanel />
                     <div className="main-backdrop" style={panelHeight}>
                         <div className="cont">
-                            {location.pathname === '/explore' ? <Explore /> : location.pathname === '/' ? <MainPanel /> : <MainPanel />}
+                            {location.pathname === '/explore' ? <Explore /> : location.pathname === '/' ? <MainPanel /> : location.pathname === '/playlist' ? <PlaylistContent /> : <MainPanel />}
                         </div>
                     </div>
                 </div>

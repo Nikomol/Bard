@@ -47,6 +47,46 @@ app.post('/login', (req, res) => {
     }
 });
 
+// app.get('/playlist/musicday', (req, res) => {
+//     const user_id = req.body;
+//     //let musicPlaylist = path.join(__dirname, 'files/playlist/day', user);
+//     let data = require('./files/playlist/daysongs.json');
+//     const users = data.id;
+//     const music_pl = users.find(id => id[user_id]);
+//     //const user_playlist = playlist.id
+//     if(music_pl){
+//         console.log(music_pl);
+//         res.status(200).send(music_pl);
+//     }
+//     else{
+//         res.status(404).json(null);
+//     }
+// });
+
+app.get('/playlist', (req, res) => {
+    let playlistId = req.query.pl;
+
+    console.log(`/playlist?pl=${playlistId}`);
+
+    let data = require('./files/playlist/daysongs.json');
+
+    let playlist = data.id[playlistId];
+
+    console.log(playlist);
+
+    if (playlist) {
+        // Отправляем данные плейлиста пользователю
+        res.status(200).json(playlist);
+        console.log("/playlist нашёл плейлист");
+    } 
+    else {
+        // Если плейлист не найден, отправляем сообщение об ошибке
+        res.status(404).json(null);
+        console.log("Ошибка /playlist запроса");
+    }
+});
+
+
 app.post('/register', (req, res) => {
     let data = require('./files/users.json');
     const users = data.users;
@@ -112,23 +152,6 @@ app.post('/recovery', (req, res) => {
         console.log("Error");
     }
 });
-
-// app.post('/playlist/:userid', (req, res) => {
-//     let data = require('./files/users.json');
-//     const users = data.users;
-//     const { email } = req.body;
-//     console.log(`Recovery: ${email}`);
-
-//     const recoveryUser = users.find(user => user[email]);
-//     if (recoveryUser) {
-//         console.log(email);
-//         res.status(200).json(null);
-//     }
-//     else {
-//         res.status(404).json(null);
-//         console.log("Error");
-//     }
-// });
 
 app.get('/music/:filename', (req, res) => {
     const filename = req.params.filename;

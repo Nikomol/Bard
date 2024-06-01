@@ -41,11 +41,17 @@ export default function App() {
           }
         //Если будет "/explore"
         />
+        <Route path='/playlist' 
+          element={
+            <></>
+          } 
+        />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="register" element={<SignUp />} />
       <Route path="recovery" element={<ForgotPassword />} />
       <Route path="*" element={<NotFound />} />
+      <Route path='404' element={<NotFound />} />
     </Routes>
   );
 }

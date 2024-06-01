@@ -1,77 +1,86 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreatePlaylist() {
 
+    const navigate = useNavigate();
+
+    //const [dis, setDis] = useState(false);
+
     const [playlist, setPlaylist] = useState([
         {
-            url: "liked_id",
+            url: "lK",
             title: "Понравившаяся музыка",
             description: "Создано автоматически"
         },
         {
-            url: "history_id",
+            url: "hyst",
             title: "История прослушивания",
             description: "Создано автоматически"
         },
         {
-            url: "url_1",
-            title: "song_title_2",
-            description: "song_description_2"
+            url: "0000001",
+            title: "Тестовый плейлист",
+            description: "Рабочий плейлист"
         },
         {
-            url: "url_2",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_4",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_5",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         },
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
     ]);
 
-    const loadPlaylist = (url_playlist = "") => {
-        if (!!url_playlist) {
-            NaN;
-        }
-        else {
+    const loadPlaylist = (url_playlist = 0) => {
+        if(url_playlist !== 0){
+
+
+            navigate(`/playlist?pl=${url_playlist}`);
+
             console.log(`URL: ${url_playlist}`);
+        }
+        else{
+            console.log(`URL: not found!!`);
         }
     }
 
@@ -87,7 +96,7 @@ export default function CreatePlaylist() {
     return (
         <>
             {playlist.map((song, index) => (
-                <button key={index} onClick={loadPlaylist(playlist.url)} className={"playlist button"}>
+                <button key={index} onClick={() => loadPlaylist(song.url)} className={"playlist button"} >
                     <h1>{song.title}</h1>
                     <h2>{song.description}</h2>
                 </button>
