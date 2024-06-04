@@ -57,7 +57,7 @@ export default function MainPage() {
                     </div>
                 </div>
             </div>
-            <Player url={"http://localhost:3000/music/1.m3u8"} />
+            <Player />
         </>
     );
 }

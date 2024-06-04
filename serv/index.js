@@ -17,6 +17,13 @@ let user = {
     id: ''
 }
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 app.use(express.json());
 
 app.use(cors());
@@ -47,21 +54,45 @@ app.post('/login', (req, res) => {
     }
 });
 
-// app.get('/playlist/musicday', (req, res) => {
-//     const user_id = req.body;
-//     //let musicPlaylist = path.join(__dirname, 'files/playlist/day', user);
-//     let data = require('./files/playlist/daysongs.json');
-//     const users = data.id;
-//     const music_pl = users.find(id => id[user_id]);
-//     //const user_playlist = playlist.id
-//     if(music_pl){
-//         console.log(music_pl);
-//         res.status(200).send(music_pl);
-//     }
-//     else{
-//         res.status(404).json(null);
-//     }
-// });
+app.get('/musicday', (req, res) => {
+    let data = require('./files/playlist/daymusic.json');
+    shuffleArray(data);
+    if (data) {
+        res.status(200).json(data);
+        console.log("Музыка дня успешно отправлена!");
+    }
+    else {
+        res.status(404).json(null);
+        console.log("Музыка дня не отправлена!");
+    }
+});
+
+app.get('/authorsmusic', (req, res) => {
+    let data = require('./files/playlist/authorsmusic.json');
+    shuffleArray(data);
+    if (data) {
+        res.status(200).json(data);
+        console.log("Авторская музыка успешно отправлена!");
+    }
+    else {
+        res.status(404).json(null);
+        console.log("Авторская музыка не отправлена!");
+    }
+});
+
+app.get('/usersmusic', (req, res) => {
+    let data = require('./files/playlist/usersmusic.json');
+    shuffleArray(data);
+    if (data) {
+        res.status(200).json(data);
+        console.log("Музыка пользователей успешно отправлена!");
+    }
+    else {
+        res.status(404).json(null);
+        console.log("Музыка пользователей не отправлена!");
+    }
+});
+
 
 app.get('/playlist', (req, res) => {
     let playlistId = req.query.pl;
@@ -78,7 +109,7 @@ app.get('/playlist', (req, res) => {
         // Отправляем данные плейлиста пользователю
         res.status(200).json(playlist);
         console.log("/playlist нашёл плейлист");
-    } 
+    }
     else {
         // Если плейлист не найден, отправляем сообщение об ошибке
         res.status(404).json(null);
@@ -153,15 +184,25 @@ app.post('/recovery', (req, res) => {
     }
 });
 
-app.get('/music/:filename', (req, res) => {
+app.get('/music/:id/:filename/', (req, res) => {
     const filename = req.params.filename;
+    const id = req.params.id;
     const validFiles = ['1.m3u8', '10.ts', '11.ts', '12.ts', '13.ts', '14.ts', '15.ts', '16.ts', '17.ts', '18.ts', '19.ts', '110.ts', '111.ts', '112.ts', '113.ts', '114.ts', '115.ts', '116.ts', '117.ts', '118.ts', '119.ts', '120.ts', '121.ts', '122.ts', '123.ts', '124.ts', '125.ts'];
 
-    if (validFiles.includes(filename)) {
-        let filePath = path.join(__dirname, 'files/songs/test_song', filename);
-        res.sendFile(filePath);
-    } else {
+    //if(filename === "0000000001") filename = "1.m3u8";
+    if (id === "0000000001") {
+        if (validFiles.includes(filename)) {
+            let filePath = path.join(__dirname, 'files/songs/test_song', filename);
+            res.sendFile(filePath);
+            console.log("Песня отправлена!");
+        } else {
+            res.status(404).send('Ошибка загрузки файла!');
+            console.log("Проблема с файлами");
+        }
+    }
+    else {
         res.status(404).send('Файл не найден');
+        console.log("Трека нет!");
     }
 });
 

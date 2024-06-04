@@ -79,8 +79,10 @@
     }
 
     &.button {
+        $text-margin-left: 10px;
+
         text-align: left;
-        width: 100%;
+        width: 90%;
         background: rgba($color: #ffffff, $alpha: 0.0);
         border-style: none;
         padding-block: 6px;
@@ -92,12 +94,14 @@
             font-size: 15px;
             margin-block: 0;
             color: white;
+            margin-left: $text-margin-left;
         }
 
         & h2 {
             font-size: 13px;
             color: #D9D9D9;
             margin-block: 3px;
+            margin-left: $text-margin-left;
         }
 
         &:hover {
