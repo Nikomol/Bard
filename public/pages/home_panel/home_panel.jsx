@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import ButtonIcons from '../button_icons/button_icons';
@@ -10,6 +10,7 @@ import './home_panel.scss';
 export default function HomePanel() {
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [currentPage, setCurrentPage] = useState('/songs');
     const [disMainButton, setDisMainButton] = useState(true);
@@ -32,6 +33,14 @@ export default function HomePanel() {
             setDisMainButton(false);
         }
     }
+
+    useEffect(() => {
+        if(location.pathname !== '/' && location.pathname !== '/explore'){
+            setCurrentPage(location.pathname);
+            setDisMainButton(false);
+            setDisNuvButton(false);
+        }
+    }, [location.pathname])
 
     return (
         <>
