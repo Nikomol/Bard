@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import './playlistContent.scss';
 
-export default function PlaylistContent(){
+export default function PlaylistContent() {
     let [searchParams, setSearchParams] = useSearchParams();
 
     const playlistId = searchParams.get('pl'); // Получаем 'playlistId' из строки запроса
@@ -16,34 +16,37 @@ export default function PlaylistContent(){
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`http://localhost:3000/playlist?pl=${playlistId}`)
-            .then(response => response.json())
-            .then(data => {
-                setUrlData(data);
-                console.log(data); // Выводим полученные данные
-                setIsLoading(false);
-            })
-            .catch(
-                error => {
-                    console.error(error)
-                    setIsLoading(false);
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:3000/playlist?pl=${playlistId}`);
+
+                if (!response.ok) {
+                    throw new Error('Что то пошло не так....');
                 }
-            );
+                const result = await response.json();
+                setUrlData(result);
+            } catch (error) {
+                console.error('Ошибка при получении данных:', error);
+            }
+            setIsLoading(false);
+        }
+
+        fetchData();
     }, [playlistId]);
 
-    if(isLoading){
-        return(
+    if (isLoading) {
+        return (
             <></>
         );
     }
 
-    return(
+    return (
         <>
-            {urlData && user && ('login' in user && 'id' in user) ? 
+            {urlData && user && ('login' in user && 'id' in user) ?
                 <>
                     <h3>{JSON.stringify(urlData)}</h3>
-                </> : 
-                <Navigate to={"/404"} replace={true} /> 
+                </> :
+                <Navigate to={"/404"} replace={true} />
             }
         </>
     );
