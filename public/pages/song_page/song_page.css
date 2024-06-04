@@ -24,19 +24,25 @@ body {
     flex-direction: column;
 }
 
-.MainPanels{
+.MainPanels {
     width: 100%;
     margin-left: 8px;
     display: flex;
     flex-direction: column;
 }
 
-.main-backdrop{
+.main-backdrop {
     background-color: #333333;
     border-radius: 15px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-.cont{
+.cont {
     height: max-content;
+    max-width: 100vh;
+    min-width: 100%;
+    /* min-width: 100vh;
+    max-width: 100%; */
     /* overflow-y: scroll; */
 }

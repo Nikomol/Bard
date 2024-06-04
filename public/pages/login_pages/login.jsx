@@ -37,32 +37,38 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDis(true);
-        console.log(formData);
-        fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
+    
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+    
+            if (!response.ok) {
+                throw new Error('Сетевой ответ был не ok.');
+            }
+    
+            const data = await response.json();
             console.log(data);
-            if(data === undefined || data === null){
-                alert("Ответ получен. Пользователь не найден.");
-                setDis(false);
-            }  
-            else{
-                alert(`Ответ получен. Пользователь ${data.login} найден.`);
-                dispatch(setUser(data))
+    
+            if (data === undefined || data === null) {
+                //alert("Ответ получен. Пользователь не найден.");
+            } else {
+                //alert(`Ответ получен. Пользователь ${data.login} найден.`);
+                dispatch(setUser(data));
                 navigate('/');
             }
-        })
-        .catch(error => {
-            console.error(`Ошибка ${error}`);
+        } catch (error) {
+            console.error(`Ошибка: ${error}`);
+            //alert('Произошла ошибка при выполнении запроса.');
+        } finally {
             setDis(false);
-        });
+        }
     }
+    
 
     return (
         <>

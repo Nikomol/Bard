@@ -2,14 +2,9 @@ import { useState, useEffect } from "react";
 
 import './addToPlaylist.scss';
 
-export default function AddToPlaylist({ showAdd = false }) {
+export default function AddToPlaylist({ showAdd = false, wref}) {
 
     const [playlist, setPlaylist] = useState([
-        {
-            url: "history_id",
-            title: "История прослушивания",
-            description: "Создано автоматически"
-        },
         {
             url: "url_2",
             title: "song_title_2",
@@ -83,7 +78,7 @@ export default function AddToPlaylist({ showAdd = false }) {
 
     return (
         <>
-            <div className={`add-pl ${showAdd ? "showed" : "hidden"}`} style={panelHeight}>
+            <div className={`add-pl ${showAdd ? "showed" : "hidden"}`} style={panelHeight} ref={wref}>
                 <div className="pl-title">
                     <h2>Добавить в плейлист</h2>
                 </div>
@@ -91,7 +86,7 @@ export default function AddToPlaylist({ showAdd = false }) {
                     {playlist.length !== 0 ?
                         <>
                             {playlist.map((pl, index) => (
-                                <button key={index} onClick={loadPlaylist(playlist.url)} className={"but-pl"}>
+                                <button key={index} onClick={() => loadPlaylist(pl.url)} className={"but-pl"}>
                                     <h2 className="pl-text">{pl.title} - {pl.description}</h2>
                                 </button>
                             ))}
