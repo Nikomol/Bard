@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PageSettings from "../page_settings/page_settings.jsx";
 
 import './search_panel.scss';
@@ -10,6 +10,8 @@ export default function SearchPanel() {
     const [search, setSearch] = useState({ searchText: '' });
     const [showPageSettings, setShowPageSettings] = useState(false);
     const [icon, setIcon] = useState('http://172.24.80.146/images/6.webp');
+
+    const ProfileRef = useRef(null);
 
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
@@ -23,6 +25,18 @@ export default function SearchPanel() {
     const setShowSettings = () =>{
         setShowPageSettings(!showPageSettings);
     }
+
+    const handleClickOutside = (e) => {
+        if (ProfileRef.current && !ProfileRef.current.contains(e.target)) {
+            setShowPageSettings(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    });
 
     return (
         <>
@@ -38,7 +52,7 @@ export default function SearchPanel() {
                     </button>
                 </div>
             </div>
-            <PageSettings isEnable={showPageSettings}/>
+            <PageSettings isEnable={showPageSettings} Pref={ProfileRef}/>
         </>
     );
 }

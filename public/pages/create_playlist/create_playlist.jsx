@@ -1,74 +1,96 @@
 import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function CreatePlaylist() {
 
+    const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const [dis, setDis] = useState(false);
+    const [activeUrl, setActiveUrl] = useState(null);
+
     const [playlist, setPlaylist] = useState([
         {
-            url: "history_id",
+            url: "lK",
+            title: "Понравившаяся музыка",
+            description: "Создано автоматически"
+        },
+        {
+            url: "hyst",
             title: "История прослушивания",
             description: "Создано автоматически"
         },
         {
-            url: "url_2",
-            title: "song_title_2",
-            description: "song_description_2"
+            url: "0000001",
+            title: "Тестовый плейлист",
+            description: "Рабочий плейлист"
         },
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         },
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
         ,
         {
-            url: "url_3",
+            url: "url_0",
             title: "song_title_4",
             description: "song_description_3"
         }
     ]);
 
-    const loadPlaylist = (url_playlist = "") => {
-        if (!!url_playlist) {
-            NaN;
-        }
-        else {
+    const loadPlaylist = (url_playlist = 0) => {
+        if(url_playlist !== 0){
+            setActiveUrl(url_playlist);
+            navigate(`/playlist?pl=${url_playlist}`);
+
             console.log(`URL: ${url_playlist}`);
         }
+        else{
+            console.log(`URL: not found!!`);
+        }
     }
+
+    useEffect(() => {
+        if(location.pathname !== '/playlist'){
+            setActiveUrl(null);
+        }
+    }, [location.pathname])
 
     // useEffect(() => {
     //     fetch('') //
@@ -82,7 +104,7 @@ export default function CreatePlaylist() {
     return (
         <>
             {playlist.map((song, index) => (
-                <button key={index} onClick={loadPlaylist(playlist.url)} className={"playlist button"}>
+                <button key={index} onClick={() => loadPlaylist(song.url)} className={`playlist button ${activeUrl === song.url ? 'button-active' : ''}`} >
                     <h1>{song.title}</h1>
                     <h2>{song.description}</h2>
                 </button>
