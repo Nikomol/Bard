@@ -1,15 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import PageSettings from "../page_settings/page_settings.jsx";
+import { useSelector } from 'react-redux';
 
 import './search_panel.scss';
 
-//const PageSettings = lazy(() => import('../page_settings/page_settings.jsx'));
-
 export default function SearchPanel() {
+
+    const user = useSelector(state => state.user.user);
 
     const [search, setSearch] = useState({ searchText: '' });
     const [showPageSettings, setShowPageSettings] = useState(false);
-    const [icon, setIcon] = useState('http://172.24.80.146/images/6.webp');
+    const [icon, setIcon] = useState(user.img_url);
 
     const ProfileRef = useRef(null);
 
