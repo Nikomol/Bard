@@ -41,10 +41,15 @@ export default function App() {
           }
         //Если будет "/explore"
         />
-        <Route path='/playlist' 
+        <Route path='playlist' 
           element={
             <></>
           } 
+        />
+        <Route path='profile' 
+          element={
+            <></>
+          }
         />
       </Route>
       <Route path="login" element={<Login />} />
