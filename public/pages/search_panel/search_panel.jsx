@@ -49,7 +49,7 @@ export default function SearchPanel() {
                         </form>
                     </div>
                     <button className="panel_inside user_icon" onClick={setShowSettings}>
-                        <img src={icon}></img>
+                        <img src={icon} onError={(e) => e.target.src = "https://cdni.iconscout.com/illustration/premium/thumb/404-7304110-5974976.png?f=webp"}></img>
                     </button>
                 </div>
             </div>

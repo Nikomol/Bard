@@ -10,7 +10,7 @@ import Explore from '../playlist_library/playlist_library.jsx';
 import PlaylistContent from "../playlistContent/playlistContent.jsx";
 import ProfilePage from "../profile_page/profilePage.jsx";
 
-import './song_page.css';
+import './song_page.scss';
 
 export default function MainPage() {
     const location = useLocation();
