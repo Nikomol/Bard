@@ -1,7 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import myImage from "./../../img/ico/ico.svg";
 import { useState, useEffect } from 'react';
-import './login.css';
+
+//import './login.css';
+import './starterPage.scss';
 
 export default function SignUp() {
     //Создание переменных под логин, email, 2 паролей и сообщения, которое появляется при введении паролей.

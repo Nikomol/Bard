@@ -1,0 +1,44 @@
+$main-color: #1B1818;
+$selection-color: #7800d4;
+
+$login-page-bg-color: $main-color;
+$home-panel-bg-color: $main-color;
+$library-panel-bg-color: $main-color;
+$search-panel-bg-color: $main-color;
+$main-panel-bg-color: $main-color;
+$player-panel-bg-color: $main-color;
+
+.upper_panel{
+    background-color: $search-panel-bg-color;
+}
+
+.main-backdrop{
+    background-color: $main-panel-bg-color;
+}
+
+.backdrop{
+    background-color: $home-panel-bg-color;
+}
+
+.lib{
+    &.backdrop{
+        background-color: $library-panel-bg-color;
+    }
+}
+
+.playerContainer{
+    background-color: $player-panel-bg-color;
+}
+
+::selection{
+    background-color: $selection-color;
+}
+
+::-moz-selection{
+    background-color: $selection-color;
+}
+
+.allPanels {
+    display: flex;
+    flex-direction: row;
+}

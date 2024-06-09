@@ -6,7 +6,8 @@ import Login from '../public/pages/login_pages/login';
 import SignUp from '../public/pages/login_pages/signup';
 import ForgotPassword from '../public/pages/login_pages/forgotPassword';
 
-import './index.css';
+//import './index.css';
+import './index.scss';
 
 const SongPage = lazy(() => import('../public/pages/song_page/song_page.jsx'));
 const NotFound = lazy(() => import('../public/pages/404/404.jsx'));
