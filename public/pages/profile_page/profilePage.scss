@@ -1,0 +1,237 @@
+.profile {
+    $margin-left-in-upper-main: 30px;
+
+    //user icon settings
+    &.p-icon {
+        &.i-container {
+            width: 175px;
+            height: max-content;
+        }
+
+        &.i-image {
+            //rwh: border-radius, width and height
+            $rwh: 100%;
+            border-radius: $rwh;
+            width: $rwh;
+            height: $rwh;
+        }
+    }
+
+    //user background settings
+    &.p-background {
+        &.b-container {
+            position: fixed;
+            z-index: 5;
+            width: 100%;
+        }
+
+        &.b-image {
+            width: 100%;
+            height: 189px;
+            border-radius: 15px 15px 0% 0%;
+        }
+
+        &.b-image-container {}
+    }
+
+    //div component, which includes information about the user: 
+    //icon, buttons “подписаться”, “вы подписаны”, “отписаться”, 
+    //information about subscriptions, subscribers and description about the user
+    &.p-info {
+        &.in-container {
+            position: relative;
+            z-index: 6;
+            padding-top: 130px;
+            margin-left: $margin-left-in-upper-main;
+            width: max-content;
+            height: 189px;
+        }
+
+        //username settings
+        &.in-name {
+            &.n-container {
+                width: max-content;
+                height: max-content;
+                margin-top: 20px;
+                //margin-left: 10px;
+            }
+
+            &.n-text {
+                margin: 0;
+                margin-bottom: 25px;
+                color: white;
+                margin-left: 10px;
+            }
+        }
+
+        &.in-upper {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        &.in-downer {}
+    }
+
+    //users button settings
+    &.p-button {
+        &.b-container {
+            display: inline-block;
+            width: max-content;
+        }
+
+        &.b-all-buttons {
+            //button color in normal view
+            $background-subscribe: rgba($color: #19BB55, $alpha: 1.0);
+            $background-unsubscribe: rgba($color: #bd1414, $alpha: 1.0);
+            $background-subscribed: rgba($color: #67776D, $alpha: 1.0);
+            $background-edit-profile: rgba($color: #FFFFFF, $alpha: 0.0);
+
+            //border color in normal view
+            $border-subscribe: rgba($color: #19BB55, $alpha: 1.0);
+            $border-unsubscribe: rgba($color: #bd1414, $alpha: 1.0);
+            $border-subscribed: rgba($color: #67776D, $alpha: 1.0);
+            $border-edit-profile: rgba($color: #FFFFFF, $alpha: 1.0);
+
+            //general button settings
+            width: 215px;
+            height: 45px;
+            border-radius: 15px;
+            //border-style: solid;
+            border-style: none;
+            margin-left: 10px;
+            font-size: 17px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+
+            &.a-subscribe {
+                background-color: $background-subscribe;
+                //border-color: $border-subscribe;
+
+                &:hover {
+                    background-color: #000;
+                }
+            }
+
+            &.a-unsubscribe {
+                background-color: $background-unsubscribe;
+                //border-color: $border-unsubscribe;
+
+                &:hover {}
+            }
+
+            &.a-subscribed {
+                background-color: $background-subscribed;
+                //border-color: $border-subscribed;
+
+                &:hover {
+                    background-color: $background-unsubscribe;
+                    //border-color: $border-unsubscribe;
+                    border-style: none;
+                }
+            }
+
+            &.a-edit-profile {
+                border-style: solid;
+
+                background-color: $background-edit-profile;
+                border-color: $border-edit-profile;
+
+                &:hover {}
+            }
+        }
+
+    }
+
+    &.p-links {
+        $link-color: #FFFFFF;
+        $link-font-size: 14px;
+
+        &.l-container {
+            width: max-content;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        &.l-link {
+            color: $link-color;
+            margin-left: 10px;
+            font-size: $link-font-size;
+
+            &:hover {
+                //text-decoration: underline;
+            }
+        }
+    }
+
+    &.p-description{
+        $description-color: #A5A5A5;
+        $description-font-size: 14px;
+
+        &.d-container{
+            width: max-content;
+            margin-left: 10px;
+        }
+
+        &.d-text{
+            color: $description-color;
+            font-size: $description-font-size;
+
+            transition: text-decoration 0.2 ease;
+
+            cursor: pointer;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &.p-authors{
+        color: #FFFFFF;
+
+        &.a-main-container{
+            position: relative;
+            z-index: 6;
+            height: max-content;
+            width: 100%;
+            padding-top: 100px;
+            margin-left: $margin-left-in-upper-main;
+        }
+
+        &.a-main-text{
+            font-size: 20px;
+            width: max-content;
+        }
+
+        &.a-containers{
+            //width: 150px;
+            border-radius: 15px;
+            background-color: rgba($color: #000000, $alpha: 0.0);
+            border-style: none;
+            padding: 10px;
+
+            &.c-author-image{
+                width: 145px;
+                height: max-content;
+                border-radius: 100%;
+                padding: 0;
+            }
+
+            &.c-author-name{
+                text-align: center;
+                margin: 0;
+                margin-top: 5px;
+                font-size: 15px;
+                padding: 0;
+                width: 100%;
+            }
+        }
+
+        &.a-author-button{
+            display: flex;
+            overflow-x: auto;
+            padding-bottom: 15px;
+        }
+    }
+}

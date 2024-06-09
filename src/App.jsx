@@ -6,7 +6,8 @@ import Login from '../public/pages/login_pages/login';
 import SignUp from '../public/pages/login_pages/signup';
 import ForgotPassword from '../public/pages/login_pages/forgotPassword';
 
-import './index.css';
+//import './index.css';
+import './index.scss';
 
 const SongPage = lazy(() => import('../public/pages/song_page/song_page.jsx'));
 const NotFound = lazy(() => import('../public/pages/404/404.jsx'));
@@ -41,10 +42,15 @@ export default function App() {
           }
         //Если будет "/explore"
         />
-        <Route path='/playlist' 
+        <Route path='playlist' 
           element={
             <></>
           } 
+        />
+        <Route path='profile' 
+          element={
+            <></>
+          }
         />
       </Route>
       <Route path="login" element={<Login />} />

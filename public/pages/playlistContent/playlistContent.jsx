@@ -21,11 +21,13 @@ export default function PlaylistContent() {
                 const response = await fetch(`http://localhost:3000/playlist?pl=${playlistId}`);
 
                 if (!response.ok) {
+                    setUrlData(null);
                     throw new Error('Что то пошло не так....');
                 }
                 const result = await response.json();
                 setUrlData(result);
             } catch (error) {
+                setUrlData(null);
                 console.error('Ошибка при получении данных:', error);
             }
             setIsLoading(false);

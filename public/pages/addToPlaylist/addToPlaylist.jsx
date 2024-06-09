@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import './addToPlaylist.scss';
 
 export default function AddToPlaylist({ showAdd = false, wref}) {
-
     const [playlist, setPlaylist] = useState([
         {
             url: "url_2",
@@ -42,9 +41,7 @@ export default function AddToPlaylist({ showAdd = false, wref}) {
         }
     ]);
 
-    const [libraryWidth, setLibraryHeight] = useState('');
     const [playerHeight, setPlayerHeight] = useState('');
-
 
     const loadPlaylist = (url_playlist = "") => {
         if (!!url_playlist) {
@@ -59,8 +56,6 @@ export default function AddToPlaylist({ showAdd = false, wref}) {
         const handleResize = () => {
             const player = document.querySelector('.playerContainer');
             setPlayerHeight(player.clientHeight);
-            const library = document.querySelector('.lib.backdrop');
-            setLibraryHeight(library.clientWidth);
         };
 
         window.addEventListener('resize', handleResize);
@@ -71,15 +66,15 @@ export default function AddToPlaylist({ showAdd = false, wref}) {
     }, []);
 
 
-    const panelHeight = {
+    const panelPlStyle = {
         bottom: `calc(${playerHeight + 16}px)`,
         left: `33%`
     };
 
     return (
         <>
-            <div className={`add-pl ${showAdd ? "showed" : "hidden"}`} style={panelHeight} ref={wref}>
-                <div className="pl-title">
+            <div className={`add-pl ${showAdd ? "showed" : "hidden"}`} style={panelPlStyle} ref={wref}>
+                <div className="pl pl-title">
                     <h2>Добавить в плейлист</h2>
                 </div>
                 <div className="pl-info">
@@ -93,6 +88,9 @@ export default function AddToPlaylist({ showAdd = false, wref}) {
                         </>
                         : <h2 className="no-pl">У вас нет собственных плейлистов</h2>
                     }
+                </div>
+                <div className="pl pl-create-pl">
+                    
                 </div>
             </div>
         </>

@@ -14,7 +14,9 @@ const port = 3000;
 
 let user = {
     login: '',
-    id: ''
+    id: '',
+    img_url: '',
+    username: ''
 }
 
 function shuffleArray(array) {
@@ -43,8 +45,10 @@ app.post('/login', (req, res) => {
 
     if (userObject) {
         const userInfo = userObject[email];
-        user.login = userInfo.username;
+        user.login = userInfo.login;
         user.id = userInfo.id;
+        user.img_url = userInfo.img_url;
+        user.username = userInfo.username;
         console.log(user);
         res.status(200).send(user);
         console.log(userInfo);
@@ -182,6 +186,22 @@ app.post('/recovery', (req, res) => {
         res.status(404).json(null);
         console.log("Error");
     }
+});
+
+app.get("/image/:filename/", (req, res) => {
+    const filename = req.params.filename;
+    //const id = req.params.id;
+    const validfiles = ['background.png'];
+    //if(id === '1')
+    if (validfiles.includes(filename)) {
+        let filePath = path.join(__dirname, 'files/img', filename);
+        res.sendFile(filePath);
+        console.log("Картинка отправлена!");
+    } else {
+        res.status(404).send('Ошибка загрузки файла!');
+        console.log("Проблема с файлом");
+    }
+
 });
 
 app.get('/music/:id/:filename/', (req, res) => {
