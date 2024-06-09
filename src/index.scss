@@ -38,6 +38,11 @@ $player-panel-bg-color: $main-color;
     background-color: $selection-color;
 }
 
+// img {
+//     overflow-clip-margin: 0;
+//     overflow: 0;
+// }
+
 .allPanels {
     display: flex;
     flex-direction: row;
