@@ -7,29 +7,7 @@
         //background-color: #333;
         width: auto;
         border-radius: 15px;
-        margin-top: 7px;
-        
-        
-        ::-webkit-scrollbar {
-            width: 10px;
-            
-        }
-        ::-webkit-scrollbar-track {
-            border-radius: 15px;
-            background: rgba($color: #000000, $alpha: 0);
-           
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #FFFFFF;
-            border-radius: 15px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #FFFFFF;
-            
-        }
-
-        //Добавил сюда стили от скролла, тк если ставить их в другие части, то почему то, ставяться настройки с другого раздела, крч я не ебу, но так воркает ;)
-        
+        margin-top: 7px;        
     }
 
     &.content {
