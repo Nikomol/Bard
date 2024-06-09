@@ -32,7 +32,11 @@ const Playlist_div = ({ playlist = [] }) => {
                         <p>{pl.Author}</p>
                         <p>{pl.album}</p>
                         <p>{pl.year}</p> */}
-                        <p className="trackInfo">{pl.song_name} &bull; {pl.Author} &bull; {pl.year}</p>
+                        <p className="trackInfo">{pl.song_name} &bull; 
+                            <a href="" className="trackInfo link">{pl.album}</a> &bull; 
+                            <a href="" className="trackInfo link">{pl.Author}</a> &bull; 
+                            {pl.year}
+                        </p>
                     </div>
                 );
 

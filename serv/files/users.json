@@ -3,60 +3,36 @@
     {
       "test@m.r": {
         "id": "0000001",
-        "username": "test",
+        "login": "test",
         "email": "test@m.r",
-        "passwrd": "123"
+        "passwrd": "123",
+        "img_url": "http://172.24.80.146/images/6.webp",
+        "username": "test_123"
       },
       "user-mail@mail.ru": {
         "id": "123456789",
-        "username": "test-user",
+        "login": "test-user",
         "email": "user-mail@mail.ru",
-        "passwrd": "qwerty123"
+        "passwrd": "qwerty123",
+        "img_url": "http://172.24.80.146/images/6.webp",
+        "username": "test_123"
       },
       "test-user-second@gmail.com": {
         "id": "90321123",
-        "username": "user-second",
+        "login": "user-second",
         "email": "test-user-second@gmail.com",
-        "passwrd": "ilovedocks3000"
+        "passwrd": "ilovedocks3000",
+        "img_url": "http://172.24.80.146/images/6.webp",
+        "username": "test_123"
       },
-      "i-love-penis@yahoo.org": [
-        {
-          "id": "88664422",
-          "username": "Слава соси мои яйца",
-          "email": "i-love-penis@yahoo.org",
-          "passwrd": "я блять ненавижу твой дизайн"
-        }
-      ],
-      "da.create.gg@gmail.com": [
-        {
-          "id": "123123",
-          "username": "PXPQ",
-          "email": "da.create.gg@gmail.com",
-          "passwrd": "querry",
-          "playlist": [
-            {
-              "liked": [
-                {
-                  "author": "Создано автоматически",
-                  "url": "https://www.google.com"
-                }
-              ],
-              "history": [
-                {
-                  "author": "Ваша история прослушивания",
-                  "url": "https://www.youtube.com"
-                }
-              ],
-              "idk": [
-                {
-                  "author": "PXPQ",
-                  "url": "https://www.google.com"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "i-love-penis@yahoo.org": {
+        "id": "88664422",
+        "login": "Слава соси мои яйца",
+        "email": "i-love-penis@yahoo.org",
+        "passwrd": "я блять ненавижу твой дизайн",
+        "img_url": "http://172.24.80.146/images/6.webp",
+        "username": "test_123"
+      }
     }
   ]
 }
