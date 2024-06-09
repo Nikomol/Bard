@@ -1,15 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import PageSettings from "../page_settings/page_settings.jsx";
+import { useSelector } from 'react-redux';
 
 import './search_panel.scss';
 
-//const PageSettings = lazy(() => import('../page_settings/page_settings.jsx'));
-
 export default function SearchPanel() {
+
+    const user = useSelector(state => state.user.user);
 
     const [search, setSearch] = useState({ searchText: '' });
     const [showPageSettings, setShowPageSettings] = useState(false);
-    const [icon, setIcon] = useState('http://172.24.80.146/images/6.webp');
+    const [icon, setIcon] = useState(user.img_url);
 
     const ProfileRef = useRef(null);
 
@@ -47,8 +48,8 @@ export default function SearchPanel() {
                             <input className="panel_inside search_panel searchInput" type="text" name="search" placeholder="Поиск треков, плейлистов, альбомов" value={search.searchText} onChange={handleSearchChange}></input>
                         </form>
                     </div>
-                    <button className="panel_inside user_icon" onClick={setShowSettings}>
-                        <img src={icon}></img>
+                    <button className="panel_inside user_icon user_icon_container" onClick={setShowSettings}>
+                        <img src={icon} onError={(e) => e.target.src = "https://cdni.iconscout.com/illustration/premium/thumb/404-7304110-5974976.png?f=webp"} className="panel_inside user_icon user_icon_image"></img>
                     </button>
                 </div>
             </div>

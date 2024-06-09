@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../src/actions/userActions";
 
-import './login.css';
+//import './login.css';
+import './starterPage.scss';
 
 export default function Login() {
 
