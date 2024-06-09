@@ -17,10 +17,48 @@ export default function ProfilePage() {
     const [subscribed, setSubscribed] = useState(false);
 
     const [mainBackdropWidth, setMainBackdropWidth] = useState(0);
-    const [mainBackdropHeight, setMainBackdropHeight] = useState(0);
-    const [authorsComponent, setAuthorsComponent] = useState(0);
 
     const [authors, setAuthors] = useState([
+        {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
+            author_name: "Автор"
+        },
+        {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
+            author_name: "Автор"
+        },
+        {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
+            author_name: "Автор"
+        },
+        {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
+            author_name: "Автор"
+        },
+        {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
+            author_name: "Автор"
+        },
+        {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
+            author_name: "Автор"
+        },
+        {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
+            author_name: "Автор"
+        },
+        {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
+            author_name: "Автор"
+        },
+        {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
+            author_name: "Автор"
+        },
+        {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
+            author_name: "Автор"
+        },
         {
             img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIiJSnn9pw1Emb1VN814kbuWvYBb8ATslCPw&s",
             author_name: "Автор"
@@ -41,6 +79,7 @@ export default function ProfilePage() {
 
     const handleClickSubscribe = () => {
         setSubscribed(!subscribed);
+        subscribtions === 0 ? setSubscribtions(subscribtions + 1) : setSubscribtions(subscribtions - 1);
     }
 
     const toggleShowUnsubscribe = () => {
@@ -55,10 +94,6 @@ export default function ProfilePage() {
         const handleResize = () => {
             const cont = document.querySelector('.main-backdrop');
             setMainBackdropWidth(cont.clientWidth);
-            setMainBackdropHeight(cont.clientHeight);
-
-            const authorComponent = document.querySelector('.profile.p-authors.a-main-container');
-            setAuthorsComponent(authorComponent.clientHeight);
         }
 
         window.addEventListener('resize', handleResize);
@@ -69,11 +104,6 @@ export default function ProfilePage() {
     }, []);
 
     const panelWidth = {
-        width: `${mainBackdropWidth}px`
-    };
-
-    const panelHeight = {
-        marginTop: `calc(-${authorsComponent + 20}px + ${mainBackdropHeight}px)`,
         width: `${mainBackdropWidth}px`
     };
 
@@ -113,7 +143,7 @@ export default function ProfilePage() {
                     </div>
                 </div>
             </div>
-            <div className="profile p-authors a-main-container" style={panelHeight}>
+            <div className="profile p-authors a-main-container"> {/*style={panelHeight}*/}
                 <h2 className="profile p-authors a-main-text">Часто прослушиваемые артисты</h2>
                 <div className="profile p-authors a-author-button">
                     {authors.map((author, index) => {
