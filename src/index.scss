@@ -1,4 +1,15 @@
-$main-color: #1B1818; //Цвет основных компонентов (по умолчанию: #1B1818)
+@import 'custom.scss';
+
+$background-color: if(global-variable-exists('background-color-custom'), $background-color-custom, linear-gradient(#5F51B5, #000000) fixed); //Цвет заднего фона сайта
+
+$main-color: if(global-variable-exists('main-color-custom'), $main-color-custom, #1B1818); //Цвет основных компонентов (по умолчанию: #1B1818)
+
+$selection-color: #7800d4; //Цвет выделения текста (по умолчанию: #7800d4)
+
+$scrollbar-track-background: rgba($color: #000000, $alpha: 0); //Цвет трека скроллбара (по умолчанию: rgba($color: #000000, $alpha: 0))
+$scrollbar-thumb-background: #FFFFFF; //Цвет ползунка скроллбара (по умолчанию: #FFFFFF)
+$scrollbar-width-height: 8px; //Ширина и высота скроллбара (по умолчанию: 10px)
+$scrollbar-thumb-border-radius: 15px; //border-radius ползунка скроллбара (по умолчанию: 15px)
 
 $login-page-bg-color: $main-color; //Цвет компонента страницы логина, регистрации и восстановления аккаунта
 $home-panel-bg-color: $main-color; //Цвет основного компонента страницы
@@ -7,6 +18,10 @@ $search-panel-bg-color: $main-color; //Цвет поискового компо�
 $main-panel-bg-color: $main-color; //Цвет компонента контента
 $player-panel-bg-color: $main-color; //Цвет компонента плеера
 $add-to-playlist-panel-bg-color: $main-color; //Цвет компонента добавления трека в плейлист
+
+body{
+    background: $background-color;
+}
 
 //Класс поискового компонента
 .upper_panel {
@@ -39,8 +54,6 @@ $add-to-playlist-panel-bg-color: $main-color; //Цвет компонента д
     background-color: $add-to-playlist-panel-bg-color;
 }
 
-$selection-color: #7800d4; //Цвет выделения текста (по умолчанию: #7800d4)
-
 //Стили выделения текста
 ::selection {
     background-color: $selection-color;
@@ -49,11 +62,6 @@ $selection-color: #7800d4; //Цвет выделения текста (по ум
 ::-moz-selection {
     background-color: $selection-color;
 }
-
-$scrollbar-track-background: rgba($color: #000000, $alpha: 0); //Цвет трека скроллбара (по умолчанию: rgba($color: #000000, $alpha: 0))
-$scrollbar-thumb-background: #FFFFFF; //Цвет ползунка скроллбара (по умолчанию: #FFFFFF)
-$scrollbar-width-height: 8px; //Ширина и высота скроллбара (по умолчанию: 10px)
-$scrollbar-thumb-border-radius: 15px; //border-radius ползунка скроллбара (по умолчанию: 15px)
 
 //Стили ползунков
 ::-webkit-scrollbar {
