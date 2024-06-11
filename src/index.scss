@@ -1,10 +1,10 @@
-@import 'custom.scss';
+//@import 'custom.scss';
 
-$background-color: if(global-variable-exists('background-color-custom'), $background-color-custom, linear-gradient(#5F51B5, #000000) fixed); //Цвет заднего фона сайта
+$background-color: if(global-variable-exists('custom-background-color'), $custom-background-color, linear-gradient(#5F51B5, #000000) fixed); //Цвет заднего фона сайта
 
-$main-color: if(global-variable-exists('main-color-custom'), $main-color-custom, #1B1818); //Цвет основных компонентов (по умолчанию: #1B1818)
+$main-color: if(global-variable-exists('custom-main-color'), $custom-main-color, #1B1818); //Цвет основных компонентов (по умолчанию: #1B1818)
 
-$selection-color: #7800d4; //Цвет выделения текста (по умолчанию: #7800d4)
+$selection-color: if(global-variable-exists('custom-selection-color'), $custom-selection-color, #7800d4); //Цвет выделения текста (по умолчанию: #7800d4)
 
 $scrollbar-track-background: rgba($color: #000000, $alpha: 0); //Цвет трека скроллбара (по умолчанию: rgba($color: #000000, $alpha: 0))
 $scrollbar-thumb-background: #FFFFFF; //Цвет ползунка скроллбара (по умолчанию: #FFFFFF)
@@ -18,6 +18,17 @@ $search-panel-bg-color: $main-color; //Цвет поискового компо�
 $main-panel-bg-color: $main-color; //Цвет компонента контента
 $player-panel-bg-color: $main-color; //Цвет компонента плеера
 $add-to-playlist-panel-bg-color: $main-color; //Цвет компонента добавления трека в плейлист
+$profile-main-panel: $main-color; //Цвет компонента кнопок ну которые те самые...
+
+$profile-main-button-panel-text-enable: #FFFFFF; //Цвет текста включённой кнопки у того самого компонента.... (по умолчанию: #FFFFFF)
+$profile-main-button-panel-text-disable: if(global-variable-exists('custom-profile-main-button-panel-text-disable'), $custom-profile-main-button-panel-text-disable, gray); //Цвет текста выключённой кнопки у того самого компонента.... (по умолчанию: gray)
+
+$blur-panels: if(global-variable-exists('custom-blur-panels'), $custom-blur-panels, 0px); //Блюр панелей (по умолчанию: 0px)
+
+$home-panel-buttons-unpressed: if(global-variable-exists('custom-main-panel-button-pressed'), $custom-main-panel-button-pressed, rgba(#908B8B, $alpha: 7.9)); //Цвет нажатой кнопки(по умолчанию: rgba(#908B8B, $alpha: 7.9))
+$home-panel-buttons-pressed: rgba(#0000, $alpha: 0.0); //Цвет ненажатой кнопки(по умолчанию: rgba(#0000, $alpha: 0.0))
+
+$link-404-button: if(global-variable-exists('custom-404-link-button'), $custom-404-link-button, #8a8883); //Цвет ссылки на странице 404(по умолчанию: #8a8883)
 
 body{
     background: $background-color;
@@ -26,32 +37,72 @@ body{
 //Класс поискового компонента
 .upper_panel {
     background-color: $search-panel-bg-color;
+    backdrop-filter: blur($blur-panels);
 }
 
 //Класс компонента контента
 .main-backdrop {
     background-color: $main-panel-bg-color;
+    backdrop-filter: blur($blur-panels);
 }
 
 //Класс основного компонента страницы
 .backdrop {
     background-color: $home-panel-bg-color;
+    backdrop-filter: blur($blur-panels);
 }
 
 //Класс компонента списка плейлистов
 .lib {
     &.backdrop {
         background-color: $library-panel-bg-color;
+        backdrop-filter: blur($blur-panels);
     }
 }
 
 //Класс компонента плеера
 .playerContainer {
     background-color: $player-panel-bg-color;
+    backdrop-filter: blur($blur-panels);
 }
 
 .add-pl{
     background-color: $add-to-playlist-panel-bg-color;
+    backdrop-filter: blur($blur-panels);
+}
+
+.container{
+    background-color: $login-page-bg-color;
+    backdrop-filter: blur($blur-panels);
+}
+
+.Profile{
+    background-color: $profile-main-panel;
+    backdrop-filter: blur($blur-panels);
+}
+
+.buttons{
+    &.pressed{
+        background-color: $home-panel-buttons-pressed;
+    }
+
+    &.unpressed{
+        background-color: $home-panel-buttons-unpressed;
+    }
+}
+
+.LinkDis{
+    color: $link-404-button;
+}
+
+.Profile-Button{
+	&.Enable{
+        color: $profile-main-button-panel-text-enable;
+    }
+
+    &.Disable{
+        color: $profile-main-button-panel-text-disable;
+    }
 }
 
 //Стили выделения текста
