@@ -1,28 +1,52 @@
 .user-playlist {
-    &__info-container {}
+    &__all-containers {
+        margin-left: 50px;
+    }
+
+    &__info-container {
+        display: flex;
+        margin-block: 25px;
+    }
 
     &__songs-container {
         display: flow-root;
         width: 100%;
+        overflow-y: scroll;
     }
 
-    &__image {}
+    &__image {
+        width: 170px;
+    }
 
     &__info {
-        &__container {}
+        &__container {
+            margin-left: 30px;
+            color: #ffffff;
 
-        & h1 {}
+            & h1 {
+                margin-top: 50px;
+                margin-bottom: 5px;
+            }
 
-        & h3 {}
+            & h3 {
+                margin-block: 5px;
+                font-size: 16px;
+            }
+        }
     }
 }
 
-.playlist-image {}
+.playlist-image {
+    border-radius: 15px;
+    background-color: #6CE0AF;
+    width: 100%;
+    height: 100%;
+}
 
 .user-playlist-button {
     &__container {
         display: flex;
-        width: 70%;
+        width: 75%;
         align-items: center;
         justify-content: space-between;
         margin-top: 10px;
@@ -31,23 +55,28 @@
         border-style: solid;
         border-color: rgba($color: #000000, $alpha: 0.0);
         border-radius: 8px;
+        cursor: pointer;
 
-        &:hover{
-            background-color: rgba($color: #ffffff, $alpha: 0.4);;
+        &:hover {
+            background-color: rgba($color: #ffffff, $alpha: 0.4);
+            ;
         }
     }
 
     &__song-icon {
-        width: 30px;
-        height: 30px;
+        $song-icon-width-and-height: 40px;
+
+        width: $song-icon-width-and-height;
+        height: $song-icon-width-and-height;
         margin-right: 10px;
         border-radius: 5px;
     }
 
-    &.alltext{
+    &.alltext {
         text-align: left;
         margin: 0;
         padding: 0;
+        font-size: 14px;
         //padding-left: 5px;
 
         &.song-title_pl {
@@ -58,7 +87,7 @@
             flex-grow: 1;
             color: gray;
         }
-    
+
         &.song-time_pl {}
     }
 

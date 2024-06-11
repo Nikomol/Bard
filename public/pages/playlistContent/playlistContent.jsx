@@ -10,10 +10,13 @@ export default function PlaylistContent() {
     const playlistId = searchParams.get('pl'); // Получаем 'playlistId' из строки запроса
     const [urlData, setUrlData] = useState([]);
 
+    const [plTitle, setPlTitle] = useState("Какой-то плейлист");
+    const [plDescription, setPlDescription] = useState("Какое то описание");
+
     const [isLoading, setIsLoading] = useState(true);
 
     const user = useSelector((state) => state.user.user);
-    
+
     useEffect(() => {
         setIsLoading(true);
         const fetchData = async () => {
@@ -34,6 +37,24 @@ export default function PlaylistContent() {
         }
 
         fetchData();
+
+        switch(playlistId){
+            case "lK":
+                setPlTitle("Понравившаяся музыка");
+                setPlDescription("Создано автоматически");
+                break;
+            
+            case "hyst":
+                setPlTitle("История прослушивания");
+                setPlDescription("Создано автоматически");
+                break;
+
+            default:
+                setPlTitle("Какой-то плейлист");
+                setPlDescription("Какое то описание");
+                break;
+        }
+
     }, [playlistId]);
 
     if (isLoading) {
@@ -59,28 +80,35 @@ export default function PlaylistContent() {
         <>
             {urlData && user && ('login' in user && 'id' in user) ?
                 <>
-                    {/* <h3>{JSON.stringify(urlData)}</h3> */}
-                    <div className='user-playlist__info-container'>
-                        <div className='user-playlist__image'>
-                            <img className='playlist-image' src=''></img>
+                    <div className="user-playlist__all-containers">
+                        <div className='user-playlist__info-container'>
+                            <div className='user-playlist__image'>
+                                <img className='playlist-image' src="https://cdni.iconscout.com/illustration/premium/thumb/404-7304110-5974976.png?f=webp"></img>
+                            </div>
+                            <div className='user-playlist__info__container'>
+                                <h1 className='user-playlist__info'>{plTitle}</h1>
+                                <h3 className='user-playlist__info'>{plDescription}</h3>
+                                <h3 className='user-playlist__info'>{`Длительность: 00:00`}</h3>
+                            </div>
                         </div>
-                        <div className='user-playlist__info__container'>
-                            <h1 className='user-playlist__info'>{`Какой-то плейлист`}</h1>
-                            <h3 className='user-playlist__info'>{`Какое то описание`}</h3>
-                            <h3 className='user-playlist__info'>{`Длительность: 00:00`}</h3>
+                        <div className='user-playlist__songs-container'>
+                            {urlData.map((song, index) => {
+                                return (
+                                    <button key={index} className='user-playlist-button__container' onClick={() => playSong(song.id)}>
+                                        <img className='user-playlist-button__song-icon' src={song.img}></img>
+                                        <div style={{ width: "219px" }}>
+                                            <h3 className='user-playlist-button alltext song-title_pl'>{song.song_name}</h3>
+                                        </div>
+                                        <div style={{ width: "219px" }}>
+                                            <h3 className='user-playlist-button alltext song-author_pl'>{song.Author}</h3>
+                                        </div>
+                                        <div style={{ width: "219px" }}>
+                                            <h3 className='user-playlist-button alltext song-time_pl'>{`00:00`}</h3>
+                                        </div>
+                                    </button>
+                                );
+                            })}
                         </div>
-                    </div>
-                    <div className='user-playlist__songs-container'>
-                        {urlData.map((song, index) => {
-                            return(
-                                <button key={index} className='user-playlist-button__container' onClick={() => playSong(song.id)}>
-                                    <img className='user-playlist-button__song-icon' src={song.img}></img>
-                                    <h3 className='user-playlist-button alltext song-title_pl'>{song.song_name}</h3>
-                                    <h3 className='user-playlist-button alltext song-author_pl'>{song.Author}</h3>
-                                    <h3 className='user-playlist-button alltext song-time_pl'>{`00:00`}</h3>
-                                </button>
-                            );
-                        })}
                     </div>
                 </> :
                 <Navigate to={"/404"} replace={true} />
