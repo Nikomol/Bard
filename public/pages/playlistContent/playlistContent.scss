@@ -1,0 +1,66 @@
+.user-playlist {
+    &__info-container {}
+
+    &__songs-container {
+        display: flow-root;
+        width: 100%;
+    }
+
+    &__image {}
+
+    &__info {
+        &__container {}
+
+        & h1 {}
+
+        & h3 {}
+    }
+}
+
+.playlist-image {}
+
+.user-playlist-button {
+    &__container {
+        display: flex;
+        width: 70%;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+        color: white;
+        background-color: rgba($color: #000000, $alpha: 0.0);
+        border-style: solid;
+        border-color: rgba($color: #000000, $alpha: 0.0);
+        border-radius: 8px;
+
+        &:hover{
+            background-color: rgba($color: #ffffff, $alpha: 0.4);;
+        }
+    }
+
+    &__song-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+
+    &.alltext{
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        //padding-left: 5px;
+
+        &.song-title_pl {
+            flex-grow: 1;
+        }
+
+        &.song-author_pl {
+            flex-grow: 1;
+            color: gray;
+        }
+    
+        &.song-time_pl {}
+    }
+
+
+}

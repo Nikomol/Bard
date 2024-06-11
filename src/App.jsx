@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 const Login = lazy(() => import('../public/pages/login_pages/login'));
 const SignUp = lazy(() => import('../public/pages/login_pages/signup'));
 const ForgotPassword = lazy(() => import('../public/pages/login_pages/forgotPassword'));
-
-const SongPage = lazy(() => import('../public/pages/song_page/song_page.jsx'));
-const NotFound = lazy(() => import('../public/pages/404/404.jsx'));
+const SongPage = lazy(() => import('../public/pages/song_page/song_page'));
+const SettingPage = lazy(() => import('../public/pages/settingPage/settingPage'));
+const NotFound = lazy(() => import('../public/pages/404/404'));
 
 import './index.scss';
 
@@ -71,6 +71,15 @@ export default function App() {
           <Suspense fallback={<></>}>
             <ForgotPassword />
           </Suspense>
+        } 
+      />
+      <Route path="settings" 
+        element={
+          isLogged ? 
+            <Suspense fallback={<></>}>
+              <SettingPage />
+            </Suspense>
+          : <Navigate to={"/login"} replace={true} />
         } 
       />
       <Route path="*" 

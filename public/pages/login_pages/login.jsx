@@ -27,7 +27,7 @@ export default function Login() {
             ...formData,
             [e.target.name]: e.target.value
         });
-    
+
         if (formData.email != "" && formData.passwrd != "") {
             setDis(false);
         } else {
@@ -39,7 +39,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDis(true);
-    
+
         try {
             const response = await fetch('http://localhost:3000/login', {
                 method: 'POST',
@@ -48,14 +48,14 @@ export default function Login() {
                 },
                 body: JSON.stringify(formData)
             });
-    
+
             if (!response.ok) {
                 throw new Error('Сетевой ответ был не ok.');
             }
-    
+
             const data = await response.json();
             console.log(data);
-    
+
             if (data === undefined || data === null) {
                 //alert("Ответ получен. Пользователь не найден.");
             } else {
@@ -70,7 +70,7 @@ export default function Login() {
             setDis(false);
         }
     }
-    
+
 
     return (
         <>

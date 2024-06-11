@@ -8,12 +8,12 @@ export default function PlaylistContent() {
     let [searchParams, setSearchParams] = useSearchParams();
 
     const playlistId = searchParams.get('pl'); // Получаем 'playlistId' из строки запроса
-    const [urlData, setUrlData] = useState(null);
+    const [urlData, setUrlData] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
 
     const user = useSelector((state) => state.user.user);
-
+    
     useEffect(() => {
         setIsLoading(true);
         const fetchData = async () => {
@@ -42,11 +42,46 @@ export default function PlaylistContent() {
         );
     }
 
+    /*{
+        "song_name":"After Dark",
+        "Author":"Mr.Kitty",
+        "img":"https://i.scdn.co/image/ab67616d00001e0285e3ceaa88ceb59eb9866b81",
+        "album":"Time",
+        "year":"2014",
+        "id":"0000000001"
+    }*/
+
+    const playSong = (song_id) => {
+        null;
+    }
+
     return (
         <>
             {urlData && user && ('login' in user && 'id' in user) ?
                 <>
-                    <h3>{JSON.stringify(urlData)}</h3>
+                    {/* <h3>{JSON.stringify(urlData)}</h3> */}
+                    <div className='user-playlist__info-container'>
+                        <div className='user-playlist__image'>
+                            <img className='playlist-image' src=''></img>
+                        </div>
+                        <div className='user-playlist__info__container'>
+                            <h1 className='user-playlist__info'>{`Какой-то плейлист`}</h1>
+                            <h3 className='user-playlist__info'>{`Какое то описание`}</h3>
+                            <h3 className='user-playlist__info'>{`Длительность: 00:00`}</h3>
+                        </div>
+                    </div>
+                    <div className='user-playlist__songs-container'>
+                        {urlData.map((song, index) => {
+                            return(
+                                <button key={index} className='user-playlist-button__container' onClick={() => playSong(song.id)}>
+                                    <img className='user-playlist-button__song-icon' src={song.img}></img>
+                                    <h3 className='user-playlist-button alltext song-title_pl'>{song.song_name}</h3>
+                                    <h3 className='user-playlist-button alltext song-author_pl'>{song.Author}</h3>
+                                    <h3 className='user-playlist-button alltext song-time_pl'>{`00:00`}</h3>
+                                </button>
+                            );
+                        })}
+                    </div>
                 </> :
                 <Navigate to={"/404"} replace={true} />
             }
