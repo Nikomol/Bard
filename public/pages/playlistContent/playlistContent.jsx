@@ -13,6 +13,8 @@ export default function PlaylistContent() {
     const [plTitle, setPlTitle] = useState("Какой-то плейлист");
     const [plDescription, setPlDescription] = useState("Какое то описание");
 
+    const [activeSong, setActiveSong] = useState(null);
+
     const [isLoading, setIsLoading] = useState(true);
 
     const user = useSelector((state) => state.user.user);
@@ -38,12 +40,12 @@ export default function PlaylistContent() {
 
         fetchData();
 
-        switch(playlistId){
+        switch (playlistId) {
             case "lK":
                 setPlTitle("Понравившаяся музыка");
                 setPlDescription("Создано автоматически");
                 break;
-            
+
             case "hyst":
                 setPlTitle("История прослушивания");
                 setPlDescription("Создано автоматически");
@@ -73,7 +75,7 @@ export default function PlaylistContent() {
     }*/
 
     const playSong = (song_id) => {
-        null;
+        setActiveSong(song_id);
     }
 
     return (
@@ -93,16 +95,18 @@ export default function PlaylistContent() {
                         </div>
                         <div className='user-playlist__songs-container'>
                             {urlData.map((song, index) => {
+                                const isActive = song.id === activeSong;
+                                const buttonClass = isActive ? 'active' : '';
                                 return (
-                                    <button key={index} className='user-playlist-button__container' onClick={() => playSong(song.id)}>
+                                    <button key={index} className={`user-playlist-button__container ${buttonClass}`} onClick={() => playSong(song.id)}>
                                         <img className='user-playlist-button__song-icon' src={song.img}></img>
-                                        <div style={{ width: "219px" }}>
+                                        <div className='user-playlist-button__incontainer'>
                                             <h3 className='user-playlist-button alltext song-title_pl'>{song.song_name}</h3>
                                         </div>
-                                        <div style={{ width: "219px" }}>
+                                        <div className='user-playlist-button__incontainer'>
                                             <h3 className='user-playlist-button alltext song-author_pl'>{song.Author}</h3>
                                         </div>
-                                        <div style={{ width: "219px" }}>
+                                        <div className='user-playlist-button__incontainer'>
                                             <h3 className='user-playlist-button alltext song-time_pl'>{`00:00`}</h3>
                                         </div>
                                     </button>

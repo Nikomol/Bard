@@ -58,9 +58,17 @@
         cursor: pointer;
 
         &:hover {
-            background-color: rgba($color: #ffffff, $alpha: 0.4);
-            ;
+            background-color: rgba($color: #ffffff, $alpha: 0.2);
+            transition: background-color .3s ease;
         }
+
+        &.active{
+            background-color: rgba($color: #ffffff, $alpha: 0.3);
+        }
+    }
+
+    &__incontainer{
+        width: 219px;
     }
 
     &__song-icon {
@@ -88,8 +96,8 @@
             color: gray;
         }
 
-        &.song-time_pl {}
+        &.song-time_pl {
+            text-align: right;
+        }
     }
-
-
 }
