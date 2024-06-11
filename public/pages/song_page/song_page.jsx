@@ -1,25 +1,19 @@
-import Player from "../player/player";
 import { useState, useEffect, Suspense, lazy } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from "react-redux";
+
 import HomePanel from "../home_panel/home_panel";
 import LibraryPanel from "../library_panel/library_panel";
 import SearchPanel from "../search_panel/search_panel";
-import { useSelector } from "react-redux";
-//import MainPanel from '../main_panel/main_panel';
-//import Explore from '../playlist_library/playlist_library';
-//import PlaylistContent from "../playlistContent/playlistContent";
-//import ProfilePage from "../profile_page/profilePage";
+import Player from "../player/player";
+import ProgressBar from '../load_page/load_page';
 
-import './song_page.scss';
-
-//const HomePanel = lazy(() => import("../home_panel/home_panel"));
-//const LibraryPanel = lazy(() => import("../library_panel/library_panel"));
-//const SearchPanel = lazy(() => import("../search_panel/search_panel"));
 const MainPanel = lazy(() => import('../main_panel/main_panel'));
 const Explore = lazy(() => import('../playlist_library/playlist_library'));
 const PlaylistContent = lazy(() => import("../playlistContent/playlistContent"));
 const ProfilePage = lazy(() => import("../profile_page/profilePage"));
-//const Player = lazy(() => import("../player/player"));
+
+import './song_page.scss';
 
 export default function MainPage() {
     const location = useLocation();
@@ -27,7 +21,18 @@ export default function MainPage() {
 
     const [panelDimensions, setPanelDimensions] = useState({ playerHeight: 0, searchHeight: 0 });
 
+    const [progress, setProgress] = useState(0);
+
     useEffect(() => {
+        const interval = setInterval(() => {
+            setProgress(oldProgress => {
+                const newProgress = oldProgress >= 100 ? 100 : oldProgress + 10;
+                if(newProgress === 100) clearInterval(interval);
+                return newProgress;
+            })
+        }, 1000);
+
+
         const handleResize = () => {
             setPanelDimensions({
                 playerHeight: document.querySelector('.playerContainer')?.clientHeight || 0,
@@ -40,7 +45,8 @@ export default function MainPage() {
         handleResize();
 
         return () => {
-            window.removeEventListener('resize', handleResize)
+            window.removeEventListener('resize', handleResize);
+            clearInterval(interval);
             console.log(`Location pathname: ${location.pathname}`);
         };
     }, []);
@@ -74,7 +80,7 @@ export default function MainPage() {
                     <SearchPanel />
                     <div className="main-backdrop" style={panelHeight}>
                         <div className="cont">
-                            <Suspense fallback={<></>}>
+                            <Suspense fallback={<ProgressBar progress={progress} />}>
                                 {renderPanel()}
                             </Suspense>
                         </div>

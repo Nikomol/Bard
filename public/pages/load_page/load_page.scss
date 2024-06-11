@@ -1,0 +1,16 @@
+.loading_progress-bar {
+    width: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.0);
+    border-radius: 13px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1200;
+    top: 0;
+  
+    &__filler {
+      height: 5px;
+      background-color: #ffffff;
+      transition: width 0.5s ease-in-out;
+    }
+  }
+  
