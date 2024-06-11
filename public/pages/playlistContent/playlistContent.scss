@@ -33,6 +33,25 @@
                 font-size: 16px;
             }
         }
+
+        &__add-to-favorite {
+            &__container {
+                display: flex;
+                margin-left: -7px;
+            }
+
+            &__button {
+                width: 30px;
+                background-color: transparent;
+                border-style: solid;
+                border-color: transparent;
+                padding: 0;
+            }
+
+            &__text {
+                margin-left: 10px;
+            }
+        }
     }
 }
 
@@ -62,12 +81,12 @@
             transition: background-color .3s ease;
         }
 
-        &.active{
+        &.active {
             background-color: rgba($color: #ffffff, $alpha: 0.3);
         }
     }
 
-    &__incontainer{
+    &__incontainer {
         width: 219px;
     }
 

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
+import PlayerIcons from '../player_icons/player_icons';
+
 import './playlistContent.scss';
 
 export default function PlaylistContent() {
@@ -12,8 +14,10 @@ export default function PlaylistContent() {
 
     const [plTitle, setPlTitle] = useState("Какой-то плейлист");
     const [plDescription, setPlDescription] = useState("Какое то описание");
-
     const [activeSong, setActiveSong] = useState(null);
+    const [isLiked, setIsLiked] = useState(false);
+
+    const [playlistAuthor, setPlaylistAuthor] = useState(true);
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -44,16 +48,19 @@ export default function PlaylistContent() {
             case "lK":
                 setPlTitle("Понравившаяся музыка");
                 setPlDescription("Создано автоматически");
+                setPlaylistAuthor(false);
                 break;
 
             case "hyst":
                 setPlTitle("История прослушивания");
                 setPlDescription("Создано автоматически");
+                setPlaylistAuthor(false);
                 break;
 
             default:
                 setPlTitle("Какой-то плейлист");
                 setPlDescription("Какое то описание");
+                setPlaylistAuthor(true);
                 break;
         }
 
@@ -78,6 +85,10 @@ export default function PlaylistContent() {
         setActiveSong(song_id);
     }
 
+    const toggleLike = () => {
+        setIsLiked(!isLiked);
+    }
+
     return (
         <>
             {urlData && user && ('login' in user && 'id' in user) ?
@@ -91,6 +102,18 @@ export default function PlaylistContent() {
                                 <h1 className='user-playlist__info'>{plTitle}</h1>
                                 <h3 className='user-playlist__info'>{plDescription}</h3>
                                 <h3 className='user-playlist__info'>{`Длительность: 00:00`}</h3>
+                                {playlistAuthor ?
+                                    <>
+                                        <div className='user-playlist__info__add-to-favorite__container'>
+                                            <button onClick={toggleLike} className='user-playlist__info__add-to-favorite__button'>
+                                                {isLiked ? <PlayerIcons icon_name={"like_pressed"} /> : <PlayerIcons icon_name={"like_unpressed"} />}
+                                            </button>
+                                            <h3 className='user-playlist__info__add-to-favorite__text'>Добавить в понравившееся</h3>
+                                        </div>
+                                    </>
+                                    :
+                                    <></>
+                                }
                             </div>
                         </div>
                         <div className='user-playlist__songs-container'>
