@@ -22,17 +22,9 @@ export default function MainPage() {
     const [panelDimensions, setPanelDimensions] = useState({ playerHeight: 0, searchHeight: 0 });
 
     const [progress, setProgress] = useState(0);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setProgress(oldProgress => {
-                const newProgress = oldProgress >= 100 ? 100 : oldProgress + 10;
-                if(newProgress === 100) clearInterval(interval);
-                return newProgress;
-            })
-        }, 1000);
-
-
         const handleResize = () => {
             setPanelDimensions({
                 playerHeight: document.querySelector('.playerContainer')?.clientHeight || 0,
@@ -41,16 +33,38 @@ export default function MainPage() {
         };
 
         window.addEventListener('resize', handleResize);
-
         handleResize();
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            clearInterval(interval);
-            console.log(`Location pathname: ${location.pathname}`);
         };
     }, []);
 
+    useEffect(() => {
+        // Сбросить прогресс и состояние загрузки при смене пути
+        setProgress(0);
+        setIsLoaded(false);
+    
+        let interval = setInterval(() => {
+            setProgress(oldProgress => {
+                const randomIncrement = Math.floor(Math.random() * (6)) + 4; // 4 до 10
+                const newProgress = oldProgress >= 100 ? 100 : oldProgress + randomIncrement;
+                return newProgress;
+            });
+        }, Math.floor(Math.random() * (3000)) + 1000); // 1000 до 4000
+    
+        return () => clearInterval(interval);
+    }, [location.pathname]); // Добавьте location.pathname в массив зависимостей
+    
+    // Оставьте остальную часть кода без изменений
+    
+
+    useEffect(() => {
+        if (progress >= 100 && !isLoaded) {
+            setIsLoaded(true);
+            setProgress(0); // Сброс прогресса после загрузки
+        }
+    }, [progress, isLoaded]);
 
     const panelHeight = {
         height: `calc(100vh - (${panelDimensions.searchHeight + 16}px + ${panelDimensions.playerHeight + 16}px))`
