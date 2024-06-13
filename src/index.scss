@@ -105,6 +105,20 @@ body{
     }
 }
 
+// :focus{
+//     outline: 2px solid $selection-color;
+// }
+
+.panel_inside{
+    &.search_panel{
+        &.searchInput{
+            &:focus{
+                outline: 2px solid $selection-color;
+            }
+        }
+    }
+}
+
 //Стили выделения текста
 ::selection {
     background-color: $selection-color;

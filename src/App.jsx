@@ -1,6 +1,7 @@
 import { useState, lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { FocusProvider } from "./context/FocusContext";
 
 const Login = lazy(() => import('../public/pages/login_pages/login'));
 const SignUp = lazy(() => import('../public/pages/login_pages/signup'));
@@ -26,7 +27,9 @@ export default function App() {
         element={
           isLogged ?
             <Suspense fallback={<></>}>
-              <SongPage />
+              <FocusProvider>
+                <SongPage />
+              </FocusProvider>
             </Suspense>
             : <Navigate to={"/login"} replace={true} />
         }
@@ -41,60 +44,60 @@ export default function App() {
           }
         //Если будет "/explore"
         />
-        <Route path='playlist' 
+        <Route path='playlist'
           element={
             <></>
-          } 
+          }
         />
-        <Route path='profile' 
+        <Route path='profile'
           element={
             <></>
           }
         />
       </Route>
-      <Route path="login" 
+      <Route path="login"
         element={
           <Suspense fallback={<></>}>
             <Login />
           </Suspense>
-        } 
+        }
       />
-      <Route path="register" 
+      <Route path="register"
         element={
           <Suspense fallback={<></>}>
             <SignUp />
           </Suspense>
-        } 
+        }
       />
-      <Route path="recovery" 
+      <Route path="recovery"
         element={
           <Suspense fallback={<></>}>
             <ForgotPassword />
           </Suspense>
-        } 
+        }
       />
-      <Route path="settings" 
+      <Route path="settings"
         element={
-          isLogged ? 
+          isLogged ?
             <Suspense fallback={<></>}>
               <SettingPage />
             </Suspense>
-          : <Navigate to={"/login"} replace={true} />
-        } 
+            : <Navigate to={"/login"} replace={true} />
+        }
       />
-      <Route path="*" 
+      <Route path="*"
         element={
           <Suspense fallback={<></>}>
             <NotFound />
           </Suspense>
-        } 
+        }
       />
-      <Route path='404' 
+      <Route path='404'
         element={
           <Suspense fallback={<></>}>
             <NotFound />
           </Suspense>
-        } 
+        }
       />
     </Routes>
   );

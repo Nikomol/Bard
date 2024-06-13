@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useSearchParams, Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { FocusContext } from '../../../src/context/FocusContext';
 
 import PlayerIcons from '../player_icons/player_icons';
 
@@ -20,6 +21,8 @@ export default function PlaylistContent() {
     const [playlistAuthor, setPlaylistAuthor] = useState(true);
 
     const [isLoading, setIsLoading] = useState(true);
+
+    const { setFocus } = useContext(FocusContext);
 
     const user = useSelector((state) => state.user.user);
 
@@ -140,7 +143,7 @@ export default function PlaylistContent() {
                                 <div className='user-playlist-button__undefined__container'>
                                     <div className="user-playlist-button__undefined__container-content">
                                         <h3 className='user-playlist-button__undefined__text'>{`Плейлист пуст :(`}</h3>
-                                        <button className='user-playlist-button__undefined__button'>Добавить трек</button>
+                                        <button className='user-playlist-button__undefined__button' onClick={setFocus}>Добавить трек</button>
                                     </div>
                                 </div>
                             }
