@@ -1,11 +1,12 @@
 .user-playlist {
     &__all-containers {
-        margin-left: 50px;
+        //margin-left: 50px;
     }
 
     &__info-container {
         display: flex;
         margin-block: 25px;
+        margin-left: 50px;
     }
 
     &__songs-container {
@@ -46,6 +47,7 @@
                 border-style: solid;
                 border-color: transparent;
                 padding: 0;
+                cursor: pointer;
             }
 
             &__text {
@@ -97,6 +99,33 @@
         height: $song-icon-width-and-height;
         margin-right: 10px;
         border-radius: 5px;
+    }
+
+    &__undefined {
+        &__container {
+            display: flex;
+            justify-content: center;
+            margin-block: 8%;
+        }
+
+        &__container-content {
+            width: 15%;
+        }
+
+        &__button {
+            border-style: none;
+            border-radius: 15px;
+            background-color: rgba($color: #908B8B, $alpha: 0.5);
+            color: #FFFFFF;
+            width: 100%;
+            height: 50px;
+            cursor: pointer;
+        }
+
+        &__text {
+            color: rgba($color: #FFFFFF, $alpha: 0.5);
+            text-align: center;
+        }
     }
 
     &.alltext {

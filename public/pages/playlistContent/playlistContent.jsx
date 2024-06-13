@@ -91,7 +91,7 @@ export default function PlaylistContent() {
 
     return (
         <>
-            {urlData && user && ('login' in user && 'id' in user) ?
+            {urlData != null && user && ('login' in user && 'id' in user) ?
                 <>
                     <div className="user-playlist__all-containers">
                         <div className='user-playlist__info-container'>
@@ -116,25 +116,34 @@ export default function PlaylistContent() {
                                 }
                             </div>
                         </div>
-                        <div className='user-playlist__songs-container'>
-                            {urlData.map((song, index) => {
-                                const isActive = song.id === activeSong;
-                                const buttonClass = isActive ? 'active' : '';
-                                return (
-                                    <button key={index} className={`user-playlist-button__container ${buttonClass}`} onClick={() => playSong(song.id)}>
-                                        <img className='user-playlist-button__song-icon' src={song.img}></img>
-                                        <div className='user-playlist-button__incontainer'>
-                                            <h3 className='user-playlist-button alltext song-title_pl'>{song.song_name}</h3>
-                                        </div>
-                                        <div className='user-playlist-button__incontainer'>
-                                            <h3 className='user-playlist-button alltext song-author_pl'>{song.Author}</h3>
-                                        </div>
-                                        <div className='user-playlist-button__incontainer'>
-                                            <h3 className='user-playlist-button alltext song-time_pl'>{`00:00`}</h3>
-                                        </div>
-                                    </button>
-                                );
-                            })}
+                        <div className='user-playlist__songs-container' style={urlData.length !== 0 ? {marginLeft: "50px"} : {}}>
+                            {urlData.length !== 0 ?
+                                urlData.map((song, index) => {
+                                    const isActive = song.id === activeSong;
+                                    const buttonClass = isActive ? 'active' : '';
+                                    return (
+                                        <button key={index} className={`user-playlist-button__container ${buttonClass}`} onClick={() => playSong(song.id)}>
+                                            <img className='user-playlist-button__song-icon' src={song.img}></img>
+                                            <div className='user-playlist-button__incontainer'>
+                                                <h3 className='user-playlist-button alltext song-title_pl'>{song.song_name}</h3>
+                                            </div>
+                                            <div className='user-playlist-button__incontainer'>
+                                                <h3 className='user-playlist-button alltext song-author_pl'>{song.Author}</h3>
+                                            </div>
+                                            <div className='user-playlist-button__incontainer'>
+                                                <h3 className='user-playlist-button alltext song-time_pl'>{`00:00`}</h3>
+                                            </div>
+                                        </button>
+                                    );
+                                })
+                                :
+                                <div className='user-playlist-button__undefined__container'>
+                                    <div className="user-playlist-button__undefined__container-content">
+                                        <h3 className='user-playlist-button__undefined__text'>{`Плейлист пуст :(`}</h3>
+                                        <button className='user-playlist-button__undefined__button'>Добавить трек</button>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </> :

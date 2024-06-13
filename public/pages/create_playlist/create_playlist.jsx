@@ -25,6 +25,11 @@ export default function CreatePlaylist() {
             url: "0000001",
             title: "Тестовый плейлист",
             description: "Рабочий плейлист"
+        },
+        {
+            url: "0000002",
+            title: "Пустой плейслит",
+            description: "Пустой плейлист"
         }
     ]);
 
