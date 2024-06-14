@@ -113,7 +113,7 @@ body{
     &.search_panel{
         &.searchInput{
             &:focus{
-                outline: 2px solid $selection-color;
+                outline: 1px solid #908b8b;
             }
         }
     }

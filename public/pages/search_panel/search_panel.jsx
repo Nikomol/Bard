@@ -5,67 +5,6 @@ import { FocusContext } from '../../../src/context/FocusContext';
 
 import './search_panel.scss';
 
-const SearchPanelHelper = () => {
-    const [searchArray, setSearchArray] = useState([
-        "123",
-        "456",
-        "789",
-        "test_1",
-        "test_2",
-        "test_3"
-    ]);
-    const [searchDimensions, setSearchDimensions] = useState({ searchMarginWidth: 0, searchMarginHeight: 0, searchPanelWidth: 0 });
-
-
-    useEffect(() => {
-        const handleResize = () => {
-            setSearchDimensions({
-                searchMarginHeight: document.querySelector('.upper_panel')?.clientHeight || 0,
-                searchPanelWidth: document.querySelector('.panel_inside.search_panel.searchInput')?.clientWidth || 0
-            });
-        }
-
-        window.addEventListener('resize', handleResize);
-
-        handleResize();
-
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    const panelHeight = {
-        marginTop: `${searchDimensions.searchMarginHeight - 9}px`,
-        width: `${searchDimensions.searchPanelWidth}px`
-    };
-
-    return (
-        <>
-            {searchArray.length !== 0 ?
-                <div className="searchPanel__search-container" style={panelHeight}>
-                    {searchArray.map((search, index) => {
-                        let buttonStyle = '';
-                        if (index === 0) {
-                            buttonStyle = 's-upper';
-                        } else if (index === searchArray.length - 1) {
-                            buttonStyle = 's-downer';
-                        } else {
-                            buttonStyle = 's-middle';
-                        }
-
-                        return (
-                            <button key={index} className={`searchPanel__search-buttons ${buttonStyle}`}>
-                                {search}
-                            </button>
-                        );
-                    })}
-                </div>
-                :
-                null
-            }
-        </>
-    );
-
-}
-
 export default function SearchPanel() {
 
     const user = useSelector(state => state.user.user);
@@ -75,12 +14,24 @@ export default function SearchPanel() {
     const [icon, setIcon] = useState(user.img_url);
     const [showSearchPanelHelper, setShowSearchPanel] = useState(false);
 
+    const [searchDimensions, setSearchDimensions] = useState({ searchMarginWidth: 0, searchMarginHeight: 0, searchPanelWidth: 0 });
+
     const ProfileRef = useRef(null);
 
     const { inputRef } = useContext(FocusContext);
 
+    const [searchArray, setSearchArray] = useState([
+        "123",
+        "456",
+        "789",
+        "test_1",
+        "test_2",
+        "test_3"
+    ]);
+
     const handleSearchChange = (e) => {
-        setSearch(e.target.value);
+        //setShowSearchPanel(true);
+        setSearch({ searchText: e.target.value });
     };
 
     const handleSearch = async (e) => {
@@ -93,7 +44,7 @@ export default function SearchPanel() {
     }
 
     const handleClickOutside = (e) => {
-        if (ProfileRef.current && !ProfileRef.current.contains(e.target)) {
+        if (ProfileRef.current && !ProfileRef.current.contains(e.target) && !inputRef.current.contains(e.target)) {
             setShowPageSettings(false);
             setShowSearchPanel(false);
         }
@@ -103,19 +54,64 @@ export default function SearchPanel() {
         setShowSearchPanel(!showSearchPanelHelper);
     }
 
+    const handleFocus = () => {
+        setShowSearchPanel(true);
+    };
+
+    const handleBlur = () => {
+        setTimeout(() => {
+            setShowSearchPanel(false);
+        }, 100);
+    };
+
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
 
-        return () => document.removeEventListener('mousedown', handleClickOutside);
+        const handleResize = () => {
+            setSearchDimensions({
+                searchMarginHeight: document.querySelector('.upper_panel')?.clientHeight || 0,
+                searchPanelWidth: document.querySelector('.search_container_panel')?.clientWidth || 0
+            });
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        handleResize();
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            window.removeEventListener('resize', handleResize);
+        }
     });
+
+    const handleAddToSearchPanel = (value) => {
+        setSearch({ searchText: value });
+    }
+
+    const panelHeight = {
+        marginTop: `${searchDimensions.searchMarginHeight}px`,
+        width: `calc(${searchDimensions.searchPanelWidth}px + 61px)`
+    };
+
 
     return (
         <>
-            <div className="upper_panel">
+            <div className={`upper_panel`} style={showSearchPanelHelper ? { borderBottomLeftRadius: "0px" } : {}}>
                 <div className="panel_inside">
                     <div className="panel_inside search_panel">
                         <form onSubmit={handleSearch} className="search_container_panel">
-                            <input ref={inputRef} className="panel_inside search_panel searchInput" type="text" name="search" placeholder="Поиск треков, плейлистов, альбомов" value={search.searchText} onChange={handleSearchChange} onClick={toggleshowSearchPanelHelper}></input>
+                            <input
+                                ref={inputRef}
+                                className={`panel_inside search_panel searchInput ${showSearchPanelHelper ? "input-search-clicked" : ""}`}
+                                type="text"
+                                name="search"
+                                placeholder="Поиск треков, плейлистов, альбомов"
+                                value={search.searchText}
+                                onChange={handleSearchChange}
+                                onFocus={handleFocus}
+                                onBlur={handleBlur}
+                            //onClick={toggleshowSearchPanelHelper}
+                            />
                         </form>
                     </div>
                     <button className="panel_inside user_icon user_icon_container" onClick={setShowSettings}>
@@ -125,7 +121,30 @@ export default function SearchPanel() {
             </div>
             <PageSettings isEnable={showPageSettings} Pref={ProfileRef} />
             {showSearchPanelHelper ?
-                <SearchPanelHelper />
+                <>
+                    {searchArray.length !== 0 ?
+                        <div className="searchPanel__search-container" style={panelHeight}>
+                            {searchArray.map((search, index) => {
+                                let buttonStyle = '';
+                                if (index === 0) {
+                                    buttonStyle = 's-upper';
+                                } else if (index === searchArray.length - 1) {
+                                    buttonStyle = 's-downer';
+                                } else {
+                                    buttonStyle = 's-middle';
+                                }
+
+                                return (
+                                    <button key={index} className={`searchPanel__search-buttons ${buttonStyle}`} onClick={() => handleAddToSearchPanel(search)}>
+                                        {search}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                        :
+                        <></>
+                    }
+                </>
                 :
                 <></>}
         </>
