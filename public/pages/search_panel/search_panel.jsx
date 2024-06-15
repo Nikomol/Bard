@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import PageSettings from "../page_settings/page_settings";
 import { useSelector } from 'react-redux';
 import { FocusContext } from '../../../src/context/FocusContext';
@@ -6,6 +7,7 @@ import { FocusContext } from '../../../src/context/FocusContext';
 import './search_panel.scss';
 
 export default function SearchPanel() {
+    const navigate = useNavigate();
 
     const user = useSelector(state => state.user.user);
 
@@ -30,13 +32,16 @@ export default function SearchPanel() {
     ]);
 
     const handleSearchChange = (e) => {
-        //setShowSearchPanel(true);
+        e.target.value !== "" ? setShowSearchPanel(true) : setShowSearchPanel(false);
         setSearch({ searchText: e.target.value });
     };
 
     const handleSearch = async (e) => {
         e.preventDefault();
-        //Отправка запроса
+        const encSearch = encodeURIComponent(search.searchText);
+        setShowSearchPanel(false);
+        //console.log(`encode text: ${encSearch}`);
+        navigate(`/search?sr=${encSearch}`);
     };
 
     const setShowSettings = () => {
@@ -54,8 +59,8 @@ export default function SearchPanel() {
         setShowSearchPanel(!showSearchPanelHelper);
     }
 
-    const handleFocus = () => {
-        setShowSearchPanel(true);
+    const handleFocus = (e) => {
+        e.target.value !== "" ? setShowSearchPanel(true) : setShowSearchPanel(false);
     };
 
     const handleBlur = () => {
@@ -82,7 +87,7 @@ export default function SearchPanel() {
             document.removeEventListener('mousedown', handleClickOutside);
             window.removeEventListener('resize', handleResize);
         }
-    });
+    }, []);
 
     const handleAddToSearchPanel = (value) => {
         setSearch({ searchText: value });

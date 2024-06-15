@@ -12,6 +12,7 @@ const MainPanel = lazy(() => import('../main_panel/main_panel'));
 const Explore = lazy(() => import('../playlist_library/playlist_library'));
 const PlaylistContent = lazy(() => import("../playlistContent/playlistContent"));
 const ProfilePage = lazy(() => import("../profile_page/profilePage"));
+const SearchPage = lazy(() => import("../search_page/search_page.jsx"));
 
 import './song_page.scss';
 
@@ -78,6 +79,8 @@ export default function MainPage() {
                 return <PlaylistContent />;
             case '/profile':
                 return <ProfilePage />;
+            case '/search':
+                return <SearchPage />
             default:
                 return <MainPanel />;
         }

@@ -54,6 +54,11 @@ export default function App() {
             <></>
           }
         />
+        <Route path='search' 
+          element={
+            <></>
+          }
+        />
       </Route>
       <Route path="login"
         element={

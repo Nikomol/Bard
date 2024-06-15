@@ -18,7 +18,7 @@ export default function PageSettings({isEnable = false, Pref}) {
     }
 
     useEffect(() => {
-        console.log(`Show: ${isEnable}`);
+        //console.log(`Show: ${isEnable}`);
     })
 
     return (

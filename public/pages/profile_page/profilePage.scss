@@ -207,9 +207,10 @@
         &.a-containers{
             //width: 150px;
             border-radius: 15px;
-            background-color: rgba($color: #000000, $alpha: 0.0);
+            background-color: rgba($color: #ffffff, $alpha: 0.0);
             border-style: none;
             padding: 10px;
+            cursor: pointer;
 
             &.c-author-image{
                 width: 145px;
@@ -225,6 +226,10 @@
                 font-size: 15px;
                 padding: 0;
                 width: 100%;
+            }
+
+            &:hover{
+                background-color: rgba($color: #ffffff, $alpha: 0.3);
             }
         }
 

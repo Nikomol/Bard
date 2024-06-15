@@ -13,12 +13,21 @@ export default function PlaylistContent() {
     const playlistId = searchParams.get('pl'); // Получаем 'playlistId' из строки запроса
     const [urlData, setUrlData] = useState([]);
 
-    const [plTitle, setPlTitle] = useState("Какой-то плейлист");
-    const [plDescription, setPlDescription] = useState("Какое то описание");
     const [activeSong, setActiveSong] = useState(null);
-    const [isLiked, setIsLiked] = useState(false);
 
-    const [playlistAuthor, setPlaylistAuthor] = useState(true);
+    const [editPlaylist, setEditPlaylist] = useState(false);
+
+    const [playlistParametrs, setPlaylistParametrs] = useState({
+        playlistTitle: "",
+        playlistAuthor: "",
+        duration: "--:--",
+        authorsPlaylist: false,
+        autoCreated: false,
+        playlistLock: false,
+        playlistLiked: false
+    });
+
+    const [newPlaylistTitle, setNewPlaylistTitle] = useState("");
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -49,21 +58,33 @@ export default function PlaylistContent() {
 
         switch (playlistId) {
             case "lK":
-                setPlTitle("Понравившаяся музыка");
-                setPlDescription("Создано автоматически");
-                setPlaylistAuthor(false);
+                setPlaylistParametrs({
+                    ...playlistParametrs,
+                    playlistTitle: "Понравившаяся музыка",
+                    playlistAuthor: "Создано автоматически",
+                    authorsPlaylist: false,
+                    autoCreated: true
+                });
                 break;
 
             case "hyst":
-                setPlTitle("История прослушивания");
-                setPlDescription("Создано автоматически");
-                setPlaylistAuthor(false);
+                setPlaylistParametrs({
+                    ...playlistParametrs,
+                    playlistTitle: "История прослушивания",
+                    playlistAuthor: "Создано автоматически",
+                    authorsPlaylist: false,
+                    autoCreated: true
+                });
                 break;
 
             default:
-                setPlTitle("Какой-то плейлист");
-                setPlDescription("Какое то описание");
-                setPlaylistAuthor(true);
+                setPlaylistParametrs({
+                    ...playlistParametrs,
+                    playlistTitle: "Какой-то плейлист",
+                    playlistAuthor: "Какой то автор",
+                    authorsPlaylist: true,
+                    autoCreated: false
+                });
                 break;
         }
 
@@ -75,21 +96,37 @@ export default function PlaylistContent() {
         );
     }
 
-    /*{
-        "song_name":"After Dark",
-        "Author":"Mr.Kitty",
-        "img":"https://i.scdn.co/image/ab67616d00001e0285e3ceaa88ceb59eb9866b81",
-        "album":"Time",
-        "year":"2014",
-        "id":"0000000001"
-    }*/
-
     const playSong = (song_id) => {
         setActiveSong(song_id);
     }
 
     const toggleLike = () => {
-        setIsLiked(!isLiked);
+        setPlaylistParametrs({
+            ...playlistParametrs,
+            playlistLiked: !playlistParametrs.playlistLiked
+        });
+    }
+
+    const toggleLockPlaylist = () => {
+        setPlaylistParametrs({
+            ...playlistParametrs,
+            playlistLock: !playlistParametrs.playlistLock
+        });
+    }
+
+    const toggleEditPlaylist = () => {
+        setEditPlaylist(true);
+    }
+
+    const handleNewPlaylistTitle = (e) => {
+        setNewPlaylistTitle(e.target.value);
+    }
+
+    const toggleSaveTitle = () => {
+        setPlaylistParametrs({
+            ...playlistParametrs,
+            playlistTitle: newPlaylistTitle
+        });
     }
 
     return (
@@ -99,17 +136,62 @@ export default function PlaylistContent() {
                     <div className="user-playlist__all-containers">
                         <div className='user-playlist__info-container'>
                             <div className='user-playlist__image'>
-                                <img className='playlist-image' src="https://cdni.iconscout.com/illustration/premium/thumb/404-7304110-5974976.png?f=webp"></img>
+                                {playlistId === "lK" ?
+                                    <PlayerIcons icon_name={"playlist-liked-icon"} classname={'playlist-image'} />
+                                    :
+                                    playlistId === "hyst" ?
+                                        <PlayerIcons icon_name={"playlist-history-icon"} classname={'playlist-image'} />
+                                        :
+                                        <img className='playlist-image' src="https://cdni.iconscout.com/illustration/premium/thumb/404-7304110-5974976.png?f=webp" style={{backgroundColor: "#6CE0AF"}} />
+                                }
                             </div>
                             <div className='user-playlist__info__container'>
-                                <h1 className='user-playlist__info'>{plTitle}</h1>
-                                <h3 className='user-playlist__info'>{plDescription}</h3>
-                                <h3 className='user-playlist__info'>{`Длительность: 00:00`}</h3>
-                                {playlistAuthor ?
+                                <div className='user-playlist__param'>
+                                    {!editPlaylist ?
+                                        <h1 className='user-playlist__info'>{playlistParametrs.playlistTitle}</h1>
+                                        :
+                                        <>
+                                            <form onSubmit={toggleSaveTitle}>
+                                                <input
+                                                    type='text'
+                                                    name='playlistTitle'
+                                                    placeholder='Название пейлиста...'
+                                                    value={newPlaylistTitle}
+                                                    onChange={handleNewPlaylistTitle}
+                                                    className=''
+                                                />
+                                                <input type="submit" value="" className="" />
+                                            </form>
+                                        </>
+                                    }
+                                    {playlistParametrs.authorsPlaylist && !playlistParametrs.autoCreated ?
+                                        <>
+                                            <div className='user-playlist__lock-pl'>
+                                                {!editPlaylist ?
+                                                    <>
+                                                        <button className='' onClick={toggleEditPlaylist}>
+                                                            <PlayerIcons icon_name={"edit_playlist"} />
+                                                        </button>
+                                                    </>
+                                                    :
+                                                    <></>
+                                                }
+                                                <button className='' onClick={toggleLockPlaylist}>
+                                                    {playlistParametrs.playlistLock ? <PlayerIcons icon_name={"lock_playlist"} /> : <PlayerIcons icon_name={"unlock_playlist"} />}
+                                                </button>
+                                            </div>
+                                        </>
+                                        :
+                                        <></>
+                                    }
+                                </div>
+                                <h3 className='user-playlist__info'>{playlistParametrs.playlistAuthor}</h3>
+                                <h3 className='user-playlist__info'>{`Длительность: ${playlistParametrs.duration}`}</h3>
+                                {!playlistParametrs.authorsPlaylist && !playlistParametrs.autoCreated ?
                                     <>
                                         <div className='user-playlist__info__add-to-favorite__container'>
                                             <button onClick={toggleLike} className='user-playlist__info__add-to-favorite__button'>
-                                                {isLiked ? <PlayerIcons icon_name={"like_pressed"} /> : <PlayerIcons icon_name={"like_unpressed"} />}
+                                                {playlistParametrs.playlistLiked ? <PlayerIcons icon_name={"like_pressed"} /> : <PlayerIcons icon_name={"like_unpressed"} />}
                                             </button>
                                             <h3 className='user-playlist__info__add-to-favorite__text'>Добавить в понравившееся</h3>
                                         </div>
@@ -119,7 +201,7 @@ export default function PlaylistContent() {
                                 }
                             </div>
                         </div>
-                        <div className='user-playlist__songs-container' style={urlData.length !== 0 ? {marginLeft: "50px"} : {}}>
+                        <div className='user-playlist__songs-container' style={urlData.length !== 0 ? { marginLeft: "50px" } : {}}>
                             {urlData.length !== 0 ?
                                 urlData.map((song, index) => {
                                     const isActive = song.id === activeSong;
