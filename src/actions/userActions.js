@@ -11,3 +11,10 @@ export const setTrackUrl = (url) => {
         payload: url
     };
 };
+
+export const setUserId = (userId) => {
+    return{
+        type: 'USER_ID',
+        payload: userId
+    };
+};

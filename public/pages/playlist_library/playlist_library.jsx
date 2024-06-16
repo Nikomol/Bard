@@ -8,68 +8,40 @@ export default function Explore() {
 
     const user = useSelector((state) => state.user.user);
 
-    const [genres, setGenres] = useState([
-        {
-            id: "000000000011",
-            title: "Поп"
-        },
-        {
-            id: "000000000012",
-            title: "Рок"
-        },
-        {
-            id: "000000000013",
-            title: "Джаз"
-        },
-        {
-            id: "000000000014",
-            title: "Блюз"
-        },
-        {
-            id: "000000000015",
-            title: "Хип-хоп"
-        },
-        {
-            id: "000000000016",
-            title: "Рэп"
-        },
-        {
-            id: "000000000017",
-            title: "Классическая музыка"
-        },
-        {
-            id: "000000000018",
-            title: "Электронная музыка (EDM)"
-        },
-        {
-            id: "000000000019",
-            title: "Регги"
-        },
-        {
-            id: "000000000020",
-            title: "Кантри"
-        },
-        {
-            id: "000000000021",
-            title: "Фолк"
-        },
-        {
-            id: "000000000022",
-            title: "Ритм-н-блюз (R&B)"
-        },
-        {
-            id: "000000000023",
-            title: "Латиноамериканская музыка"
-        },
-        {
-            id: "000000000024",
-            title: "Метал"
-        },
-        {
-            id: "000000000025",
-            title: "Инди"
-        },
-    ]);
+    const [genres, setGenres] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        setIsLoading(true);
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://172.24.80.146:8080/music/genres');
+
+                if (!response.ok) {
+                    setGenres([]);
+                    throw new Error("Ответ от сервера был не ok!");
+                }
+
+                const result = await response.json();
+                setGenres(result);
+            }
+            catch (error) {
+                setGenres([]);
+                console.error("Ошибка получения данных!");
+            }
+
+            setIsLoading(false);
+        }
+
+        fetchData();
+    }, [])
+
+    if (isLoading) {
+        return (
+            <></>
+        );
+    }
 
     return (
         <>
@@ -81,7 +53,7 @@ export default function Explore() {
                             {genres.map((genre, index) => {
                                 return (
                                     <button key={index} className="cont-genre">
-                                        <h1 className="titleGenre">{genre.title}</h1>
+                                        <h1 className="titleGenre">{genre.genreID}</h1>
                                     </button>
                                 )
                             })}
