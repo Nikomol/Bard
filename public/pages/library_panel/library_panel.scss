@@ -35,6 +35,7 @@
     text-align: center;
     font-size: 15px;
     color: white;
+    
 }
 
 @keyframes show {
@@ -54,6 +55,15 @@
         flex-direction: column;
         overflow-y: scroll;
         height: 100%;
+        @media screen and (max-height: 730px){
+            &.backdrop{
+            height: 30%; //ну или же поставить на 70%, но есть проблемма в виде 
+            
+            
+                
+            }
+            
+        }
     }
 
     &.button {
@@ -66,6 +76,7 @@
         padding-block: 6px;
         cursor: pointer;
         border-radius: 13px;
+        
         //transition: hover 0,3s;
 
         & h1 {
@@ -89,6 +100,7 @@
 
         &.button-active{
             background: rgba($color: #ffffff, $alpha: 0.3);
+            
         }
 
         // &:not(:hover){

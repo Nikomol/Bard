@@ -43,20 +43,31 @@
     }
 
     &__info {
+        
         &__container {
             margin-left: 30px;
             color: #ffffff;
             width: 70%;
+        
+            
 
             & h1 {
                 // margin-top: 50px;
                 // margin-bottom: 5px;
                 margin: 0;
-            }
+                display: flex; //под редактирование
+                flex-wrap: nowrap; 
+                flex-shrink: 0;
+                }
+               
 
             & h3 {
                 margin-block: 5px;
                 font-size: 16px;
+                display: flex;
+                flex-wrap: nowrap; 
+                flex-shrink: 0;
+                
             }
         }
 
