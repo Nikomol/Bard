@@ -47,6 +47,8 @@ export default function PlaylistContent() {
                 }
                 const result = await response.json();
                 setUrlData(result);
+                
+
             } catch (error) {
                 setUrlData(null);
                 console.error('Ошибка при получении данных:', error);
