@@ -1,6 +1,7 @@
 .ContainerTitle {
     color: white;
     width: max-content;
+    padding-left: 20px;
     //padding-inline: 20px;
 }
 
@@ -11,13 +12,14 @@
 .ContainerImage {
     width: 100%;
     height: 100%;
+    border-radius: 20px;
 }
 
 .ContainerButton {
 
     $transparent: rgba(#000000, $alpha: 0.0);
 
-    $width_height: 160px;
+    $width_height: 220px;
 
     width: $width_height;
     height: $width_height;
@@ -41,4 +43,21 @@
 
     padding: $padding_all;
     padding-top: $padding_top;
+}
+
+.trackInfo{
+    text-align: center;
+    color: white;
+    font-size: 13px;
+    &.link{
+        text-decoration: none;
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+
+.allContainers{
+    padding-right: 24px;
 }

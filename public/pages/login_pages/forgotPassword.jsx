@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import myImage from "./../../img/ico/ico.svg";
 import { useState } from 'react';
-import './login.css';
+
+//import './login.css';
+import './starterPage.scss';
 
 const MainForget = ({ onPasswordReset }) => {
 

@@ -6,7 +6,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #333;
+    //background-color: #333;
     color: white;
     text-align: center;
     //padding: 10px 0;
@@ -16,7 +16,7 @@
     z-index: 1000;
 }
 
-.playerPillar{
+.playerPillar {
     // height: 100%;
     // width: 100%;
     display: flex;
@@ -86,7 +86,7 @@
         height: $wh-loop;
     }
 
-    &.text{
+    &.text {
         width: $wh-mix;
         height: $wh-loop;
     }
@@ -124,69 +124,82 @@
 
 .volumeRange[type='range'] {
     //Размеры ползунка и трека
-    $thumb-size: 10px;
-    $track-height: 2px;
+    $vol-thumb-size: 10px;
+    $vol-track-height: 2px;
 
-    $thumb-color: #700FEB;
-    $track-color: #fff;
-    $track-thumb-disabled: rgba(#000000, $alpha: 0.0);
+    $vol-thumb-color: #700FEB;
+    $vol-track-color: #fff;
+    $vol-track-thumb-disabled: rgba(#000000, $alpha: 0.0);
 
     background: transparent;
     width: 85px;
 
     transition: opacity 0.3s;
 
+    appearance: none;
+    -webkit-appearance: none;
+
     // Стилизация ползунка
     &::-webkit-slider-thumb {
-        -webkit-appearance: none;
         appearance: none;
-        width: $thumb-size;
-        height: $thumb-size;
+        -webkit-appearance: none;
+        width: calc($vol-thumb-size * 1.7);
+        height: calc($vol-thumb-size * 1.7);
         border-radius: 50%;
-        background: $thumb-color;
+        background: $vol-thumb-color;
+        color: $vol-thumb-color;
         border-radius: 10px;
         border: 3px white solid; //background: #700FEB; border-radius: 9999px; border: 3px white solid
         cursor: pointer;
+        margin: -7px;
+        padding: 0;
     }
 
     &::-moz-range-thumb {
-        width: $thumb-size;
-        height: $thumb-size;
+        width: $vol-thumb-size;
+        height: $vol-thumb-size;
         border-radius: 50%;
-        background: $thumb-color;
+        background: $vol-thumb-color;
+        color: $vol-thumb-color;
         border: 3px white solid;
         cursor: pointer;
     }
 
     &::-ms-thumb {
-        width: $thumb-size;
-        height: $thumb-size;
+        width: $vol-thumb-size;
+        height: $vol-thumb-size;
         border-radius: 50%;
-        background: $thumb-color;
+        background: $vol-thumb-color;
+        color: $vol-thumb-color;
         border: 3px white solid;
         cursor: pointer;
     }
 
     // Стилизация трека
     &::-webkit-slider-runnable-track {
+        appearance: none;
+        -webkit-appearance: none;
         width: 100%;
-        height: $track-height;
-        background: $track-color;
-        border-radius: calc($track-height / 2);
+        height: $vol-track-height;
+        background: $vol-track-color;
+        color: $vol-track-color;
+        border-radius: calc($vol-track-height / 2);
     }
 
     &::-moz-range-track {
         width: 100%;
-        height: $track-height;
-        background: $track-color;
-        border-radius: calc($track-height / 2);
+        height: $vol-track-height;
+        background: $vol-track-color;
+        color: $vol-track-color;
+        border-radius: calc($vol-track-height / 2);
     }
 
     &::-ms-track {
         width: 100%;
-        height: $track-height;
-        background: $track-color;
-        border-radius: calc($track-height / 2);
+        height: $vol-track-height;
+        background: $vol-track-color;
+        color: $vol-track-color;
+        border-radius: calc($vol-track-height / 2);
     }
 
     &.enable {
@@ -202,8 +215,6 @@
     }
 }
 
-
-
 .playerRange[type='range'] {
     // Размеры ползунка и трека
     $thumb-size: 7px;
@@ -217,17 +228,20 @@
     width: 100%;
     border: none; // Убираем стандартные бордюры
 
+    appearance: none;
+    -webkit-appearance: none;
+
     // Стилизация ползунка
     &::-webkit-slider-thumb {
-        width: $thumb-size;
-        height: $thumb-size;
+        appearance: none;
+        -webkit-appearance: none;
+        width: calc($thumb-size * 1.3);
+        height: calc($thumb-size * 1.3);
         border-radius: 50%;
         background: $thumb-color;
         cursor: pointer;
         border: none;
-        //margin-top: -($track-height / 2); // Центрируем ползунок по вертикали
-        //-webkit-appearance: none;
-        appearance: none;
+        margin: -2px;
     }
 
     &::-moz-range-thumb {
@@ -235,6 +249,7 @@
         height: $thumb-size;
         border-radius: 50%;
         background: $thumb-color;
+        color: $thumb-color;
         cursor: pointer;
         border: none; // Убираем стандартные бордюры
     }
@@ -244,6 +259,7 @@
         height: $thumb-size;
         border-radius: 50%;
         background: $thumb-color;
+        color: $thumb-color;
         cursor: pointer;
         border: none; // Убираем стандартные бордюры
     }
@@ -258,11 +274,13 @@
     //     cursor: pointer;
     // }
 
-    &::-webkit-slider-runnable-track{
+    &::-webkit-slider-runnable-track {
+        appearance: none;
         -webkit-appearance: none;
         width: 100%;
         height: $track-height;
         background: $track-color;
+        color: $track-color;
         border-radius: calc($track-height / 2);
         cursor: pointer;
     }
@@ -271,6 +289,7 @@
         width: 100%;
         height: $track-height;
         background: $track-color;
+        color: $track-color;
         border-radius: calc($track-height / 2);
         cursor: pointer;
     }
@@ -279,6 +298,7 @@
         width: 100%;
         height: $track-height;
         background: $track-color;
+        color: $track-color;
         border-radius: calc($track-height / 2);
         cursor: pointer;
         border: none; // Убираем стандартные бордюры
