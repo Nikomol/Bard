@@ -54,6 +54,11 @@ export default function App() {
             <></>
           }
         />
+        <Route path='user'
+          element={
+          <></>
+        }
+        />
         <Route path='search' 
           element={
             <></>
