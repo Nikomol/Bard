@@ -91,6 +91,9 @@ export default function ProfilePage() {
     }
 
     useEffect(() => {
+
+        
+
         const handleResize = () => {
             const cont = document.querySelector('.main-backdrop');
             setMainBackdropWidth(cont.clientWidth);
@@ -143,7 +146,7 @@ export default function ProfilePage() {
                     </div>
                 </div>
             </div>
-            <div className="profile p-authors a-main-container"> {/*style={panelHeight}*/}
+            <div className="profile p-authors a-main-container">
                 <h2 className="profile p-authors a-main-text">Часто прослушиваемые артисты</h2>
                 <div className="profile p-authors a-author-button">
                     {authors.map((author, index) => {
