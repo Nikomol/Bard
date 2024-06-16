@@ -12,7 +12,9 @@ const MainPanel = lazy(() => import('../main_panel/main_panel'));
 const Explore = lazy(() => import('../playlist_library/playlist_library'));
 const PlaylistContent = lazy(() => import("../playlistContent/playlistContent"));
 const ProfilePage = lazy(() => import("../profile_page/profilePage"));
-const SearchPage = lazy(() => import("../search_page/search_page.jsx"));
+const SearchPage = lazy(() => import("../search_page/search_page"));
+const SettingPagePanel = lazy(() => import('../settingPage_panel/settingPage_panel'));
+const SettingPageMain = lazy(() => import('../settingPage_main/settingPage_main'));
 
 import './song_page.scss';
 
@@ -45,7 +47,7 @@ export default function MainPage() {
         // Сбросить прогресс и состояние загрузки при смене пути
         setProgress(0);
         setIsLoaded(false);
-    
+
         let interval = setInterval(() => {
             setProgress(oldProgress => {
                 const randomIncrement = Math.floor(Math.random() * (6)) + 4; // 4 до 10
@@ -53,12 +55,12 @@ export default function MainPage() {
                 return newProgress;
             });
         }, Math.floor(Math.random() * (3000)) + 1000); // 1000 до 4000
-    
+
         return () => clearInterval(interval);
     }, [location.pathname]); // Добавьте location.pathname в массив зависимостей
-    
+
     // Оставьте остальную часть кода без изменений
-    
+
 
     useEffect(() => {
         if (progress >= 100 && !isLoaded) {
@@ -78,7 +80,9 @@ export default function MainPage() {
             case '/playlist':
                 return <PlaylistContent />;
             case '/profile':
-                return <ProfilePage />;
+                return <ProfilePage isUserProfile={true} />;
+            case '/user':
+                return <ProfilePage isUserProfile={false} />;
             case '/search':
                 return <SearchPage />
             default:
@@ -90,18 +94,34 @@ export default function MainPage() {
         <>
             <div className="allPanels">
                 <div className="HelperPanels">
-                    <HomePanel />
-                    <LibraryPanel user={user} />
+                    {location.pathname !== "/settings" ?
+                        <>
+                            <HomePanel />
+                            <LibraryPanel user={user} />
+                        </>
+                        :
+                        <>
+                            <SettingPagePanel />
+                        </>
+                    }
                 </div>
                 <div className="MainPanels">
-                    <SearchPanel />
-                    <div className="main-backdrop" style={panelHeight}>
-                        <div className="cont">
-                            <Suspense fallback={<ProgressBar progress={progress} />}>
-                                {renderPanel()}
-                            </Suspense>
-                        </div>
-                    </div>
+                    {location.pathname !== "/settings" ?
+                        <>
+                            <SearchPanel />
+                            <div className="main-backdrop" style={panelHeight}>
+                                <div className="cont">
+                                    <Suspense fallback={<ProgressBar progress={progress} />}>
+                                        {renderPanel()}
+                                    </Suspense>
+                                </div>
+                            </div>
+                        </>
+                        :
+                        <>
+                            <SettingPageMain />
+                        </>
+                    }
                 </div>
             </div>
             <Player />

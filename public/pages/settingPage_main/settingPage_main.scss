@@ -1,0 +1,29 @@
+.setting-page {
+    &__main-content {
+        background-color: #1b1818;
+        border-radius: 15px;
+        padding-left: 20px;
+        overflow-y: scroll;
+
+        &__title {
+            width: max-content;
+            font-size: 40px;
+            color: #FFF;
+        }
+
+        &__allContent {
+            &__info{
+                display: flex;
+
+                &__text{
+                    margin: 0;
+                    color: #FFF;
+
+                    &.profileName-text{
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

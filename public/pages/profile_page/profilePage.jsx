@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import './profilePage.scss';
 
-export default function ProfilePage() {
+export default function ProfilePage({ isUserProfile = true }) {
+    let [searchParams, setSearchParams] = useSearchParams();
+
     const user = useSelector(state => state.user.user);
+
+    const navigate = useNavigate();
 
     const [userIco, setUserIco] = useState(user.img_url);
     const [userBackground, setUserBackground] = useState('http://localhost:3000/image/background.png');
@@ -17,6 +22,8 @@ export default function ProfilePage() {
     const [subscribed, setSubscribed] = useState(false);
 
     const [mainBackdropWidth, setMainBackdropWidth] = useState(0);
+
+    const userIdProfile = searchParams.get('pfID');
 
     const [authors, setAuthors] = useState([
         {
@@ -91,8 +98,11 @@ export default function ProfilePage() {
     }
 
     useEffect(() => {
-
-        
+        if (!isUserProfile) {
+            if (userIdProfile === user.id) {
+                navigate('/profile');
+            }
+        }
 
         const handleResize = () => {
             const cont = document.querySelector('.main-backdrop');
@@ -125,14 +135,21 @@ export default function ProfilePage() {
                     <div className="profile p-info in-name n-container">
                         <h2 className="profile p-info in-name n-text">{userName}</h2>
                         <div className="profile p-button b-container">
-                            <button 
-                                className={`profile p-button b-all-buttons ${subscribed ? "a-subscribed" : "a-subscribe"}`} 
-                                onClick={() => handleClickSubscribe()}
-                                onMouseEnter={() => toggleShowUnsubscribe()}
-                                onMouseLeave={() => toggleHideUnsubscribe()}>
-                                    {subscribed ? mouseEnter ? "Отписаться" : "Вы подписаны" : "Подписаться"}
-                            </button>
-                            <button className="profile p-button b-all-buttons a-edit-profile">Настройки профиля</button>
+                            {!isUserProfile ?
+                                <>
+                                    <button
+                                        className={`profile p-button b-all-buttons ${subscribed ? "a-subscribed" : "a-subscribe"}`}
+                                        onClick={() => handleClickSubscribe()}
+                                        onMouseEnter={() => toggleShowUnsubscribe()}
+                                        onMouseLeave={() => toggleHideUnsubscribe()}>
+                                        {subscribed ? mouseEnter ? "Отписаться" : "Вы подписаны" : "Подписаться"}
+                                    </button>
+                                </>
+                                :
+                                <>
+                                    <button className="profile p-button b-all-buttons a-edit-profile">Настройки профиля</button>
+                                </>
+                            }
                         </div>
                         <div className="profile p-links l-container">
                             <a className="profile p-links l-link" href="">Подписчиков: {subscribers}</a>
