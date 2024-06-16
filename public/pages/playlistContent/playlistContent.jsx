@@ -47,8 +47,7 @@ export default function PlaylistContent() {
                 }
                 const result = await response.json();
                 setUrlData(result);
-                
-
+                //console.log(`urldata: ${urlData}\nuser: ${Boolean(user)}\n${'login' in user && 'id' in user}`);
             } catch (error) {
                 setUrlData(null);
                 console.error('Ошибка при получении данных:', error);
