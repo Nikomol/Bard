@@ -65,12 +65,12 @@
     }
 
     &.pressed{
-        background-color: rgba(#0000, $alpha: 0.0);
+        //background-color: rgba(#0000, $alpha: 0.0);
         cursor: pointer;
     }
 
     &.unpressed{
-        background-color: rgba(#908B8B, $alpha: 7.9);
+        //background-color: rgba(#908B8B, $alpha: 7.9);
         cursor: default
     }
 }

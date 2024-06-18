@@ -27,50 +27,9 @@ export default function CreatePlaylist() {
             description: "Рабочий плейлист"
         },
         {
-            url: "url_0",
-            title: "song_title_4",
-            description: "song_description_3"
-        }
-        ,
-        {
-            url: "url_0",
-            title: "song_title_4",
-            description: "song_description_3"
-        }
-        ,
-        {
-            url: "url_0",
-            title: "song_title_4",
-            description: "song_description_3"
-        }
-        ,
-        {
-            url: "url_0",
-            title: "song_title_4",
-            description: "song_description_3"
-        }
-        ,
-        {
-            url: "url_0",
-            title: "song_title_4",
-            description: "song_description_3"
-        }
-        ,
-        {
-            url: "url_0",
-            title: "song_title_4",
-            description: "song_description_3"
-        },
-        {
-            url: "url_0",
-            title: "song_title_4",
-            description: "song_description_3"
-        }
-        ,
-        {
-            url: "url_0",
-            title: "song_title_4",
-            description: "song_description_3"
+            url: "0000002",
+            title: "Пустой плейслит",
+            description: "Пустой плейлист"
         }
     ]);
 

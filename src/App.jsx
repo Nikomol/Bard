@@ -1,16 +1,15 @@
-import { useState, lazy, Suspense, useEffect, createContext, useContext } from 'react';
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import { useState, lazy, Suspense, useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { FocusProvider } from "./context/FocusContext";
 
-import Login from '../public/pages/login_pages/login';
-import SignUp from '../public/pages/login_pages/signup';
-import ForgotPassword from '../public/pages/login_pages/forgotPassword';
+const Login = lazy(() => import('../public/pages/login_pages/login'));
+const SignUp = lazy(() => import('../public/pages/login_pages/signup'));
+const ForgotPassword = lazy(() => import('../public/pages/login_pages/forgotPassword'));
+const SongPage = lazy(() => import('../public/pages/song_page/song_page'));
+const NotFound = lazy(() => import('../public/pages/404/404'));
 
-//import './index.css';
 import './index.scss';
-
-const SongPage = lazy(() => import('../public/pages/song_page/song_page.jsx'));
-const NotFound = lazy(() => import('../public/pages/404/404.jsx'));
 
 export default function App() {
 
@@ -27,7 +26,9 @@ export default function App() {
         element={
           isLogged ?
             <Suspense fallback={<></>}>
-              <SongPage />
+              <FocusProvider>
+                <SongPage />
+              </FocusProvider>
             </Suspense>
             : <Navigate to={"/login"} replace={true} />
         }
@@ -42,22 +43,67 @@ export default function App() {
           }
         //Если будет "/explore"
         />
-        <Route path='playlist' 
+        <Route path='playlist'
           element={
             <></>
-          } 
+          }
         />
-        <Route path='profile' 
+        <Route path='profile'
+          element={
+            <></>
+          }
+        />
+        <Route path='user'
+          element={
+          <></>
+        }
+        />
+        <Route path='search' 
+          element={
+            <></>
+          }
+        />
+        <Route path='settings'
           element={
             <></>
           }
         />
       </Route>
-      <Route path="login" element={<Login />} />
-      <Route path="register" element={<SignUp />} />
-      <Route path="recovery" element={<ForgotPassword />} />
-      <Route path="*" element={<NotFound />} />
-      <Route path='404' element={<NotFound />} />
+      <Route path="login"
+        element={
+          <Suspense fallback={<></>}>
+            <Login />
+          </Suspense>
+        }
+      />
+      <Route path="register"
+        element={
+          <Suspense fallback={<></>}>
+            <SignUp />
+          </Suspense>
+        }
+      />
+      <Route path="recovery"
+        element={
+          <Suspense fallback={<></>}>
+            <ForgotPassword />
+          </Suspense>
+        }
+      />
+      <Route path="*"
+        element={
+          <Suspense fallback={<></>}>
+            <NotFound />
+          </Suspense>
+        }
+      />
+      <Route path='404'
+        element={
+          <Suspense fallback={<></>}>
+            <NotFound />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 }

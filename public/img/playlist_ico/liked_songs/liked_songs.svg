@@ -1,7 +1,3 @@
-def escape_svg(svg_content):
-    return svg_content.replace('\"', '\\\"')
-
-svg_content = '''
 <svg width="195" height="195" viewBox="0 0 195 195" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M0 20C0 8.9543 8.9543 0 20 0H175C186.046 0 195 8.9543 195 20V175C195 186.046 186.046 195 175 195H20C8.9543 195 0 186.046 0 175V20Z" fill="url(#paint0_linear_201_621)"/>
 <path d="M58.1149 101.804C49.2812 92.9705 49.2812 78.6484 58.1149 69.8147C66.9485 60.981 81.2707 60.981 90.1044 69.8147L129.264 108.974L97.2744 140.964L58.1149 101.804Z" fill="#D9D9D9"/>
@@ -13,6 +9,3 @@ svg_content = '''
 </linearGradient>
 </defs>
 </svg>
-'''
-
-print(escape_svg(svg_content))

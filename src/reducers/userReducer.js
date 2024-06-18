@@ -1,6 +1,7 @@
 const initialState = {
     user: null,
-    trackURL: ''
+    trackURL: '',
+    userId: null
 };
 
 const userReducer = (state = initialState, action) => {
@@ -15,6 +16,12 @@ const userReducer = (state = initialState, action) => {
             return{
                 ...state,
                 currentURL: action.payload
+            };
+
+        case 'USER_ID':
+            return{
+                ...state,
+                userId: action.payload
             };
         
         default:
