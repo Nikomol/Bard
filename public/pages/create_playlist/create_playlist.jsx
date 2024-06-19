@@ -26,11 +26,16 @@ export default function CreatePlaylist() {
             title: "Тестовый плейлист",
             description: "Рабочий плейлист"
         },
-        {
-            url: "rok",
-            title: "Рок",
-            description: "Пустой плейлист"
-        }
+        // {
+        //     url: "rok",
+        //     title: "Рок",
+        //     description: "Пустой плейлист"
+        // },
+        // {
+        //     url: "kpop",
+        //     title: "К-поп",
+        //     description: "Пустой плейлист"
+        // }
     ]);
 
     const loadPlaylist = (url_playlist = 0) => {

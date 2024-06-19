@@ -126,3 +126,20 @@
     font-size: 14px;
     color: #ccc;
 }
+
+.view-all {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #555;
+    color: #fff;
+    border-radius: 15px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.view-all:hover {
+    background-color: #7b7a7a;
+    cursor: pointer;
+}

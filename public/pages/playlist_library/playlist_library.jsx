@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import './playlist_library.scss';
 
 export default function Explore() {
-
+    const navigate = useNavigate(); 
     const user = useSelector((state) => state.user.user);
 
     const [genres, setGenres] = useState([]);
-
+    const [selectedGenre, setSelectedGenre] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -37,6 +37,18 @@ export default function Explore() {
         fetchData();
     }, [])
 
+    const handleGenreClick = (genre) => {
+        setSelectedGenre(genre);
+    };
+
+    const handleViewAllClick = () => {
+        if (selectedGenre) {
+            navigate(`/playlist?pl=${selectedGenre}`);
+        }
+    };
+    
+
+
     // if (isLoading) {
     //     return (
     //         <></>
@@ -50,21 +62,15 @@ export default function Explore() {
                     <div class="container">
                         <h1>Жанры</h1>
                         <div class="genres">
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
-                            <button class="genre">Хип-Хоп</button>
+                        <button className={`genre ${selectedGenre === 'kpop' ? 'active' : ''}`} onClick={() => handleGenreClick('kpop')}>К-Поп</button>
+                        <button className={`genre ${selectedGenre === 'metal' ? 'active' : ''}`} onClick={() => handleGenreClick('metal')}>Метал</button>
+                        <button className={`genre ${selectedGenre === 'rok' ? 'active' : ''}`} onClick={() => handleGenreClick('rok')}>Рок</button>
+                        <button className={`genre ${selectedGenre === 'phonk' ? 'active' : ''}`} onClick={() => handleGenreClick('phonk')}>Фонк</button>
+                        <button className={`genre ${selectedGenre === 'memphis' ? 'active' : ''}`} onClick={() => handleGenreClick('memphis')}>Мемфис</button>
+                        <button className={`genre ${selectedGenre === 'hip-hop' ? 'active' : ''}`} onClick={() => handleGenreClick('hip-hop')}>Хип-Хоп</button>
+                        <button className={`genre ${selectedGenre === 'classical' ? 'active' : ''}`} onClick={() => handleGenreClick('classical')}>Классика</button>
+                        <button className={`genre ${selectedGenre === 'hyperpop' ? 'active' : ''}`} onClick={() => handleGenreClick('hyperpop')}>Гиперпоп</button>
+                        <button className={`genre ${selectedGenre === 'electronic' ? 'active' : ''}`} onClick={() => handleGenreClick('electronic')}>Электроника</button>
                         </div>
                         <div class="columns">
                             <div class="column">
@@ -136,7 +142,7 @@ export default function Explore() {
                                 </div>
                             </div>
                         </div>
-
+                        <a className="view-all" onClick={handleViewAllClick}>Посмотреть все</a>
                     </div>
                 </>
                 : <Navigate to={"/login"} />

@@ -86,6 +86,15 @@ export default function PlaylistContent() {
                     autoCreated: true
                 });
                 break;
+            case "kpop":
+                setPlaylistParametrs({
+                    ...playlistParametrs,
+                    playlistTitle: "К-поп",
+                    playlistAuthor: "Создано автоматически",
+                    authorsPlaylist: false,
+                    autoCreated: true
+                });
+                break;
 
             default:
                 setPlaylistParametrs({
