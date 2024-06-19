@@ -37,27 +37,106 @@ export default function Explore() {
         fetchData();
     }, [])
 
-    if (isLoading) {
-        return (
-            <></>
-        );
-    }
+    // if (isLoading) {
+    //     return (
+    //         <></>
+    //     );
+    //}
 
     return (
         <>
             {user && ('login' in user && 'id' in user) ?
                 <>
-                    <div className="allContainers">
-                        <h1 className="ContainerTitle">Жанры</h1>
-                        <div className="genresContainer">
-                            {genres.map((genre, index) => {
-                                return (
-                                    <button key={index} className="cont-genre">
-                                        <h1 className="titleGenre">{genre.genreID}</h1>
-                                    </button>
-                                )
-                            })}
+                    <div class="container">
+                        <h1>Жанры</h1>
+                        <div class="genres">
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
+                            <button class="genre">Хип-Хоп</button>
                         </div>
+                        <div class="columns">
+                            <div class="column">
+                                <h2>Топ треков</h2>
+                                <ol>
+                                    <li>
+                                        <button class="track-button">
+                                            <p>Killer Miller (Kill Again)<br></br><span>Freddie Dredd</span></p>
+                                            <span class="duration">2:00</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="track-button">
+                                            <p>Killer Miller (Kill Again)<br></br><span>Freddie Dredd</span></p>
+                                            <span class="duration">2:00</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="track-button">
+                                            <p>Killer Miller (Kill Again)<br></br><span>Freddie Dredd</span></p>
+                                            <span class="duration">2:00</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="track-button">
+                                            <p>Killer Miller (Kill Again)<br></br><span>Freddie Dredd</span></p>
+                                            <span class="duration">2:00</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="track-button">
+                                            <p>Killer Miller (Kill Again)<br></br><span>Freddie Dredd</span></p>
+                                            <span class="duration">2:00</span>
+                                        </button>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="column">
+                                <h2>Новинки</h2>
+                                <div class="new-track">
+                                    <button class="track-button">
+                                        <p>Killer Miller (Kill Again)<br></br><span>Freddie Dredd</span></p>
+                                        <span class="duration">2:00</span>
+                                    </button>
+                                </div>
+                                <div class="new-track">
+                                    <button class="track-button">
+                                        <p>Killer Miller (Kill Again)<br></br><span>Freddie Dredd</span></p>
+                                        <span class="duration">2:00</span>
+                                    </button>
+                                </div>
+                                <div class="new-track">
+                                    <button class="track-button">
+                                        <p>Killer Miller (Kill Again)<br></br><span>Freddie Dredd</span></p>
+                                        <span class="duration">2:00</span>
+                                    </button>
+                                </div>
+                                <div class="new-track">
+                                    <button class="track-button">
+                                        <p>Killer Miller (Kill Again)<br></br><span>Freddie Dredd</span></p>
+                                        <span class="duration">2:00</span>
+                                    </button>
+                                </div>
+                                <div class="new-track">
+                                    <button class="track-button">
+                                        <p>Killer Miller (Kill Again)<br></br><span>Freddie Dredd</span></p>
+                                        <span class="duration">2:00</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </>
                 : <Navigate to={"/login"} />

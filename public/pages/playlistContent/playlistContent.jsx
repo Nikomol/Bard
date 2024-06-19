@@ -77,6 +77,15 @@ export default function PlaylistContent() {
                     autoCreated: true
                 });
                 break;
+            case "rok":
+                setPlaylistParametrs({
+                    ...playlistParametrs,
+                    playlistTitle: "Рок",
+                    playlistAuthor: "Создано автоматически",
+                    authorsPlaylist: false,
+                    autoCreated: true
+                });
+                break;
 
             default:
                 setPlaylistParametrs({
@@ -143,7 +152,7 @@ export default function PlaylistContent() {
                                     playlistId === "hyst" ?
                                         <PlayerIcons icon_name={"playlist-history-icon"} classname={'playlist-image'} />
                                         :
-                                        <img className='playlist-image' src="https://cdni.iconscout.com/illustration/premium/thumb/404-7304110-5974976.png?f=webp" style={{backgroundColor: "#6CE0AF"}} />
+                                        <img className='playlist-image' src="https://cdni.iconscout.com/illustration/premium/thumb/404-7304110-5974976.png?f=webp" style={{ backgroundColor: "#6CE0AF" }} />
                                 }
                             </div>
                             <div className='user-playlist__info__container'>
@@ -206,7 +215,7 @@ export default function PlaylistContent() {
                             {urlData.length !== 0 ?
                                 urlData.map((song, index) => {
                                     const isActive = song.id === activeSong;
-                                    const buttonClass = isActive ? 'active' : '';
+                                    const buttonClass = isActive ? 'active' : ''; //user-playlist-button__container active
                                     return (
                                         <button key={index} className={`user-playlist-button__container ${buttonClass}`} onClick={() => playSong(song.id)}>
                                             <img className='user-playlist-button__song-icon' src={song.img}></img>
